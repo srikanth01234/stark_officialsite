@@ -1,0 +1,2339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stark CRM | STARK SOFTECH - Simplify Your Business</title>
+  <meta name="description"
+    content="Stark CRM is a smarter way to manage leads, sales, projects, and your entire business — all in one powerful platform.">
+
+  <!-- Google Fonts: Plus Jakarta Sans, Syne & Caveat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ==========================================================
+       GLOBAL RESET & CORE DESIGN SYSTEM
+       ========================================================== */
+    :root {
+      --primary-green: #1b4d29;
+      --primary-hover-green: #143b1f;
+      --accent-bright-green: #22c55e;
+      --color-black: #0b0f19;
+      --color-body: #4b5563;
+      --color-muted: #64748b;
+      --bg-white: #ffffff;
+      --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-heading: 'Syne', 'Plus Jakarta Sans', sans-serif;
+      --font-handwriting: 'Caveat', cursive, sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      width: 100%;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-color: var(--bg-white);
+      color: var(--color-black);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: inherit;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+
+    /* Shared Container */
+    .viewport-container {
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding-left: clamp(1.5rem, 3.8vw, 3.8rem);
+      padding-right: clamp(1.5rem, 3.8vw, 3.8rem);
+    }
+
+    /* ==========================================================
+       HEADER & FLOATING GLASS NAVIGATION
+       ========================================================== */
+    .site-header {
+      position: fixed;
+      top: 0.6rem;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .header-floating-wrapper {
+      width: min(94%, 1360px);
+      margin: 0 auto;
+      pointer-events: auto;
+      position: relative;
+    }
+
+    .nav-glass-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.4rem 0.6rem;
+      background: rgba(235, 247, 238, 0.88);
+      backdrop-filter: blur(20px) saturate(190%);
+      -webkit-backdrop-filter: blur(20px) saturate(190%);
+      border: 1px solid rgba(187, 247, 208, 0.8);
+      border-radius: 9999px;
+      box-shadow: 0 10px 28px -4px rgba(27, 77, 41, 0.08),
+                  inset 0 1px 1px rgba(255, 255, 255, 0.9);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .header-left-group {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+    }
+
+    .brand-logo-anchor {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      text-decoration: none;
+      user-select: none;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+
+    .brand-logo-img {
+      height: 38px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.08));
+      transition: transform 0.25s ease;
+    }
+
+    .brand-logo-anchor:hover .brand-logo-img {
+      transform: scale(1.04);
+    }
+
+    .brand-logo-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    .brand-name {
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      color: #111111;
+      line-height: 1;
+    }
+
+    .brand-tagline {
+      font-size: 0.54rem;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      color: var(--primary-green);
+      margin-top: 3px;
+    }
+
+    .center-nav-pill {
+      background: rgba(255, 255, 255, 0.92);
+      padding: 0.4rem 1.4rem;
+      border-radius: 9999px;
+      box-shadow: 0 4px 18px rgba(27, 77, 41, 0.05), inset 0 1px 0 rgba(255, 255, 255, 1);
+      border: 1px solid rgba(220, 245, 226, 0.9);
+      transition: all 0.25s ease;
+    }
+
+    .site-nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .site-nav-link {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: #2d3748;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      position: relative;
+      padding: 0.2rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .site-nav-link:hover {
+      color: var(--primary-green);
+    }
+
+    .site-nav-link.active {
+      color: var(--primary-green);
+      font-weight: 600;
+    }
+
+    .site-nav-link.active::after {
+      content: '';
+      display: block;
+      width: 5px;
+      height: 5px;
+      background-color: var(--primary-green);
+      border-radius: 50%;
+      position: absolute;
+      bottom: -6px;
+      box-shadow: 0 0 6px rgba(27, 77, 41, 0.4);
+    }
+
+    .header-right-group {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .btn-talk-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      background-color: var(--primary-green);
+      color: #ffffff;
+      font-size: 0.86rem;
+      font-weight: 700;
+      padding: 0.52rem 1.25rem;
+      border-radius: 9999px;
+      box-shadow: 0 4px 14px rgba(27, 77, 41, 0.25);
+      transition: all 0.25s ease;
+    }
+
+    .btn-talk-pill:hover {
+      background-color: var(--primary-hover-green);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(27, 77, 41, 0.35);
+    }
+
+    /* ==========================================================
+       PRODUCT HERO BANNER SECTION (EXACT REFERENCE DESIGN)
+       ========================================================== *    /* ==========================================================
+       PRODUCT HERO BANNER SECTION (MINIMAL & PROFESSIONAL)
+       ========================================================== */
+    /* ==========================================================
+       PRODUCT HERO BANNER SECTION (DARK LUXURY THEME)
+       ========================================================== */
+    .product-hero-section {
+      position: relative;
+      width: 100%;
+      min-height: auto;
+      background-color: #04060a;
+      background: linear-gradient(135deg, #070d17 0%, #04060a 50%, #06160d 100%);
+      padding-top: clamp(4.8rem, 5.5vw, 5.8rem);
+      padding-bottom: clamp(1.8rem, 2.5vw, 2.4rem);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Vibrant Glowing Green Radial Arc Backdrop */
+    .product-hero-bg-glow {
+      position: absolute;
+      top: -30%;
+      right: 15%;
+      width: 45vw;
+      height: 45vw;
+      max-width: 520px;
+      max-height: 520px;
+      background: radial-gradient(circle, rgba(34, 197, 94, 0.22) 0%, rgba(4, 6, 10, 0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* 2-Column Grid Layout - Tight & Centered for Zero Gap */
+    .product-hero-grid {
+      display: grid;
+      grid-template-columns: minmax(320px, 1.05fr) minmax(360px, 1fr);
+      gap: clamp(2rem, 4vw, 3.5rem);
+      align-items: center;
+      max-width: 1180px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 5;
+    }
+
+    /* Left Column: Title & CTA */
+    .product-hero-left {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .product-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      color: #64748b;
+      margin-bottom: 0.45rem;
+      text-transform: uppercase;
+    }
+
+    .product-breadcrumb a {
+      color: #94a3b8;
+      transition: color 0.2s ease;
+    }
+
+    .product-breadcrumb a:hover {
+      color: #4ade80;
+    }
+
+    .product-breadcrumb .current {
+      color: #4ade80;
+      font-weight: 800;
+    }
+
+    .product-breadcrumb .sep {
+      color: rgba(255, 255, 255, 0.2);
+      font-size: 0.65rem;
+    }
+
+    .product-tag-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .product-tag-dash {
+      width: 26px;
+      height: 2px;
+      background-color: #22c55e;
+      border-radius: 2px;
+      box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
+    }
+
+    .product-tag-text {
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #94a3b8;
+    }
+
+    .product-hero-headline {
+      font-family: var(--font-body);
+      font-size: clamp(2.8rem, 4vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: #ffffff;
+      line-height: 1.1;
+      margin-bottom: 1.1rem;
+    }
+
+    .product-hero-headline .text-green-accent {
+      color: #4ade80;
+    }
+
+    .product-hero-description {
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: #94a3b8;
+      max-width: 420px;
+      margin-bottom: 1.25rem;
+      font-weight: 400;
+    }
+
+    /* Primary CTA Button */
+    .product-hero-cta-row {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .btn-product-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      background-color: #16a34a;
+      color: #ffffff;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 0.65rem 1.65rem;
+      border-radius: 9999px;
+      box-shadow: 0 6px 20px rgba(22, 163, 74, 0.35);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-product-primary:hover {
+      background-color: #15803d;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(22, 163, 74, 0.5);
+    }
+
+    .btn-product-primary svg {
+      transition: transform 0.3s ease;
+    }
+
+    .btn-product-primary:hover svg {
+      transform: translateX(4px);
+    }
+
+    /* Bottom Slider Indicator Pills */
+    .product-hero-pills {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-top: 1.35rem;
+    }
+
+    .product-hero-pills .pill-item {
+      width: 10px;
+      height: 3.5px;
+      border-radius: 4px;
+      background-color: rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .product-hero-pills .pill-item.active {
+      width: 24px;
+      background-color: #4ade80;
+      box-shadow: 0 0 8px rgba(74, 222, 128, 0.6);
+    }
+
+    /* Right Column: Clean Centered Device Showcase */
+    .product-hero-right {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .product-hero-img-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+    }
+
+    .product-hero-img {
+      width: 100%;
+      height: auto;
+      max-height: 280px;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.45));
+      transition: transform 0.4s ease;
+    }
+
+    .product-hero-img-wrap:hover .product-hero-img {
+      transform: translateY(-3px);
+    }
+
+    /* Minimal Floating Badge on Top Right */
+    .product-handwritten-note {
+      display: none;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .product-hero-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .product-hero-left {
+        align-items: flex-start;
+      }
+    }
+
+    /* ==========================================================
+       OUR PRODUCTS SHOWCASE SECTION (PROFESSIONAL WHITE DESIGN)
+       ========================================================== */
+    .our-products-section {
+      position: relative;
+      width: 100%;
+      padding: clamp(4.5rem, 7vw, 6.8rem) 0;
+      background-color: #ffffff;
+      background: #ffffff;
+      overflow: hidden;
+      border-top: 1px solid rgba(226, 232, 240, 0.7);
+    }
+
+    /* Section Header Block */
+    .products-header-wrapper {
+      text-align: center;
+      margin-bottom: clamp(3.2rem, 5.5vw, 4.8rem);
+      position: relative;
+      z-index: 5;
+    }
+
+    .products-tag-wrapper {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .products-tag-wrapper .tag-line-dash {
+      width: 38px;
+      height: 2px;
+      background-color: var(--primary-green);
+      border-radius: 2px;
+    }
+
+    .products-tag-wrapper .tag-text {
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+    }
+
+    .products-main-title {
+      font-family: var(--font-body);
+      font-size: clamp(2.4rem, 4.2vw, 3.8rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--color-black);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .products-main-title .text-green-highlight {
+      color: var(--primary-green);
+    }
+
+    .products-intro-paragraph {
+      font-size: 0.96rem;
+      line-height: 1.65;
+      color: var(--color-muted);
+      max-width: 680px;
+      margin: 0 auto 1.8rem auto;
+      font-weight: 400;
+    }
+
+    .products-cta-wrapper {
+      display: flex;
+      justify-content: center;
+    }
+
+    .btn-explore-products {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      background-color: var(--primary-green);
+      color: #ffffff;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 0.7rem 1.85rem;
+      border-radius: 9999px;
+      box-shadow: 0 6px 20px rgba(27, 77, 41, 0.22);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-explore-products:hover {
+      background-color: var(--primary-hover-green);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(27, 77, 41, 0.32);
+    }
+
+    .btn-explore-products svg {
+      transition: transform 0.3s ease;
+    }
+
+    .btn-explore-products:hover svg {
+      transform: translateX(4px);
+    }
+
+    /* Left Vertical Keywords Watermark */
+    .vertical-keywords-watermark {
+      position: absolute;
+      top: 15%;
+      left: 3%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      color: rgba(148, 163, 184, 0.45);
+      text-transform: uppercase;
+      user-select: none;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .vertical-keywords-watermark .wm-dash {
+      width: 22px;
+      height: 2px;
+      background-color: rgba(148, 163, 184, 0.45);
+      border-radius: 2px;
+      margin-top: 4px;
+    }
+
+    /* Right Handwritten Script Motto Overlay */
+    .right-handwritten-motto {
+      position: absolute;
+      top: 14%;
+      right: 4%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      font-family: var(--font-handwriting);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #245e31;
+      transform: rotate(-6deg);
+      user-select: none;
+      pointer-events: none;
+      line-height: 1.2;
+      z-index: 5;
+    }
+
+    .right-handwritten-motto .motto-underline {
+      width: 32px;
+      height: 2px;
+      background-color: #245e31;
+      border-radius: 2px;
+      margin-top: 4px;
+    }
+
+    /* 3-Cards Grid Layout (Bottom Baseline Aligned) */
+    .products-card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1.5rem, 2.5vw, 2.4rem);
+      align-items: flex-end;
+      position: relative;
+      z-index: 5;
+    }
+
+    /* Card Item Base */
+    .product-showcase-card {
+      background-color: #ffffff;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 0 2px 6px rgba(0, 0, 0, 0.02);
+      border: 1px solid rgba(226, 232, 240, 0.85);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .product-showcase-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.09);
+    }
+
+    /* Side Cards: Slightly Reduced Height */
+    .product-showcase-card:not(.center-highlighted) .card-visual-header {
+      min-height: 210px;
+      padding: 1.35rem 1.35rem 0.4rem 1.35rem;
+    }
+
+    .product-showcase-card:not(.center-highlighted) .card-device-frame {
+      height: 135px;
+    }
+
+    .product-showcase-card:not(.center-highlighted) .card-content-body {
+      padding: 1.35rem;
+    }
+
+    /* Center Card: Longer & Taller Highlighted */
+    .product-showcase-card.center-highlighted {
+      transform: translateY(-16px);
+      border-color: rgba(34, 197, 94, 0.4);
+      box-shadow: 0 20px 48px rgba(27, 77, 41, 0.15);
+    }
+
+    .product-showcase-card.center-highlighted .card-visual-header {
+      min-height: 275px;
+      padding: 1.85rem 1.85rem 0.6rem 1.85rem;
+    }
+
+    .product-showcase-card.center-highlighted .card-device-frame {
+      height: 195px;
+    }
+
+    .product-showcase-card.center-highlighted .card-content-body {
+      padding: 1.85rem;
+    }
+
+    .product-showcase-card.center-highlighted:hover {
+      transform: translateY(-22px);
+      box-shadow: 0 26px 58px rgba(27, 77, 41, 0.22);
+    }
+
+    /* Card Visual Top Area */
+    .card-visual-header {
+      position: relative;
+      background: linear-gradient(180deg, #edf7ef 0%, #f6fbf7 100%);
+      border-radius: 24px 24px 0 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-visual-header.visual-erp {
+      background: linear-gradient(180deg, #d8edd9 0%, #ebf5ec 100%);
+    }
+
+    .card-visual-header.visual-hrms {
+      background: linear-gradient(180deg, #e4f3e6 0%, #f2f9f4 100%);
+    }
+
+    .product-label-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #1b4d29;
+    }
+
+    .product-label-pill .label-dot {
+      width: 5px;
+      height: 5px;
+      background-color: var(--primary-green);
+      border-radius: 50%;
+    }
+
+    .card-visual-title {
+      font-family: var(--font-body);
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #0b0f19;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-top: 0.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .product-showcase-card.center-highlighted .card-visual-title {
+      font-size: 1.48rem;
+    }
+
+    /* Floating Icon Square Badge */
+    .floating-icon-badge {
+      position: absolute;
+      top: 1.4rem;
+      right: 1.4rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+      z-index: 5;
+    }
+
+    .floating-icon-badge.badge-green {
+      background-color: #1b4d29;
+    }
+
+    .floating-icon-badge.badge-dark-green {
+      background-color: #143b1f;
+    }
+
+    .card-device-frame {
+      width: 100%;
+      border-radius: 12px 12px 0 0;
+      overflow: hidden;
+      margin-top: auto;
+    }
+
+    .card-device-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .product-showcase-card:hover .card-device-img {
+      transform: scale(1.04);
+    }
+
+    /* Card Bottom Content Area */
+    .card-content-body {
+      background-color: #ffffff;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-product-name {
+      font-family: var(--font-body);
+      font-size: 1.28rem;
+      font-weight: 800;
+      color: #0b0f19;
+      letter-spacing: -0.015em;
+      margin-bottom: 0.6rem;
+    }
+
+    .product-showcase-card.center-highlighted .card-product-name {
+      font-size: 1.4rem;
+    }
+
+    .card-product-desc {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: #64748b;
+      font-weight: 400;
+      margin-bottom: 1.4rem;
+    }
+
+    .card-learn-more-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--primary-green);
+      transition: color 0.25s ease, gap 0.25s ease;
+    }
+
+    .card-learn-more-link:hover {
+      color: var(--primary-hover-green);
+      gap: 0.65rem;
+    }
+
+    /* Responsive Grid */
+    @media (max-width: 1024px) {
+      .products-card-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .product-showcase-card.center-highlighted {
+        transform: none;
+      }
+
+      .vertical-keywords-watermark,
+      .right-handwritten-motto {
+        display: none;
+      }
+    }
+
+    /* ==========================================================
+       INSIGHTS & UPDATES BENTO GRID SECTION (EXACT REFERENCE DESIGN)
+       ========================================================== */
+    .insights-updates-section {
+      position: relative;
+      width: 100%;
+      padding: clamp(4.5rem, 7vw, 6.8rem) 0;
+      background-color: #ffffff;
+      overflow: hidden;
+      border-top: 1px solid rgba(226, 232, 240, 0.7);
+    }
+
+    .insights-bg-glow {
+      position: absolute;
+      top: -15%;
+      right: -10%;
+      width: 50vw;
+      height: 50vw;
+      max-width: 650px;
+      max-height: 650px;
+      background: radial-gradient(circle, rgba(220, 245, 226, 0.45) 0%, rgba(255, 255, 255, 0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Header Block */
+    .insights-header-wrapper {
+      text-align: center;
+      margin-bottom: clamp(3.2rem, 5vw, 4.5rem);
+      position: relative;
+      z-index: 5;
+    }
+
+    .insights-tag-wrapper {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .insights-tag-wrapper .insights-tag-dash {
+      width: 38px;
+      height: 2px;
+      background-color: var(--primary-green);
+      border-radius: 2px;
+    }
+
+    .insights-tag-wrapper .insights-tag-text {
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+    }
+
+    .insights-main-title {
+      font-family: var(--font-body);
+      font-size: clamp(2.4rem, 4.2vw, 3.8rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--color-black);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .insights-main-title .text-green-highlight {
+      color: var(--primary-green);
+    }
+
+    .insights-intro-paragraph {
+      font-size: 0.96rem;
+      line-height: 1.65;
+      color: var(--color-muted);
+      max-width: 680px;
+      margin: 0 auto;
+      font-weight: 400;
+    }
+
+    /* Bento Grid Wrapper & Rows */
+    .bento-grid-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+      position: relative;
+      z-index: 5;
+    }
+
+    .bento-row {
+      display: grid;
+      gap: 1.8rem;
+      align-items: stretch;
+    }
+
+    .bento-row-top {
+      grid-template-columns: 1.45fr 1fr;
+    }
+
+    .bento-row-middle {
+      grid-template-columns: 1fr 1.8fr;
+    }
+
+    .bento-row-bottom {
+      grid-template-columns: 1fr 1.22fr;
+    }
+
+    /* Bento Card Base */
+    .bento-card {
+      background-color: #ffffff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
+      border: 1px solid rgba(226, 232, 240, 0.85);
+      display: flex;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .bento-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Card 1: Horizontal Layout */
+    .card-product-update {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      align-items: stretch;
+    }
+
+    .bento-dark-visual-frame {
+      position: relative;
+      background-color: #06180c;
+      overflow: hidden;
+      min-height: 220px;
+    }
+
+    .bento-bg-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0.85;
+      transition: transform 0.5s ease;
+    }
+
+    .card-product-update:hover .bento-bg-img {
+      transform: scale(1.05);
+    }
+
+    .bento-overlay-content {
+      position: absolute;
+      top: 20%;
+      left: 14%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      user-select: none;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .overlay-title-line {
+      font-family: var(--font-body);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+    }
+
+    .overlay-dash {
+      width: 24px;
+      height: 2px;
+      background-color: #22c55e;
+      border-radius: 2px;
+      margin-top: 6px;
+    }
+
+    /* Card 2 & 3: Vertical Stack Layout */
+    .card-company-story,
+    .card-success-story {
+      flex-direction: column;
+    }
+
+    .bento-card-img-wrap {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      background-color: #f1f5f9;
+    }
+
+    .bento-card-img-wrap.medium-h {
+      height: 160px;
+    }
+
+    .bento-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .bento-card:hover .bento-card-img {
+      transform: scale(1.04);
+    }
+
+    /* Building Wall Signage Overlay */
+    .building-brand-overlay {
+      position: absolute;
+      top: 22%;
+      right: 12%;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(8px);
+      padding: 0.45rem 0.85rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .overlay-logo-icon {
+      height: 18px;
+      width: auto;
+    }
+
+    .overlay-brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .overlay-brand-text .main-b-name {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .overlay-brand-text .sub-b-tag {
+      font-size: 0.45rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: #4ade80;
+      margin-top: 2px;
+    }
+
+    /* Bento Card Content Area */
+    .bento-card-content {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .bento-card-content.full-h {
+      height: 100%;
+    }
+
+    .bento-card-content.compact-body {
+      padding: 1.25rem 1.4rem;
+    }
+
+    /* Badges */
+    .bento-badge {
+      display: inline-block;
+      width: fit-content;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      margin-bottom: 0.75rem;
+    }
+
+    .bento-badge.badge-green {
+      background-color: #eaf5ed;
+      color: #1b4d29;
+    }
+
+    /* Titles & Text */
+    .bento-card-title {
+      font-family: var(--font-body);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #0b0f19;
+      line-height: 1.3;
+      letter-spacing: -0.015em;
+      margin-bottom: 0.6rem;
+    }
+
+    .bento-card-title.sm {
+      font-size: 1.02rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .bento-card-excerpt {
+      font-size: 0.86rem;
+      line-height: 1.55;
+      color: #64748b;
+      font-weight: 400;
+      margin-bottom: 1.25rem;
+    }
+
+    .bento-card-excerpt.sm {
+      margin-bottom: 0.85rem;
+    }
+
+    /* Card Footer Row */
+    .bento-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 0.5rem;
+    }
+
+    .bento-card-footer.mt-auto {
+      margin-top: auto;
+    }
+
+    .bento-read-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--primary-green);
+      transition: gap 0.25s ease, color 0.25s ease;
+    }
+
+    .bento-read-more:hover {
+      color: var(--primary-hover-green);
+      gap: 0.6rem;
+    }
+
+    .bento-date {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #94a3b8;
+    }
+
+    /* Card 4: Combined Feature Card (40% Dark Visual + 60% White Content) */
+    .card-feature-combined {
+      display: grid;
+      grid-template-columns: 40% 60%;
+      align-items: stretch;
+      background-color: #ffffff;
+    }
+
+    .feature-dark-visual-container {
+      position: relative;
+      background-color: #041207;
+      background: linear-gradient(135deg, #051a0b 0%, #030d06 100%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.85rem;
+      padding: 1.25rem 1.1rem;
+      overflow: hidden;
+    }
+
+    .feature-dark-copy {
+      display: flex;
+      flex-direction: column;
+      padding-left: 0.25rem;
+      min-width: 105px;
+      flex-shrink: 0;
+    }
+
+    .feature-tag-top {
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      color: #4ade80;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .feature-dark-title {
+      font-family: var(--font-body);
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.25;
+    }
+
+    .feature-underline {
+      width: 18px;
+      height: 2px;
+      background-color: #4ade80;
+      border-radius: 2px;
+      margin-top: 6px;
+    }
+
+    .feature-laptop-screen {
+      width: 100%;
+      height: 155px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+      flex: 1;
+    }
+
+    .feature-screen-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top left;
+      display: block;
+    }
+
+    /* Card 6 & 7: Horizontal Compact Cards */
+    .card-horizontal-compact {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      align-items: center;
+    }
+
+    .compact-thumb-wrap {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 150px;
+      overflow: hidden;
+      background-color: #f1f5f9;
+    }
+
+    .compact-thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .card-horizontal-compact:hover .compact-thumb-img {
+      transform: scale(1.05);
+    }
+
+    .ideas-impact-overlay {
+      position: absolute;
+      top: 25%;
+      left: 15%;
+      display: flex;
+      flex-direction: column;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #0b0f19;
+      line-height: 1.2;
+      pointer-events: none;
+    }
+
+    .ideas-impact-overlay .impact-txt {
+      color: #1b4d29;
+    }
+
+    .build-grow-succeed-wall {
+      position: absolute;
+      top: 22%;
+      left: 15%;
+      display: flex;
+      flex-direction: column;
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      color: #0b0f19;
+      line-height: 1.3;
+      pointer-events: none;
+    }
+
+    /* Responsive Grid */
+    @media (max-width: 1024px) {
+      .bento-row-top,
+      .bento-row-middle,
+      .bento-row-bottom {
+        grid-template-columns: 1fr;
+      }
+
+      .card-product-update,
+      .card-feature-combined,
+      .card-horizontal-compact {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-dark-visual-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+    }
+
+    /* ==========================================================
+       SITE FOOTER SECTION (EXACT REFERENCE DESIGN)
+       ========================================================== */
+    .site-main-footer {
+      background-color: #04060a;
+      color: #94a3b8;
+      padding: 2.5rem 0 2rem 0;
+      margin-top: 0;
+      position: relative;
+      overflow: hidden;
+      font-family: var(--font-body);
+      border-radius: 40px 40px 0 0;
+    }
+
+    .footer-main-row {
+      display: grid;
+      grid-template-columns: 1.3fr 2.1fr 1px 1.6fr;
+      gap: clamp(2rem, 3.5vw, 3.5rem);
+      align-items: start;
+      padding-bottom: 3.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-brand-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
+      padding-top: 0.85rem;
+    }
+
+    .footer-logo-anchor {
+      display: inline-block;
+    }
+
+    .footer-logo-img {
+      height: 96px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.25));
+      transition: transform 0.25s ease;
+    }
+
+    .footer-logo-anchor:hover .footer-logo-img {
+      transform: scale(1.03);
+    }
+
+    .footer-company-name {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.25rem;
+    }
+
+    .footer-company-main {
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: #e2e8f0;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+    }
+
+    .footer-company-sub {
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: #94a3b8;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+    }
+
+    .footer-links-group {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1.5rem, 2.5vw, 2.5rem);
+    }
+
+    .footer-col-header {
+      color: #ffffff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .footer-menu a {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: color 0.25s ease, transform 0.25s ease;
+      display: inline-block;
+    }
+
+    .footer-menu a:hover {
+      color: #ffffff;
+      transform: translateX(3px);
+    }
+
+    .footer-divider-v {
+      width: 1px;
+      height: 100%;
+      min-height: 180px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .footer-right-col {
+      display: flex;
+      flex-direction: column;
+      gap: 2.2rem;
+    }
+
+    .footer-badges-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .ms-partner-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      background: #0d121d;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.55rem 1rem;
+      border-radius: 8px;
+    }
+
+    .ms-badge-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .ms-badge-text strong {
+      color: #ffffff;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .ms-badge-text span {
+      color: #94a3b8;
+      font-size: 0.68rem;
+    }
+
+    .iso-badge-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.02);
+      transition: border-color 0.3s ease;
+    }
+
+    .iso-badge-circle:hover {
+      border-color: #16a34a;
+      color: #16a34a;
+    }
+
+    .footer-social-row {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .social-circle-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.02);
+      transition: all 0.3s ease;
+    }
+
+    .social-circle-btn:hover {
+      background: #16a34a;
+      border-color: #16a34a;
+      color: #ffffff;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(22, 163, 74, 0.4);
+    }
+
+    .footer-arc-wrapper {
+      position: relative;
+      width: 100%;
+      height: 60px;
+      margin: -1rem 0 1rem 0;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    .footer-arc-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      filter: drop-shadow(0 -4px 12px rgba(34, 197, 94, 0.35));
+    }
+
+    .footer-bottom-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 1.8rem;
+      font-size: 0.85rem;
+      color: #64748b;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-copyright {
+      margin: 0;
+    }
+
+    .footer-bottom-right {
+      display: flex;
+      align-items: center;
+      gap: 2.2rem;
+    }
+
+    .footer-legal-links {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .footer-legal-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.82rem;
+      transition: color 0.25s ease;
+    }
+
+    .footer-legal-links a:hover {
+      color: #ffffff;
+    }
+
+    .legal-sep {
+      color: rgba(255, 255, 255, 0.15);
+      font-size: 0.75rem;
+    }
+
+    .footer-better-tomorrow {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #94a3b8;
+    }
+
+    .better-dash {
+      width: 20px;
+      height: 2px;
+      background-color: #16a34a;
+    }
+
+    @media (max-width: 1100px) {
+      .footer-main-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+      }
+
+      .footer-divider-v {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .footer-main-row {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .footer-links-group {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-bottom-bar {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.2rem;
+        text-align: center;
+      }
+
+      .footer-bottom-right {
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==================== FLOATING GLASS HEADER ==================== -->
+  <header class="site-header">
+    <div class="header-floating-wrapper">
+      <div class="nav-glass-container">
+
+        <!-- Left: Brand Logo -->
+        <div class="header-left-group">
+          <a href="index.html" class="brand-logo-anchor">
+            <img src="assets/logo-white.png" alt="Stark Softech Logo" class="brand-logo-img">
+            <div class="brand-logo-text">
+              <span class="brand-name">STARK SOFTECH</span>
+              <span class="brand-tagline">BUILD &middot; SOLVE &middot; GROW</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Center Nav -->
+        <nav class="center-nav-pill">
+          <ul class="site-nav-menu">
+            <li><a href="index.html#home" class="site-nav-link">Home</a></li>
+            <li><a href="about.html" class="site-nav-link">About Us</a></li>
+            <li><a href="service.html" class="site-nav-link">Services</a></li>
+            <li><a href="product.html" class="site-nav-link active">Products</a></li>
+            <li><a href="contact.html" class="site-nav-link">Contact Us</a></li>
+          </ul>
+        </nav>
+
+        <!-- Right CTA -->
+        <div class="header-right-group">
+          <a href="contact.html" class="btn-talk-pill">
+            Let's Talk
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== PRODUCT HERO BANNER SECTION ==================== -->
+  <section class="product-hero-section">
+    
+    <!-- Soft Decorative Radial Green Background Arc -->
+    <div class="product-hero-bg-glow"></div>
+
+    <div class="viewport-container">
+      <div class="product-hero-grid">
+
+        <!-- LEFT COLUMN: COPY & CTA -->
+        <div class="product-hero-left">
+          
+          <!-- Breadcrumb Navigation -->
+          <div class="product-breadcrumb">
+            <a href="index.html">HOME</a>
+            <span class="sep">/</span>
+            <a href="product.html">PRODUCTS</a>
+            <span class="sep">/</span>
+            <!-- <span class="current">STARK CRM</span> -->
+          </div>
+
+          <!-- Category Dash Tag -->
+          <!-- <div class="product-tag-group">
+            <span class="product-tag-dash"></span>
+            <span class="product-tag-text">STARK CRM</span>
+          </div> -->
+
+          <!-- Main Headline -->
+          <h1 class="product-hero-headline">
+            Simplify<br>
+            Your <span class="text-green-accent">Business</span>
+          </h1>
+
+          <!-- Sub-description -->
+          <!-- <p class="product-hero-description">
+            A smarter way to manage leads, sales, projects and your entire business &mdash; all in one place.
+          </p> -->
+
+          <!-- CTA Row -->
+          <div class="product-hero-cta-row">
+            <a href="index.html#contact" class="btn-product-primary">
+              Get Started
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Bottom Slider Indicator Pills -->
+          <div class="product-hero-pills">
+            <span class="pill-item active"></span>
+            <span class="pill-item"></span>
+            <span class="pill-item"></span>
+          </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN: PRODUCT SHOWCASE IMAGE & HANDWRITTEN ACCENT -->
+        <div class="product-hero-right">
+          <div class="product-hero-img-wrap">
+            <img src="assets/product/banner.png" alt="Stark CRM Laptop & Mobile Dashboard Showcase" class="product-hero-img">
+            
+            <!-- Handwritten Accent Text on Top Right -->
+            <div class="product-handwritten-note">
+              <span>Manage</span>
+              <span>Grow</span>
+              <span>Succeed</span>
+              <span class="note-dash"></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== OUR PRODUCTS SHOWCASE SECTION ==================== -->
+  <section class="our-products-section" id="products-showcase">
+    
+    <!-- Left Vertical Keywords Watermark -->
+    <div class="vertical-keywords-watermark">
+      <span>Ideas</span>
+      <span>Products</span>
+      <span>People</span>
+      <span>Growth</span>
+      <span class="wm-dash"></span>
+    </div>
+
+    <!-- Right Handwritten Script Motto Overlay -->
+    <div class="right-handwritten-motto">
+      <span>Smarter</span>
+      <span>Tools</span>
+      <span class="motto-green">Brighter</span>
+      <span class="motto-green">Tomorrow</span>
+      <span class="motto-underline"></span>
+    </div>
+
+    <div class="viewport-container">
+      
+      <!-- Section Header -->
+      <div class="products-header-wrapper">
+        <div class="products-tag-wrapper">
+          <span class="tag-line-dash"></span>
+          <span class="tag-text">OUR PRODUCTS</span>
+          <span class="tag-line-dash"></span>
+        </div>
+
+        <h2 class="products-main-title">
+          Software that <span class="text-green-highlight">Moves You Forward</span>
+        </h2>
+
+        <p class="products-intro-paragraph">
+          From managing your business to scaling your ideas, our products are built to simplify operations and create greater possibilities.
+        </p>
+
+        <div class="products-cta-wrapper">
+          <a href="product.html" class="btn-explore-products">
+            Explore All Products
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- 3 Product Cards Showcase Grid -->
+      <div class="products-card-grid">
+
+        <!-- CARD 1: STARK CRM -->
+        <div class="product-showcase-card">
+          <div class="card-visual-header visual-crm">
+            <div class="visual-badge-row">
+              <div class="product-label-pill">
+                <span>STARK CRM</span>
+                <span class="label-dot"></span>
+              </div>
+            </div>
+
+            <h3 class="card-visual-title">Turn Leads<br>into Growth</h3>
+            
+            <!-- Floating Square Green Icon Badge -->
+            <div class="floating-icon-badge badge-green">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+
+            <div class="card-device-frame">
+              <img src="assets/product/card_crm.jpg" alt="Stark CRM Laptop Dashboard" class="card-device-img">
+            </div>
+          </div>
+
+          <div class="card-content-body">
+            <h4 class="card-product-name">Stark CRM</h4>
+            <p class="card-product-desc">
+              A complete CRM solution to manage leads, sales, projects, and your entire business from one powerful platform.
+            </p>
+            <a href="product.html" class="card-learn-more-link">
+              Learn More
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 2: STARK ERP (CENTER HIGHLIGHTED) -->
+        <div class="product-showcase-card center-highlighted">
+          <div class="card-visual-header visual-erp">
+            <div class="visual-badge-row">
+              <div class="product-label-pill">
+                <span>STARK ERP</span>
+              </div>
+            </div>
+
+            <h3 class="card-visual-title">One Platform<br>for a Smarter Business</h3>
+            
+            <!-- Floating Square Green Gear Badge -->
+            <div class="floating-icon-badge badge-dark-green">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+            </div>
+
+            <div class="card-device-frame">
+              <img src="assets/product/card_erp.jpg" alt="Stark ERP Laptop Dashboard" class="card-device-img">
+            </div>
+          </div>
+
+          <div class="card-content-body">
+            <h4 class="card-product-name">Stark ERP</h4>
+            <p class="card-product-desc">
+              An all-in-one ERP solution to streamline your operations, finance, inventory, HR and more for better efficiency.
+            </p>
+            <a href="product.html" class="card-learn-more-link">
+              Learn More
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 3: STARK HRMS -->
+        <div class="product-showcase-card">
+          <div class="card-visual-header visual-hrms">
+            <div class="visual-badge-row">
+              <div class="product-label-pill">
+                <span>STARK HRMS</span>
+              </div>
+            </div>
+
+            <h3 class="card-visual-title">Empower<br>Your People</h3>
+            
+            <!-- Floating Square Green HR Badge -->
+            <div class="floating-icon-badge badge-green">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="8.5" cy="7" r="4"></circle>
+                <polyline points="17 11 19 13 23 9"></polyline>
+              </svg>
+            </div>
+
+            <div class="card-device-frame">
+              <img src="assets/product/card_hrms.jpg" alt="Stark HRMS Mobile App" class="card-device-img">
+            </div>
+          </div>
+
+          <div class="card-content-body">
+            <h4 class="card-product-name">Stark HRMS</h4>
+            <p class="card-product-desc">
+              Simplify your HR operations with smart attendance, leave management, payroll and employee engagement tools.
+            </p>
+            <a href="product.html" class="card-learn-more-link">
+              Learn More
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== INSIGHTS & UPDATES BENTO GRID SECTION ==================== -->
+  <section class="insights-updates-section" id="insights">
+    
+    <!-- Top Right Decorative Ambient Glow -->
+    <div class="insights-bg-glow"></div>
+
+    <div class="viewport-container">
+
+      <!-- Section Header -->
+      <div class="insights-header-wrapper">
+        <div class="insights-tag-wrapper">
+          <span class="insights-tag-dash"></span>
+          <span class="insights-tag-text">INSIGHTS &amp; UPDATES</span>
+          <span class="insights-tag-dash"></span>
+        </div>
+
+        <h2 class="insights-main-title">
+          Ideas that <span class="text-green-highlight">Drive Progress</span>
+        </h2>
+
+        <p class="insights-intro-paragraph">
+          Stay informed with the latest news, insights, product updates and stories from our journey in building smarter businesses.
+        </p>
+      </div>
+
+      <!-- Bento Grid Container -->
+      <div class="bento-grid-wrapper">
+
+        <!-- ROW 1: 2 COLUMNS (Card 1: 1.45fr | Card 2: 1fr) -->
+        <div class="bento-row bento-row-top">
+
+          <!-- CARD 1: Product Update (Horizontal 2-Column Card) -->
+          <div class="bento-card card-product-update">
+            
+            <!-- Left Dark Image Frame with Text Overlay -->
+            <div class="bento-dark-visual-frame">
+              <img src="assets/product/insights_dark.jpg" alt="Smarter Business Starts Here" class="bento-bg-img">
+              <div class="bento-overlay-content">
+                <span class="overlay-title-line">Smarter</span>
+                <span class="overlay-title-line">Business</span>
+                <span class="overlay-title-line">Starts Here</span>
+                <span class="overlay-dash"></span>
+              </div>
+            </div>
+
+            <!-- Right Content Area -->
+            <div class="bento-card-content">
+              <span class="bento-badge badge-green">Product Update</span>
+              <h3 class="bento-card-title">Stark CRM Launches Powerful New Automation Features</h3>
+              <p class="bento-card-excerpt">
+                Simplify your sales process with our latest automation tools. Save time, reduce manual work, and close deals faster.
+              </p>
+              <div class="bento-card-footer">
+                <a href="#" class="bento-read-more">
+                  Read More
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </a>
+                <span class="bento-date">Aug 24, 2026</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- CARD 2: Company (Building Photo Card) -->
+          <div class="bento-card card-company-story">
+            
+            <div class="bento-card-img-wrap">
+              <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=80" 
+                   alt="Stark Softech Office Building" class="bento-card-img">
+              
+              <!-- Building Brand Wall Signage Overlay -->
+              <div class="building-brand-overlay">
+                <img src="assets/logo-white.png" alt="Stark Logo" class="overlay-logo-icon">
+                <div class="overlay-brand-text">
+                  <span class="main-b-name">Stark Softech</span>
+                  <span class="sub-b-tag">BUILDING SMARTER SOLUTIONS</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bento-card-content">
+              <span class="bento-badge badge-green">Company</span>
+              <h3 class="bento-card-title">Our Journey Towards a Smarter Tomorrow</h3>
+              <p class="bento-card-excerpt">
+                Explore how Stark Softech is helping businesses transform through innovative software solutions.
+              </p>
+              <div class="bento-card-footer">
+                <a href="#" class="bento-read-more">
+                  Read More
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </a>
+                <span class="bento-date">Aug 20, 2026</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ROW 2: 3 COLUMNS (Card 3: 1fr | Card 4: 1.25fr | Card 5: 1fr) -->
+        <div class="bento-row bento-row-middle">
+
+          <!-- CARD 3: Success Story -->
+          <div class="bento-card card-success-story">
+            <div class="bento-card-img-wrap medium-h">
+              <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" 
+                   alt="Team Success Story" class="bento-card-img">
+            </div>
+
+            <div class="bento-card-content">
+              <span class="bento-badge badge-green">Success Story</span>
+              <h3 class="bento-card-title">From Leads to Growth &ndash; A Real Business Story</h3>
+              <p class="bento-card-excerpt">
+                See how our CRM helped a growing business streamline their operations and achieve 3x faster growth.
+              </p>
+              <div class="bento-card-footer">
+                <a href="#" class="bento-read-more">
+                  Read More
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </a>
+                <span class="bento-date">Aug 18, 2026</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 4: Feature Combined (40% Dark Visual + 60% Content) -->
+          <div class="bento-card card-feature-combined">
+            
+            <!-- Left 40%: Dark Visual Panel -->
+            <div class="feature-dark-visual-container">
+              <!-- Left Dark Copy -->
+              <div class="feature-dark-copy">
+                <span class="feature-tag-top">New Feature</span>
+                <h4 class="feature-dark-title">
+                  More<br>
+                  Control<br>
+                  More Growth
+                </h4>
+                <span class="feature-underline"></span>
+              </div>
+
+              <!-- Right Laptop Screen Mockup -->
+              <div class="feature-laptop-screen">
+                <img src="assets/product/card_crm.jpg" alt="New Feature Dashboard" class="feature-screen-img">
+              </div>
+            </div>
+
+            <!-- Right 60%: Content Space -->
+            <div class="bento-card-content">
+              <span class="bento-badge badge-green">Feature</span>
+              <h3 class="bento-card-title">A Smarter Way to Manage Your Business</h3>
+              <p class="bento-card-excerpt">
+                Discover the new dashboard experience in Stark CRM designed for better insights and faster decisions.
+              </p>
+              <div class="bento-card-footer mt-auto">
+                <a href="#" class="bento-read-more">
+                  Read More
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </a>
+                <span class="bento-date">Aug 12, 2026</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ROW 3: 2 COLUMNS (Card 6: 1fr | Card 7: 1.22fr) -->
+        <div class="bento-row bento-row-bottom">
+
+          <!-- CARD 6: Blog (Horizontal Thumbnail Left + Content Right) -->
+          <div class="bento-card card-horizontal-compact">
+            <div class="compact-thumb-wrap">
+              <img src="https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=600&q=80" 
+                   alt="Ideas to Impact Notepad" class="compact-thumb-img">
+              <div class="ideas-impact-overlay">
+                <span>Ideas</span>
+                <span>to</span>
+                <span class="impact-txt">Impact</span>
+              </div>
+            </div>
+
+            <div class="bento-card-content compact-body">
+              <span class="bento-badge badge-green">Blog</span>
+              <h3 class="bento-card-title sm">5 Ways Automation Can Save Your Business Time</h3>
+              <p class="bento-card-excerpt sm">Practical tips to work smarter, not harder.</p>
+              <div class="bento-card-footer">
+                <a href="#" class="bento-read-more">
+                  Read More
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 7: Announcement (Horizontal Interior Photo Left + Content Right) -->
+          <div class="bento-card card-horizontal-compact">
+            <div class="compact-thumb-wrap">
+              <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=600&q=80" 
+                   alt="Modern Office Interior" class="compact-thumb-img">
+              <div class="build-grow-succeed-wall">
+                <span>BUILD</span>
+                <span>GROW</span>
+                <span>SUCCEED</span>
+              </div>
+            </div>
+
+            <div class="bento-card-content compact-body">
+              <span class="bento-badge badge-green">Announcement</span>
+              <h3 class="bento-card-title sm">Stark Softech Expands to New Markets</h3>
+              <p class="bento-card-excerpt sm">
+                We're excited to announce our expansion into new regions, bringing our solutions to more businesses worldwide.
+              </p>
+              <div class="bento-card-footer">
+                <a href="#" class="bento-read-more">
+                  Read More
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== SITE FOOTER SECTION ==================== -->
+  <footer class="site-main-footer">
+    <div class="viewport-container">
+
+      <div class="footer-main-row">
+        <!-- Left Brand & Logo Column -->
+        <div class="footer-brand-col">
+          <a href="index.html" class="footer-logo-anchor">
+            <img src="assets/logo-footer.png" alt="Stark Softech Logo" class="footer-logo-img">
+          </a>
+          <div class="footer-company-name">
+            <span class="footer-company-main">StarkSoftech</span>
+            <span class="footer-company-sub">Technologies Pvt.Ltd</span>
+          </div>
+        </div>
+
+        <!-- Center Columns (Products, Services, Company) -->
+        <div class="footer-links-group">
+          <div class="footer-nav-col">
+            <h4 class="footer-col-header">PRODUCTS</h4>
+            <ul class="footer-menu">
+              <li><a href="product.html">Stark CRM</a></li>
+              <li><a href="#">Business Software</a></li>
+              <li><a href="#">Workflow Automation</a></li>
+              <li><a href="#">E-commerce Solutions</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-nav-col">
+            <h4 class="footer-col-header">SERVICES</h4>
+            <ul class="footer-menu">
+              <li><a href="index.html#services">Web Development</a></li>
+              <li><a href="index.html#services">Mobile Applications</a></li>
+              <li><a href="index.html#services">UI/UX Design</a></li>
+              <li><a href="index.html#services">Digital Marketing</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-nav-col">
+            <h4 class="footer-col-header">COMPANY</h4>
+            <ul class="footer-menu">
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="index.html#contact">Contact Us</a></li>
+              <li><a href="#">Blog</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Vertical Divider -->
+        <div class="footer-divider-v"></div>
+
+        <!-- Right Column (Partners & Follow Us) -->
+        <div class="footer-right-col">
+          <div class="footer-cert-block">
+            <h4 class="footer-col-header">OUR PARTNERS & CERTIFICATIONS</h4>
+            <div class="footer-badges-row">
+              <div class="ms-partner-badge">
+                <svg width="22" height="22" viewBox="0 0 23 23" fill="none">
+                  <path fill="#f25022" d="M1 1h10v10H1z" />
+                  <path fill="#7fba00" d="M12 1h10v10H1z" />
+                  <path fill="#00a4ef" d="M1 12h10v10H1z" />
+                  <path fill="#ffb900" d="M12 12h10v10H12z" />
+                </svg>
+                <div class="ms-badge-text">
+                  <strong>Microsoft</strong>
+                  <span>Solutions Partner</span>
+                </div>
+              </div>
+              <div class="iso-badge-circle" title="ISO 27001 Certified">ISO</div>
+              <div class="iso-badge-circle" title="ISO 9001 Certified">9001</div>
+            </div>
+          </div>
+
+          <div class="footer-social-block">
+            <h4 class="footer-col-header">FOLLOW US</h4>
+            <div class="footer-social-row">
+              <a href="#" class="social-circle-btn" aria-label="LinkedIn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </a>
+              <a href="#" class="social-circle-btn" aria-label="Twitter">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                </svg>
+              </a>
+              <a href="#" class="social-circle-btn" aria-label="Instagram">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Glowing Curved Green SVG Arc -->
+      <div class="footer-arc-wrapper">
+        <svg class="footer-arc-svg" viewBox="0 0 1440 60" preserveAspectRatio="none" fill="none">
+          <path d="M0,50 Q720,5 1440,50" stroke="#22c55e" stroke-width="2" fill="none" />
+        </svg>
+      </div>
+
+      <!-- Footer Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <p class="footer-copyright">&copy; 2026 Stark Softech. All rights reserved.</p>
+        <div class="footer-bottom-right">
+          <div class="footer-legal-links">
+            <a href="#">Privacy Policy</a>
+            <span class="legal-sep">&bull;</span>
+            <a href="#">Terms of Service</a>
+          </div>
+          <div class="footer-better-tomorrow">
+            <span class="better-dash"></span>
+            <span>BUILT FOR A BETTER TOMORROW</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+
+</html>

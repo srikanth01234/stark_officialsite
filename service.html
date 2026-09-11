@@ -1,0 +1,1885 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services | STARK SOFTECH - Software Development Services for a Smarter Business</title>
+  <meta name="description"
+    content="We design and develop scalable web, mobile, AI and cloud solutions to help businesses innovate, grow and succeed in the digital world.">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Syne -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ==========================================================
+       GLOBAL RESET & CORE DESIGN SYSTEM
+       ========================================================== */
+    :root {
+      --primary-green: #1b4d29;
+      --primary-hover-green: #143b1f;
+      --primary-dark-green: #0e3b1f;
+      --accent-green: #15803d;
+      --accent-bright-green: #16a34a;
+      --accent-emerald: #22c55e;
+      --bg-mint-glow: #eaf8ee;
+      --bg-white: #ffffff;
+      --color-black: #0b0f19;
+      --color-dark-slate: #1e293b;
+      --color-body: #4b5563;
+      --color-muted: #64748b;
+      --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-heading: 'Syne', 'Plus Jakarta Sans', sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      width: 100%;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-color: var(--bg-white);
+      color: var(--color-black);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: inherit;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+
+    /* Shared Container */
+    .viewport-container {
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding-left: clamp(1.5rem, 4vw, 4rem);
+      padding-right: clamp(1.5rem, 4vw, 4rem);
+    }
+
+    /* ==========================================================
+       HEADER & FLOATING GLASS NAVIGATION
+       ========================================================== */
+    .site-header {
+      position: fixed;
+      top: 0.6rem;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .header-floating-wrapper {
+      width: min(94%, 1360px);
+      margin: 0 auto;
+      pointer-events: auto;
+      position: relative;
+    }
+
+    .nav-glass-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.4rem 0.6rem;
+      background: rgba(235, 247, 238, 0.88);
+      backdrop-filter: blur(20px) saturate(190%);
+      -webkit-backdrop-filter: blur(20px) saturate(190%);
+      border: 1px solid rgba(187, 247, 208, 0.8);
+      border-radius: 9999px;
+      box-shadow: 0 10px 28px -4px rgba(27, 77, 41, 0.08),
+        inset 0 1px 1px rgba(255, 255, 255, 0.9);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .header-left-group {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+    }
+
+    .brand-logo-anchor {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      text-decoration: none;
+      user-select: none;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+
+    .brand-logo-img {
+      height: 38px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.08));
+      transition: transform 0.25s ease;
+    }
+
+    .brand-logo-anchor:hover .brand-logo-img {
+      transform: scale(1.04);
+    }
+
+    .brand-logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .brand-name {
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      color: #111111;
+      line-height: 1;
+    }
+
+    .brand-tagline {
+      font-size: 0.54rem;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      color: var(--primary-green, #1b4d29);
+      margin-top: 3px;
+    }
+
+    .center-nav-pill {
+      background: rgba(255, 255, 255, 0.92);
+      padding: 0.4rem 1.4rem;
+      border-radius: 9999px;
+      box-shadow: 0 4px 18px rgba(27, 77, 41, 0.05), inset 0 1px 0 rgba(255, 255, 255, 1);
+      border: 1px solid rgba(220, 245, 226, 0.9);
+      transition: all 0.25s ease;
+    }
+
+    .site-nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .site-nav-link {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: #2d3748;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      position: relative;
+      padding: 0.2rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .site-nav-link:hover {
+      color: var(--primary-green, #1b4d29);
+    }
+
+    .site-nav-link.active {
+      color: var(--primary-green, #1b4d29);
+      font-weight: 600;
+    }
+
+    .site-nav-link.active::after {
+      content: '';
+      display: block;
+      width: 5px;
+      height: 5px;
+      background-color: var(--primary-green, #1b4d29);
+      border-radius: 50%;
+      position: absolute;
+      bottom: -6px;
+      box-shadow: 0 0 6px rgba(27, 77, 41, 0.4);
+    }
+
+    .header-right-group {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .btn-talk-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      background-color: var(--primary-green, #1b4d29);
+      color: #ffffff;
+      font-size: 0.86rem;
+      font-weight: 700;
+      padding: 0.52rem 1.25rem;
+      border-radius: 9999px;
+      box-shadow: 0 4px 14px rgba(27, 77, 41, 0.25);
+      transition: all 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .btn-talk-pill:hover {
+      background-color: var(--primary-hover-green, #143b1f);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(27, 77, 41, 0.35);
+    }
+
+    @media (max-width: 992px) {
+      .center-nav-pill {
+        display: none;
+      }
+    }
+
+    /* ==========================================================
+       INNER TITLE BANNER SECTION (SERVICES PAGE)
+       ========================================================== */
+    .service-banner-section {
+      position: relative;
+      width: 100%;
+      padding-top: clamp(8.5rem, 15vh, 11rem);
+      padding-bottom: clamp(4.5rem, 9vh, 6.5rem);
+      background-color: #ffffff;
+      background-image: radial-gradient(ellipse 70% 65% at 50% 40%, rgba(215, 250, 224, 0.75) 0%, rgba(238, 252, 242, 0.4) 50%, rgba(255, 255, 255, 1) 90%);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .service-banner-hex-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.85;
+    }
+
+    .service-banner-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .service-breadcrumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: #64748b;
+      margin-bottom: 1.5rem;
+      user-select: none;
+    }
+
+    .service-breadcrumb a {
+      color: #64748b;
+      transition: color 0.2s ease;
+    }
+
+    .service-breadcrumb a:hover {
+      color: var(--accent-bright-green);
+    }
+
+    .service-breadcrumb .crumb-sep {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      font-weight: 400;
+    }
+
+    .service-breadcrumb .crumb-current {
+      color: var(--accent-bright-green);
+      font-weight: 700;
+    }
+
+    .service-tagline-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.85rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .tag-line-accent {
+      width: 34px;
+      height: 1.8px;
+      background-color: var(--accent-bright-green);
+      border-radius: 2px;
+    }
+
+    .tag-text-caption {
+      font-size: clamp(0.72rem, 1.2vw, 0.82rem);
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #15803d;
+    }
+
+    .service-banner-heading {
+      font-family: var(--font-body);
+      font-size: clamp(2.4rem, 5.2vw, 4.1rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      color: #0b0f19;
+      margin-bottom: 1.4rem;
+      max-width: 900px;
+    }
+
+    .service-banner-heading .text-highlight-green {
+      color: #16a34a;
+      display: inline-block;
+    }
+
+    .service-banner-description {
+      font-size: clamp(0.98rem, 1.6vw, 1.12rem);
+      font-weight: 400;
+      line-height: 1.65;
+      color: #4b5563;
+      max-width: 680px;
+      margin: 0 auto 2.4rem auto;
+    }
+
+    .service-banner-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-banner-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 0.82rem 1.85rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px -4px rgba(34, 197, 94, 0.42);
+      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-banner-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px -2px rgba(34, 197, 94, 0.52);
+      background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+    }
+
+    .btn-banner-primary svg {
+      transition: transform 0.25s ease;
+    }
+
+    .btn-banner-primary:hover svg {
+      transform: translateX(3px);
+    }
+
+    .btn-banner-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      background-color: rgba(240, 253, 244, 0.85);
+      border: 1.5px solid #22c55e;
+      color: #15803d;
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 0.82rem 1.85rem;
+      border-radius: 12px;
+      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-banner-secondary:hover {
+      background-color: #dcfce7;
+      border-color: #16a34a;
+      color: #14532d;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px -2px rgba(22, 163, 74, 0.18);
+    }
+
+    .btn-banner-secondary svg {
+      transition: transform 0.25s ease;
+    }
+
+    .btn-banner-secondary:hover svg {
+      transform: translateX(3px);
+    }
+
+    /* ==========================================================
+       EXPLORE OUR SERVICES SECTION (WHITE CLEAN THEME)
+       ========================================================== */
+    .explore-services-section {
+      position: relative;
+      width: 100%;
+      padding: 5.5rem 0 6.5rem 0;
+      background-color: #ffffff;
+      color: #0b0f19;
+      overflow: hidden;
+    }
+
+    .explore-services-header {
+      margin-bottom: 3.2rem;
+      text-align: left;
+    }
+
+    .explore-tagline-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .explore-services-title {
+      font-family: var(--font-body);
+      font-size: clamp(2.1rem, 4.2vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: #0b0f19;
+      line-height: 1.18;
+      margin-bottom: 1.1rem;
+    }
+
+    .explore-services-title .text-highlight-green {
+      color: #16a34a;
+    }
+
+    .explore-services-subtitle {
+      font-size: clamp(0.95rem, 1.4vw, 1.08rem);
+      color: #64748b;
+      max-width: 760px;
+      line-height: 1.6;
+    }
+
+    /* 3-Column Image Cards Grid */
+    .explore-services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1.5rem, 2.5vw, 2.25rem);
+    }
+
+    /* Individual Image Service Card */
+    .service-explore-card {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      background-color: #ffffff;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.02);
+      border: 1px solid #f1f5f9;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-explore-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(22, 163, 74, 0.12);
+      border-color: rgba(187, 247, 208, 0.9);
+    }
+
+    /* Image Wrapper */
+    .explore-card-img-wrap {
+      position: relative;
+      width: 100%;
+      height: 260px;
+      overflow: hidden;
+      background-color: #f1f5f9;
+    }
+
+    .explore-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .service-explore-card:hover .explore-card-img {
+      transform: scale(1.06);
+    }
+
+    /* Overlay Dark Label Box overlapping the bottom of image */
+    .explore-card-label-box {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 82%;
+      background: rgba(11, 15, 25, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 1.25rem 1.4rem;
+      border-top-right-radius: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      border-right: 1px solid rgba(255, 255, 255, 0.12);
+      z-index: 5;
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+    .service-explore-card:hover .explore-card-label-box {
+      background: rgba(22, 163, 74, 0.95);
+      border-color: rgba(34, 197, 94, 0.4);
+    }
+
+    .explore-card-title-text {
+      font-family: var(--font-body);
+      font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+    }
+
+    /* Responsive Grid for Explore Services */
+    @media (max-width: 1024px) {
+      .explore-services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .explore-services-grid {
+        grid-template-columns: 1fr;
+      }
+      .explore-card-label-box {
+        width: 90%;
+      }
+    }
+
+    /* ==========================================================
+       CONNECTED ECOSYSTEM SECTION (TRANSLUCENT VENN DIAGRAM SVG)
+       ========================================================== */
+    .ecosystem-section {
+      position: relative;
+      width: 100%;
+      padding: 5.5rem 0;
+      background: #02040b;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ecosystem-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .ecosystem-svg-diagram {
+      width: 100%;
+      height: auto;
+      max-height: 480px;
+      display: block;
+    }
+
+    .svg-ecosystem-node {
+      cursor: pointer;
+      transition: filter 0.3s ease;
+    }
+
+    .svg-ecosystem-node:hover {
+      filter: drop-shadow(0 0 16px rgba(34, 197, 94, 0.75));
+    }
+
+    /* ==========================================================
+       OUR PROCESS SECTION
+       ========================================================== */
+    .our-process-section {
+      position: relative;
+      width: 100%;
+      padding: 6rem 0 6.5rem 0;
+      background-color: #ffffff;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    /* Ambient Background Glows */
+    .process-bg-glow-topleft {
+      position: absolute;
+      top: -120px;
+      left: -120px;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(220, 252, 231, 0.75) 0%, rgba(255, 255, 255, 0) 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .process-bg-glow-bottomright {
+      position: absolute;
+      bottom: -120px;
+      right: -120px;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(220, 252, 231, 0.75) 0%, rgba(255, 255, 255, 0) 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .process-bg-dots-left {
+      position: absolute;
+      left: clamp(1rem, 3vw, 3.5rem);
+      top: 45%;
+      transform: translateY(-50%);
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.8;
+    }
+
+    .process-bg-dots-right {
+      position: absolute;
+      right: clamp(1rem, 3vw, 3.5rem);
+      top: 22%;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.8;
+    }
+
+    /* Header Tagline & Titles */
+    .process-tagline-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.85rem;
+      margin-bottom: 1.25rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .process-section-title {
+      font-family: var(--font-body);
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.18;
+      letter-spacing: -0.025em;
+      color: #0b0f19;
+      margin-bottom: 1.1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .process-section-title .text-highlight-green {
+      color: #16a34a;
+      display: block;
+    }
+
+    .process-section-subtitle {
+      font-size: clamp(0.95rem, 1.4vw, 1.08rem);
+      color: #64748b;
+      max-width: 620px;
+      margin: 0 auto 4.2rem auto;
+      line-height: 1.6;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* 4-Step Cards Container */
+    .process-steps-wrapper {
+      position: relative;
+      z-index: 2;
+      margin-bottom: 3.8rem;
+    }
+
+    /* Dashed Horizontal Connector Line */
+    .process-timeline-line {
+      position: absolute;
+      top: 90px;
+      left: 12.5%;
+      right: 12.5%;
+      height: 2px;
+      border-top: 2px dashed #cbd5e1;
+      z-index: 1;
+    }
+
+    .process-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(1rem, 2vw, 2.2rem);
+      position: relative;
+      z-index: 2;
+    }
+
+    .process-step-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* Step Illustration Frame Box */
+    .process-img-box {
+      position: relative;
+      width: 100%;
+      max-width: 230px;
+      height: 180px;
+      background: linear-gradient(145deg, #f0fdf4 0%, #e1f7e7 100%);
+      border-radius: 28px;
+      border: 1px solid rgba(187, 247, 208, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 10px 24px -6px rgba(22, 163, 74, 0.08);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .process-step-card:hover .process-img-box {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 36px -6px rgba(22, 163, 74, 0.16);
+    }
+
+    /* Step Badge Number */
+    .process-number-badge {
+      position: absolute;
+      top: -12px;
+      right: 18px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background-color: #16a34a;
+      color: #ffffff;
+      font-size: 0.85rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(22, 163, 74, 0.35);
+      border: 2px solid #ffffff;
+      z-index: 5;
+    }
+
+    .process-card-title {
+      font-size: 1.18rem;
+      font-weight: 800;
+      color: #0b0f19;
+      margin-bottom: 0.55rem;
+    }
+
+    .process-card-desc {
+      font-size: 0.9rem;
+      color: #64748b;
+      line-height: 1.55;
+      max-width: 250px;
+    }
+
+    /* Bottom Stats / Metric Cards Grid */
+    .process-stats-grid {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
+    }
+
+    .process-stat-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 0.95rem 1.25rem;
+      box-shadow: 0 10px 30px rgba(22, 163, 74, 0.05), 0 2px 8px rgba(0, 0, 0, 0.02);
+      border: 1.5px solid rgba(34, 197, 94, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-align: left;
+      width: auto;
+      min-width: max-content;
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease;
+    }
+
+    .process-stat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 36px rgba(22, 163, 74, 0.16);
+      border-color: #16a34a;
+    }
+
+    .stat-icon-circle {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      border-radius: 50%;
+      background-color: #eaf8ee;
+      color: #16a34a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stat-text-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-number-val {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: #0b0f19;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .stat-label-text {
+      font-size: 0.82rem;
+      color: #64748b;
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    /* Responsive queries for Process */
+    @media (max-width: 1024px) {
+      .process-steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem 1.5rem;
+      }
+
+      .process-timeline-line {
+        display: none;
+      }
+
+      .process-stats-grid {
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .process-steps-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .process-stats-grid {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .process-stat-card {
+        width: 100%;
+        max-width: 320px;
+        justify-content: flex-start;
+      }
+    }
+
+    /* ==========================================================
+       SITE FOOTER
+       ========================================================== */
+    .site-main-footer {
+      background-color: #04060a;
+      color: #94a3b8;
+      padding: 2.5rem 0 2rem 0;
+      position: relative;
+      overflow: hidden;
+      font-family: var(--font-body);
+      border-radius: 40px 40px 0 0;
+    }
+
+    .footer-main-row {
+      display: grid;
+      grid-template-columns: 1.3fr 2.1fr 1px 1.6fr;
+      gap: clamp(2rem, 3.5vw, 3.5rem);
+      align-items: start;
+      padding-bottom: 3.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-brand-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
+      padding-top: 0.85rem;
+    }
+
+    .footer-logo-img {
+      height: 96px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .footer-company-name {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.25rem;
+    }
+
+    .footer-company-main {
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: #e2e8f0;
+    }
+
+    .footer-company-sub {
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: #94a3b8;
+    }
+
+    .footer-links-group {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1.5rem, 2.5vw, 2.5rem);
+    }
+
+    .footer-col-header {
+      color: #ffffff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .footer-nav-list a {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      transition: color 0.2s ease;
+    }
+
+    .footer-nav-list a:hover {
+      color: #22c55e;
+    }
+
+    .footer-divider-v {
+      width: 1px;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.05) 100%);
+    }
+
+    .footer-right-col {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .footer-badges-row {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .ms-partner-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 0.5rem 0.85rem;
+      border-radius: 12px;
+    }
+
+    .ms-badge-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .ms-badge-text strong {
+      color: #ffffff;
+      font-size: 0.85rem;
+    }
+
+    .ms-badge-text span {
+      color: #94a3b8;
+      font-size: 0.7rem;
+    }
+
+    .iso-badge-circle {
+      color: #94a3b8;
+    }
+
+    .footer-social-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .social-circle-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #94a3b8;
+      transition: all 0.25s ease;
+    }
+
+    .social-circle-btn:hover {
+      background: #22c55e;
+      color: #ffffff;
+      border-color: #22c55e;
+      transform: translateY(-2px);
+    }
+
+    .footer-arc-wrapper {
+      width: 100%;
+      height: 60px;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+
+    .footer-arc-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .footer-bottom-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.82rem;
+    }
+
+    .footer-bottom-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .footer-legal-links {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .footer-legal-links a {
+      color: #94a3b8;
+    }
+
+    .footer-legal-links a:hover {
+      color: #22c55e;
+    }
+
+    .legal-sep {
+      color: #334155;
+    }
+
+    .footer-better-tomorrow {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #64748b;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      font-size: 0.75rem;
+    }
+
+    .better-dash {
+      width: 18px;
+      height: 1.5px;
+      background-color: #22c55e;
+    }
+
+    @media (max-width: 1024px) {
+      .footer-main-row {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-divider-v {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .footer-main-row {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-links-group {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-bottom-bar {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+
+      .footer-bottom-right {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==================== FLOATING GLASS HEADER ==================== -->
+  <header class="site-header">
+    <div class="header-floating-wrapper">
+      <div class="nav-glass-container">
+
+        <!-- Left: Brand Logo -->
+        <div class="header-left-group">
+          <a href="index.html" class="brand-logo-anchor">
+            <img src="assets/logo-white.png" alt="Stark Softech Logo" class="brand-logo-img">
+            <div class="brand-logo-text">
+              <span class="brand-name">STARK SOFTECH</span>
+              <span class="brand-tagline">BUILD &middot; SOLVE &middot; GROW</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Center Nav -->
+        <nav class="center-nav-pill">
+          <ul class="site-nav-menu">
+            <li><a href="index.html#home" class="site-nav-link">Home</a></li>
+            <li><a href="about.html" class="site-nav-link">About Us</a></li>
+            <li><a href="service.html" class="site-nav-link active">Services</a></li>
+            <li><a href="product.html" class="site-nav-link">Products</a></li>
+            <li><a href="contact.html" class="site-nav-link">Contact Us</a></li>
+          </ul>
+        </nav>
+
+        <!-- Right CTA -->
+        <div class="header-right-group">
+          <a href="contact.html" class="btn-talk-pill">
+            Let's Talk
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== INNER TITLE BANNER SECTION ==================== -->
+  <section class="service-banner-section">
+
+    <!-- Honeycomb Hexagon Grid Pattern Layer -->
+    <svg class="service-banner-hex-bg" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Hexagon Honeycomb Tile Pattern -->
+        <pattern id="hex-grid-pattern" width="60" height="104" patternUnits="userSpaceOnUse">
+          <path d="M30 0 L60 17.32 L60 51.96 L30 69.28 L0 51.96 L0 17.32 Z 
+                   M30 104 L60 86.68 L60 51.96 L30 69.28 L0 51.96 L0 86.68 Z
+                   M0 51.96 L-30 34.64 L-30 0 M60 51.96 L90 34.64 L90 0" 
+                stroke="rgba(34, 197, 94, 0.16)" stroke-width="1.1" fill="none" />
+        </pattern>
+      </defs>
+
+      <rect width="100%" height="100%" fill="url(#hex-grid-pattern)" />
+
+      <!-- Highlighted Scattered Hexagons with Subtle Green Fills -->
+      <polygon points="120,86.68 150,104 180,86.68 180,51.96 150,34.64 120,51.96" fill="rgba(34, 197, 94, 0.07)" stroke="rgba(34, 197, 94, 0.24)" stroke-width="1.2"/>
+      <polygon points="270,190.64 300,208 330,190.64 330,155.92 300,138.6 270,155.92" fill="rgba(34, 197, 94, 0.05)" stroke="rgba(34, 197, 94, 0.2)" stroke-width="1"/>
+      <polygon points="90,294.6 120,312 150,294.6 150,259.88 120,242.56 90,259.88" fill="rgba(34, 197, 94, 0.08)" stroke="rgba(34, 197, 94, 0.28)" stroke-width="1.2"/>
+      <polygon points="210,398.56 240,416 270,398.56 270,363.84 240,346.52 210,363.84" fill="rgba(34, 197, 94, 0.06)" stroke="rgba(34, 197, 94, 0.22)" stroke-width="1"/>
+      
+      <polygon points="1260,104 1290,121.32 1320,104 1320,69.28 1290,51.96 1260,69.28" fill="rgba(34, 197, 94, 0.08)" stroke="rgba(34, 197, 94, 0.28)" stroke-width="1.2"/>
+      <polygon points="1140,242.56 1170,259.88 1200,242.56 1200,207.84 1170,190.52 1140,207.84" fill="rgba(34, 197, 94, 0.05)" stroke="rgba(34, 197, 94, 0.2)" stroke-width="1"/>
+      <polygon points="1320,346.52 1350,363.84 1380,346.52 1380,311.8 1350,294.48 1320,311.8" fill="rgba(34, 197, 94, 0.07)" stroke="rgba(34, 197, 94, 0.25)" stroke-width="1.2"/>
+      <polygon points="1050,415.88 1080,433.2 1110,415.88 1110,381.16 1080,363.84 1050,381.16" fill="rgba(34, 197, 94, 0.06)" stroke="rgba(34, 197, 94, 0.22)" stroke-width="1"/>
+
+      <circle cx="720" cy="260" r="280" fill="rgba(220, 252, 231, 0.5)" filter="blur(60px)"/>
+    </svg>
+
+    <div class="viewport-container">
+      <div class="service-banner-content">
+
+        <!-- 1. Breadcrumb -->
+        <nav class="service-breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="crumb-sep">&rsaquo;</span>
+          <span class="crumb-current">Services</span>
+        </nav>
+
+        <!-- 2. Sub-title Line / Tagline Badge -->
+        <div class="service-tagline-wrap">
+          <span class="tag-line-accent"></span>
+          <span class="tag-text-caption">OUR SERVICES &bull; BUILDING A SMARTER TOMORROW</span>
+          <span class="tag-line-accent"></span>
+        </div>
+
+        <!-- 3. Main Title (H1) -->
+        <h1 class="service-banner-heading">
+          Software Development<br>
+          Services for a<br>
+          <span class="text-highlight-green">Smarter Business</span>
+        </h1>
+
+        <!-- 4. Subtitle / Paragraph -->
+        <p class="service-banner-description">
+          We design and develop scalable web, mobile, AI and cloud solutions to help businesses innovate, grow and succeed in the digital world.
+        </p>
+
+        <!-- 5. CTA Action Buttons -->
+        <div class="service-banner-actions">
+          <a href="#explore-services" class="btn-banner-primary">
+            <span>Get Started</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+
+          <a href="#explore-services" class="btn-banner-secondary">
+            <span>Explore Our Services</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== EXPLORE OUR SERVICES SECTION (WHITE THEME) ==================== -->
+  <section class="explore-services-section" id="explore-services">
+    <div class="viewport-container">
+
+      <!-- Section Header -->
+      <div class="explore-services-header">
+        <div class="explore-tagline-wrap">
+          <span class="tag-line-accent"></span>
+          <span class="tag-text-caption">ALL SERVICES</span>
+          <span class="tag-line-accent"></span>
+        </div>
+        <h2 class="explore-services-title">
+          End-to-end services that drive<br>
+          <span class="text-highlight-green">digital growth</span>
+        </h2>
+        <p class="explore-services-subtitle">
+          Choose a service hub below. Each page covers specialized capabilities you can launch with &mdash; or expand into dedicated landing pages after keyword validation.
+        </p>
+      </div>
+
+      <!-- 3-Column Service Grid -->
+      <div class="explore-services-grid">
+
+        <!-- Card 1: Cloud -->
+        <div class="service-explore-card">
+          <div class="explore-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80"
+              alt="Cloud Services" class="explore-card-img">
+            <div class="explore-card-label-box">
+              <h3 class="explore-card-title-text">Cloud</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Customer first -->
+        <div class="service-explore-card">
+          <div class="explore-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
+              alt="Customer First Services" class="explore-card-img">
+            <div class="explore-card-label-box">
+              <h3 class="explore-card-title-text">Customer first</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Cybersecurity -->
+        <div class="service-explore-card">
+          <div class="explore-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80"
+              alt="Cybersecurity Services" class="explore-card-img">
+            <div class="explore-card-label-box">
+              <h3 class="explore-card-title-text">Cybersecurity</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Data and artificial intelligence -->
+        <div class="service-explore-card">
+          <div class="explore-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80"
+              alt="Data and Artificial Intelligence Services" class="explore-card-img">
+            <div class="explore-card-label-box">
+              <h3 class="explore-card-title-text">Data and artificial intelligence</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5: Enterprise management -->
+        <div class="service-explore-card">
+          <div class="explore-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80"
+              alt="Enterprise Management Services" class="explore-card-img">
+            <div class="explore-card-label-box">
+              <h3 class="explore-card-title-text">Enterprise management</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6: Intelligent industry -->
+        <div class="service-explore-card">
+          <div class="explore-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80"
+              alt="Intelligent Industry Services" class="explore-card-img">
+            <div class="explore-card-label-box">
+              <h3 class="explore-card-title-text">Intelligent industry</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 7: Sustainable business -->
+        <div class="service-explore-card">
+          <div class="explore-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
+              alt="Sustainable Business Services" class="explore-card-img">
+            <div class="explore-card-label-box">
+              <h3 class="explore-card-title-text">Sustainable business</h3>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== CONNECTED ECOSYSTEM SECTION ==================== -->
+  <section class="ecosystem-section" id="connected-ecosystem">
+    <div class="viewport-container">
+      <div class="ecosystem-content">
+
+        <!-- 5 Overlapping Vector Venn Diagram Circles -->
+        <svg class="ecosystem-svg-diagram" viewBox="0 0 1200 440" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- Vertical Background Lines Gradient -->
+            <linearGradient id="v-line-grad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="rgba(255, 255, 255, 0.01)"/>
+              <stop offset="50%" stop-color="rgba(255, 255, 255, 0.05)"/>
+              <stop offset="100%" stop-color="rgba(255, 255, 255, 0.01)"/>
+            </linearGradient>
+
+            <!-- Fills -->
+            <!-- 1 & 5: Outer Dark Translucent Fill -->
+            <radialGradient id="fill-outer-dark" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#14532d" stop-opacity="0.55"/>
+              <stop offset="70%" stop-color="#0f381e" stop-opacity="0.38"/>
+              <stop offset="100%" stop-color="#04140a" stop-opacity="0.15"/>
+            </radialGradient>
+
+            <!-- 2 & 4: Mid Bright Translucent Fill -->
+            <radialGradient id="fill-mid-green" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#15803d" stop-opacity="0.68"/>
+              <stop offset="70%" stop-color="#14532d" stop-opacity="0.50"/>
+              <stop offset="100%" stop-color="#062410" stop-opacity="0.22"/>
+            </radialGradient>
+
+            <!-- 3: Center Brightest Translucent Fill -->
+            <radialGradient id="fill-center-bright" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#16a34a" stop-opacity="0.85"/>
+              <stop offset="65%" stop-color="#15803d" stop-opacity="0.65"/>
+              <stop offset="100%" stop-color="#0b3b1c" stop-opacity="0.35"/>
+            </radialGradient>
+
+            <!-- Strokes -->
+            <!-- Outer Circles (1 & 5): Faint stroke fading to top/bottom -->
+            <linearGradient id="stroke-outer-faint" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#22c55e" stop-opacity="0.05"/>
+              <stop offset="50%" stop-color="#22c55e" stop-opacity="0.3"/>
+              <stop offset="100%" stop-color="#22c55e" stop-opacity="0.05"/>
+            </linearGradient>
+
+            <!-- Mid Circles (2 & 4): Bright stroke on BOTTOM arc, invisible/faint on TOP arc -->
+            <linearGradient id="stroke-bottom-bright" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#22c55e" stop-opacity="0.02"/>
+              <stop offset="35%" stop-color="#22c55e" stop-opacity="0.2"/>
+              <stop offset="70%" stop-color="#22c55e" stop-opacity="0.95"/>
+              <stop offset="100%" stop-color="#86efac" stop-opacity="1.0"/>
+            </linearGradient>
+
+            <!-- Center Circle (3): Bright stroke on BOTH TOP and BOTTOM arcs -->
+            <linearGradient id="stroke-top-bottom-bright" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#86efac" stop-opacity="1.0"/>
+              <stop offset="25%" stop-color="#22c55e" stop-opacity="0.65"/>
+              <stop offset="50%" stop-color="#16a34a" stop-opacity="0.3"/>
+              <stop offset="75%" stop-color="#22c55e" stop-opacity="0.65"/>
+              <stop offset="100%" stop-color="#86efac" stop-opacity="1.0"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Background Vertical Lines Overlay -->
+          <g stroke="url(#v-line-grad)" stroke-width="1">
+            <line x1="60" y1="0" x2="60" y2="440" />
+            <line x1="180" y1="0" x2="180" y2="440" />
+            <line x1="300" y1="0" x2="300" y2="440" />
+            <line x1="420" y1="0" x2="420" y2="440" />
+            <line x1="540" y1="0" x2="540" y2="440" />
+            <line x1="660" y1="0" x2="660" y2="440" />
+            <line x1="780" y1="0" x2="780" y2="440" />
+            <line x1="900" y1="0" x2="900" y2="440" />
+            <line x1="1020" y1="0" x2="1020" y2="440" />
+            <line x1="1140" y1="0" x2="1140" y2="440" />
+          </g>
+
+          <!-- Layer 1: Back Circles (Security & Cloud) -->
+          <!-- Circle 1: Security -->
+          <g class="svg-ecosystem-node" data-label="Security">
+            <circle cx="210" cy="220" r="160" fill="url(#fill-outer-dark)" stroke="url(#stroke-outer-faint)" stroke-width="1.3" />
+            <text x="210" y="227" text-anchor="middle" fill="#ffffff" font-size="25" font-weight="600" font-family="'Plus Jakarta Sans', sans-serif">Discover</text>
+          </g>
+
+          <!-- Circle 5: Cloud -->
+          <g class="svg-ecosystem-node" data-label="Cloud">
+            <circle cx="990" cy="220" r="160" fill="url(#fill-outer-dark)" stroke="url(#stroke-outer-faint)" stroke-width="1.3" />
+            <text x="990" y="227" text-anchor="middle" fill="#ffffff" font-size="25" font-weight="600" font-family="'Plus Jakarta Sans', sans-serif">Grow</text>
+          </g>
+
+          <!-- Layer 2: Mid Circles (Network & Voice) -->
+          <!-- Circle 2: Network -->
+          <g class="svg-ecosystem-node" data-label="Network">
+            <circle cx="405" cy="220" r="160" fill="url(#fill-mid-green)" stroke="url(#stroke-bottom-bright)" stroke-width="1.5" />
+            <text x="405" y="227" text-anchor="middle" fill="#ffffff" font-size="25" font-weight="600" font-family="'Plus Jakarta Sans', sans-serif">Strategize</text>
+          </g>
+
+          <!-- Circle 4: Voice -->
+          <g class="svg-ecosystem-node" data-label="Voice">
+            <circle cx="795" cy="220" r="160" fill="url(#fill-mid-green)" stroke="url(#stroke-bottom-bright)" stroke-width="1.5" />
+            <text x="795" y="227" text-anchor="middle" fill="#ffffff" font-size="25" font-weight="600" font-family="'Plus Jakarta Sans', sans-serif">Launch</text>
+          </g>
+
+          <!-- Layer 3: Top Front Circle (Managed Services) -->
+          <!-- Circle 3: Managed Services -->
+          <g class="svg-ecosystem-node" data-label="Managed Services">
+            <circle cx="600" cy="220" r="160" fill="url(#fill-center-bright)" stroke="url(#stroke-top-bottom-bright)" stroke-width="1.6" />
+            <text x="600" y="210" text-anchor="middle" fill="#ffffff" font-size="25" font-weight="600" font-family="'Plus Jakarta Sans', sans-serif">Craft</text>
+            <text x="600" y="244" text-anchor="middle" fill="#ffffff" font-size="25" font-weight="600" font-family="'Plus Jakarta Sans', sans-serif">Solutions</text>
+          </g>
+        </svg>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== OUR PROCESS SECTION ==================== -->
+  <section class="our-process-section" id="our-process">
+
+    <!-- Ambient Corner Glows -->
+    <div class="process-bg-glow-topleft"></div>
+    <div class="process-bg-glow-bottomright"></div>
+
+    <!-- Decorative Dot Grid Patterns -->
+    <svg class="process-bg-dots-left" width="60" height="90" viewBox="0 0 60 90" fill="none">
+      <pattern id="dot-grid-1" x="0" y="0" width="15" height="15" patternUnits="userSpaceOnUse">
+        <circle cx="4" cy="4" r="2" fill="rgba(34, 197, 94, 0.22)"/>
+      </pattern>
+      <rect width="60" height="90" fill="url(#dot-grid-1)" />
+    </svg>
+
+    <svg class="process-bg-dots-right" width="60" height="90" viewBox="0 0 60 90" fill="none">
+      <pattern id="dot-grid-2" x="0" y="0" width="15" height="15" patternUnits="userSpaceOnUse">
+        <circle cx="4" cy="4" r="2" fill="rgba(34, 197, 94, 0.22)"/>
+      </pattern>
+      <rect width="60" height="90" fill="url(#dot-grid-2)" />
+    </svg>
+
+    <div class="viewport-container">
+
+      <!-- Section Tagline Line -->
+      <div class="process-tagline-wrap">
+        <span class="tag-line-accent"></span>
+        <span class="tag-text-caption">OUR PROCESS</span>
+        <span class="tag-line-accent"></span>
+      </div>
+
+      <!-- Main Section Heading -->
+      <h2 class="process-section-title">
+        How we ensure<br>
+        <span class="text-highlight-green">reliability</span>
+      </h2>
+
+      <!-- Subtitle Description -->
+      <p class="process-section-subtitle">
+        A simple, transparent process that removes the guesswork and keeps you in the loop the whole way.
+      </p>
+
+      <!-- 4-Step Process Timeline Cards -->
+      <div class="process-steps-wrapper">
+        <!-- Dashed Connector Line -->
+        <div class="process-timeline-line"></div>
+
+        <div class="process-steps-grid">
+
+          <!-- Step 1 Card -->
+          <div class="process-step-card">
+            <div class="process-img-box">
+              <span class="process-number-badge">01</span>
+              <svg width="110" height="90" viewBox="0 0 110 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="18" y="12" width="65" height="66" rx="14" fill="#ffffff" stroke="#bbf7d0" stroke-width="2"/>
+                <rect x="27" y="24" width="34" height="5" rx="2.5" fill="#86efac"/>
+                <rect x="27" y="35" width="28" height="4" rx="2" fill="#bbf7d0"/>
+                <rect x="27" y="45" width="38" height="4" rx="2" fill="#bbf7d0"/>
+                <rect x="27" y="55" width="22" height="4" rx="2" fill="#bbf7d0"/>
+                <circle cx="68" cy="58" r="15" fill="#15803d"/>
+                <circle cx="68" cy="58" r="8" stroke="#ffffff" stroke-width="2.2"/>
+                <line x1="74" y1="64" x2="81" y2="71" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3 class="process-card-title">We learn your goals</h3>
+            <p class="process-card-desc">A short call to understand what you want and why.</p>
+          </div>
+
+          <!-- Step 2 Card -->
+          <div class="process-step-card">
+            <div class="process-img-box">
+              <span class="process-number-badge">02</span>
+              <svg width="130" height="100" viewBox="0 0 130 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="65" y1="50" x2="35" y2="28" stroke="#16a34a" stroke-width="1.8"/>
+                <line x1="65" y1="50" x2="65" y2="20" stroke="#16a34a" stroke-width="1.8"/>
+                <line x1="65" y1="50" x2="95" y2="28" stroke="#16a34a" stroke-width="1.8"/>
+                <line x1="65" y1="50" x2="35" y2="72" stroke="#16a34a" stroke-width="1.8"/>
+                <line x1="65" y1="50" x2="95" y2="72" stroke="#16a34a" stroke-width="1.8"/>
+                
+                <circle cx="65" cy="50" r="18" fill="#15803d"/>
+                <text x="65" y="53.5" text-anchor="middle" fill="#ffffff" font-size="8.5" font-weight="800" font-family="sans-serif">POD</text>
+
+                <circle cx="35" cy="28" r="12" fill="#16a34a"/>
+                <text x="35" y="31" text-anchor="middle" fill="#ffffff" font-size="7.5" font-weight="700" font-family="sans-serif">Ops</text>
+                
+                <circle cx="65" cy="20" r="12" fill="#16a34a"/>
+                <text x="65" y="23" text-anchor="middle" fill="#ffffff" font-size="7.5" font-weight="700" font-family="sans-serif">Eng</text>
+
+                <circle cx="95" cy="28" r="12" fill="#16a34a"/>
+                <text x="95" y="31" text-anchor="middle" fill="#ffffff" font-size="7.5" font-weight="700" font-family="sans-serif">Dev</text>
+
+                <circle cx="35" cy="72" r="12" fill="#16a34a"/>
+                <text x="35" y="75" text-anchor="middle" fill="#ffffff" font-size="7.5" font-weight="700" font-family="sans-serif">QA</text>
+
+                <circle cx="95" cy="72" r="12" fill="#16a34a"/>
+                <text x="95" y="75" text-anchor="middle" fill="#ffffff" font-size="7.5" font-weight="700" font-family="sans-serif">PM</text>
+              </svg>
+            </div>
+            <h3 class="process-card-title">We plan it out</h3>
+            <p class="process-card-desc">A clear scope, timeline, and fixed price &ndash; before any code.</p>
+          </div>
+
+          <!-- Step 3 Card -->
+          <div class="process-step-card">
+            <div class="process-img-box">
+              <span class="process-number-badge">03</span>
+              <svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <text x="25" y="19" text-anchor="middle" fill="#16a34a" font-size="7.5" font-weight="800" font-family="sans-serif">To Do</text>
+                <text x="60" y="19" text-anchor="middle" fill="#16a34a" font-size="7.5" font-weight="800" font-family="sans-serif">WIP</text>
+                <text x="95" y="19" text-anchor="middle" fill="#16a34a" font-size="7.5" font-weight="800" font-family="sans-serif">Done</text>
+                
+                <rect x="15" y="25" width="20" height="13" rx="4" fill="#a7f3d0"/>
+                <rect x="15" y="42" width="20" height="13" rx="4" fill="#a7f3d0"/>
+                <rect x="15" y="59" width="20" height="13" rx="4" fill="#a7f3d0"/>
+                
+                <rect x="50" y="25" width="20" height="13" rx="4" fill="#16a34a"/>
+                <rect x="50" y="42" width="20" height="13" rx="4" fill="#16a34a"/>
+                
+                <rect x="85" y="25" width="20" height="13" rx="4" fill="#ffffff" stroke="#bbf7d0"/>
+                <path d="M91.5 31.5L93.5 33.5L97 29" stroke="#15803d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                
+                <rect x="85" y="42" width="20" height="13" rx="4" fill="#ffffff" stroke="#bbf7d0"/>
+                <path d="M91.5 48.5L93.5 50.5L97 46" stroke="#15803d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                
+                <rect x="85" y="59" width="20" height="13" rx="4" fill="#ffffff" stroke="#bbf7d0"/>
+                <path d="M91.5 65.5L93.5 67.5L97 63" stroke="#15803d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3 class="process-card-title">We build it with you</h3>
+            <p class="process-card-desc">Working software every two weeks, with a demo each Friday.</p>
+          </div>
+
+          <!-- Step 4 Card -->
+          <div class="process-step-card">
+            <div class="process-img-box">
+              <span class="process-number-badge">04</span>
+              <svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M25 73C25 68 30 63 38 63C40 58 48 56 55 60C60 54 70 54 75 60C80 56 90 60 90 68C95 68 98 73 95 78H20C20 76 22 73 25 73Z" fill="#bbf7d0" opacity="0.85"/>
+                <path d="M60 18C60 18 72 33 72 50H48C48 33 60 18 60 18Z" fill="#15803d"/>
+                <circle cx="60" cy="34" r="5" fill="#ffffff"/>
+                <circle cx="60" cy="34" r="3" fill="#16a34a"/>
+                <path d="M48 44L40 52V56H48V44Z" fill="#16a34a"/>
+                <path d="M72 44L80 52V56H72V44Z" fill="#16a34a"/>
+                <path d="M55 50L60 60L65 50H55Z" fill="#f59e0b"/>
+              </svg>
+            </div>
+            <h3 class="process-card-title">We launch &amp; support</h3>
+            <p class="process-card-desc">We put it live, hand over everything, and stick around.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Bottom Metric Stats Grid (4 Cards) -->
+      <div class="process-stats-grid">
+
+        <!-- Stat Card 1 -->
+        <div class="process-stat-card">
+          <div class="stat-icon-circle">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="20" x2="18" y2="10"></line>
+              <line x1="12" y1="20" x2="12" y2="4"></line>
+              <line x1="6" y1="20" x2="6" y2="14"></line>
+            </svg>
+          </div>
+          <div class="stat-text-info">
+            <span class="stat-number-val">2wk</span>
+            <span class="stat-label-text">Progress you can see</span>
+          </div>
+        </div>
+
+        <!-- Stat Card 2 -->
+        <div class="process-stat-card">
+          <div class="stat-icon-circle">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <div class="stat-text-info">
+            <span class="stat-number-val">99.9%</span>
+            <span class="stat-label-text">Reliable uptime</span>
+          </div>
+        </div>
+
+        <!-- Stat Card 3 -->
+        <div class="process-stat-card">
+          <div class="stat-icon-circle">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <div class="stat-text-info">
+            <span class="stat-number-val">24h</span>
+            <span class="stat-label-text">We reply fast</span>
+          </div>
+        </div>
+
+        <!-- Stat Card 4 -->
+        <div class="process-stat-card">
+          <div class="stat-icon-circle">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <div class="stat-text-info">
+            <span class="stat-number-val">100%</span>
+            <span class="stat-label-text">On-time delivery</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== SITE FOOTER ==================== -->
+  <footer class="site-main-footer">
+    <div class="viewport-container">
+
+      <div class="footer-main-row">
+        <!-- Brand Column -->
+        <div class="footer-brand-col">
+          <a href="index.html" class="footer-logo-anchor">
+            <img src="assets/logo-white.png" alt="Stark Softech Logo" class="footer-logo-img">
+          </a>
+          <div class="footer-company-name">
+            <span class="footer-company-main">STARK SOFTECH</span>
+            <span class="footer-company-sub">Software &amp; Product Company</span>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-links-group">
+          <div>
+            <h4 class="footer-col-header">COMPANY</h4>
+            <ul class="footer-nav-list">
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="service.html">Services</a></li>
+              <li><a href="product.html">Products</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-col-header">SOLUTIONS</h4>
+            <ul class="footer-nav-list">
+              <li><a href="#">Custom Software</a></li>
+              <li><a href="#">Cloud &amp; DevOps</a></li>
+              <li><a href="#">AI Solutions</a></li>
+              <li><a href="#">Mobile Apps</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-col-header">RESOURCES</h4>
+            <ul class="footer-nav-list">
+              <li><a href="#">Case Studies</a></li>
+              <li><a href="#">Documentation</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Support</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="footer-divider-v"></div>
+
+        <!-- Partners & Social -->
+        <div class="footer-right-col">
+          <div class="footer-cert-block">
+            <h4 class="footer-col-header">OUR PARTNERS &amp; CERTIFICATIONS</h4>
+            <div class="footer-badges-row">
+              <div class="ms-partner-badge">
+                <svg width="22" height="22" viewBox="0 0 23 23" fill="none">
+                  <path fill="#f25022" d="M1 1h10v10H1z" />
+                  <path fill="#7fba00" d="M12 1h10v10H12z" />
+                  <path fill="#00a4ef" d="M1 12h10v10H1z" />
+                  <path fill="#ffb900" d="M12 12h10v10H12z" />
+                </svg>
+                <div class="ms-badge-text">
+                  <strong>Microsoft</strong>
+                  <span>Solutions Partner</span>
+                </div>
+              </div>
+
+              <div class="iso-badge-circle">
+                <svg width="34" height="34" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="20" cy="20" r="18" stroke-dasharray="2 2" />
+                  <circle cx="20" cy="20" r="15" />
+                  <text x="20" y="19" text-anchor="middle" fill="currentColor" font-size="9" font-weight="700"
+                    stroke="none">ISO</text>
+                  <text x="20" y="27" text-anchor="middle" fill="currentColor" font-size="7" stroke="none">27001</text>
+                </svg>
+              </div>
+
+              <div class="iso-badge-circle">
+                <svg width="34" height="34" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="20" cy="20" r="18" stroke-dasharray="2 2" />
+                  <circle cx="20" cy="20" r="15" />
+                  <text x="20" y="19" text-anchor="middle" fill="currentColor" font-size="9" font-weight="700"
+                    stroke="none">ISO</text>
+                  <text x="20" y="27" text-anchor="middle" fill="currentColor" font-size="6.5"
+                    stroke="none">9001:2015</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-social-block">
+            <h4 class="footer-col-header">FOLLOW US</h4>
+            <div class="footer-social-row">
+              <a href="#" class="social-circle-btn" aria-label="LinkedIn">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                </svg>
+              </a>
+              <a href="#" class="social-circle-btn" aria-label="X">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
+              </a>
+              <a href="#" class="social-circle-btn" aria-label="Instagram">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                </svg>
+              </a>
+              <a href="#" class="social-circle-btn" aria-label="YouTube">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Glowing Curved Arc SVG -->
+      <div class="footer-arc-wrapper">
+        <svg class="footer-arc-svg" viewBox="0 0 1440 120" preserveAspectRatio="none" fill="none">
+          <path d="M0,115 Q720,-30 1440,115" stroke="url(#arcGradient)" stroke-width="2.5" />
+          <defs>
+            <linearGradient id="arcGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="rgba(34, 197, 94, 0.05)" />
+              <stop offset="50%" stop-color="rgba(34, 197, 94, 0.95)" />
+              <stop offset="100%" stop-color="rgba(34, 197, 94, 0.05)" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <p class="footer-copyright">&copy; 2026 Stark Softech. All rights reserved.</p>
+        <div class="footer-bottom-right">
+          <div class="footer-legal-links">
+            <a href="#">Privacy Policy</a>
+            <span class="legal-sep">|</span>
+            <a href="#">Terms of Service</a>
+            <span class="legal-sep">|</span>
+            <a href="#">Sitemap</a>
+          </div>
+          <div class="footer-better-tomorrow">
+            <span class="better-dash"></span>
+            <span>MADE FOR A BETTER TOMORROW</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+
+</html>

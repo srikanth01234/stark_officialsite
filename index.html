@@ -98,92 +98,263 @@
     /* ==========================================================
        HEADER & NAVIGATION
        ========================================================== */
+    /* ==========================================================
+       HEADER & FLOATING GLASS NAVIGATION
+       ========================================================== */
     .site-header {
+      position: fixed;
+      top: 0.6rem;
+      left: 0;
       width: 100%;
-      height: 80px;
-      background-color: #ffffff;
-      border-bottom: 1px solid #f1f5f9;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
+      z-index: 1000;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .header-content {
-      width: 100%;
+    .header-floating-wrapper {
+      width: min(94%, 1360px);
+      margin: 0 auto;
+      pointer-events: auto;
+      position: relative;
+    }
+
+    .nav-glass-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 0.4rem 0.6rem;
+      background: rgba(235, 247, 238, 0.88);
+      backdrop-filter: blur(20px) saturate(190%);
+      -webkit-backdrop-filter: blur(20px) saturate(190%);
+      border: 1px solid rgba(187, 247, 208, 0.8);
+      border-radius: 9999px;
+      box-shadow: 0 10px 28px -4px rgba(27, 77, 41, 0.08),
+        inset 0 1px 1px rgba(255, 255, 255, 0.9);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* Logo from Assets */
-    .brand-logo-anchor {
-      display: inline-flex;
+    .header-left-group {
+      display: flex;
       align-items: center;
+      gap: 0.9rem;
+    }
+
+    .btn-hamburger-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-hamburger-circle span {
+      display: block;
+      width: 16px;
+      height: 2px;
+      background-color: #111111;
+      border-radius: 2px;
+      transition: all 0.25s ease;
+    }
+
+    .btn-hamburger-circle:hover {
+      background: #ffffff;
+      transform: scale(1.06);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    .btn-hamburger-circle.active span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .btn-hamburger-circle.active span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .btn-hamburger-circle.active span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    .brand-logo-anchor {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      text-decoration: none;
       user-select: none;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
     }
 
     .brand-logo-img {
-      height: 52px;
+      height: 38px;
       width: auto;
       object-fit: contain;
       display: block;
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.06));
-      transition: transform 0.2s ease;
+      filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.08));
+      transition: transform 0.25s ease;
     }
 
     .brand-logo-anchor:hover .brand-logo-img {
-      transform: scale(1.03);
+      transform: scale(1.04);
     }
 
-    /* Nav Links */
+    .brand-logo-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    .brand-name {
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      color: #111111;
+      line-height: 1;
+    }
+
+    .brand-tagline {
+      font-size: 0.54rem;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      color: #1b4d29;
+      margin-top: 3px;
+    }
+
+    .center-nav-pill {
+      background: rgba(255, 255, 255, 0.92);
+      padding: 0.4rem 1.4rem;
+      border-radius: 9999px;
+      box-shadow: 0 4px 18px rgba(27, 77, 41, 0.05), inset 0 1px 0 rgba(255, 255, 255, 1);
+      border: 1px solid rgba(220, 245, 226, 0.9);
+      transition: all 0.25s ease;
+    }
+
     .site-nav-menu {
       display: flex;
       align-items: center;
-      gap: 2.8rem;
+      gap: 1.5rem;
       list-style: none;
+      margin: 0;
+      padding: 0;
     }
 
     .site-nav-link {
-      font-size: 0.98rem;
+      font-size: 0.88rem;
       font-weight: 500;
-      color: #1e293b;
+      color: #2d3748;
+      text-decoration: none;
       transition: color 0.2s ease;
       position: relative;
-      padding: 0.35rem 0;
+      padding: 0.2rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .site-nav-link:hover {
-      color: var(--accent-green);
+      color: #1b4d29;
     }
 
-    /* Header Actions */
-    .header-action-group {
+    .site-nav-link.active {
+      color: #1b4d29;
+      font-weight: 600;
+    }
+
+    .site-nav-link.active::after {
+      content: '';
+      display: block;
+      width: 5px;
+      height: 5px;
+      background-color: #1b4d29;
+      border-radius: 50%;
+      position: absolute;
+      bottom: -6px;
+      box-shadow: 0 0 6px rgba(27, 77, 41, 0.4);
+      animation: navDotPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes navDotPop {
+      0% {
+        transform: scale(0);
+        opacity: 0;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .header-right-group {
       display: flex;
       align-items: center;
-      gap: 1.15rem;
+      gap: 0.65rem;
+    }
+
+    .btn-search-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #222222;
+      flex-shrink: 0;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-search-circle:hover {
+      background: #ffffff;
+      color: #1b4d29;
+      transform: scale(1.06);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    .nav-divider {
+      width: 1px;
+      height: 22px;
+      background-color: rgba(0, 0, 0, 0.08);
+      margin: 0 0.15rem;
     }
 
     .btn-talk-pill {
       display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
-      background-color: var(--primary-dark-green);
+      gap: 0.55rem;
+      background-color: #1b4d29;
       color: #ffffff;
-      padding: 0.72rem 1.85rem;
+      font-size: 0.86rem;
+      font-weight: 700;
+      padding: 0.52rem 1.25rem;
       border-radius: 9999px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      box-shadow: 0 4px 14px rgba(14, 59, 31, 0.22);
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 14px rgba(27, 77, 41, 0.25);
+      transition: all 0.25s ease;
+      text-decoration: none;
+      white-space: nowrap;
     }
 
     .btn-talk-pill:hover {
-      background-color: var(--primary-hover-green);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(14, 59, 31, 0.3);
+      background-color: #143b1f;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(27, 77, 41, 0.35);
     }
 
     .btn-talk-pill svg {
@@ -194,34 +365,156 @@
       transform: translateX(4px);
     }
 
-    .btn-hamburger-circle {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      border: 1px solid #e2e8f0;
-      background-color: #ffffff;
+    /* Search Glass Overlay Modal */
+    .header-search-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 2000;
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
-      gap: 5px;
+      padding-top: 6rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      pointer-events: auto;
+    }
+
+    .header-search-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .search-glass-card {
+      width: min(90%, 620px);
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 24px;
+      padding: 0.85rem 1.25rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      transform: translateY(-20px);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .header-search-overlay.active .search-glass-card {
+      transform: translateY(0);
+    }
+
+    .search-input-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .search-input-wrapper input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: #1e293b;
+      font-family: inherit;
+    }
+
+    .search-close-btn {
+      font-size: 1.5rem;
+      color: #64748b;
       cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-      transition: all 0.2s ease;
+      line-height: 1;
+      padding: 0.2rem;
+      transition: color 0.2s ease;
+      background: none;
+      border: none;
     }
 
-    .btn-hamburger-circle span {
-      display: block;
-      width: 18px;
-      height: 2px;
-      background-color: var(--color-black);
-      border-radius: 2px;
-      transition: all 0.2s ease;
+    .search-close-btn:hover {
+      color: #0f172a;
     }
 
-    .btn-hamburger-circle:hover {
-      border-color: #cbd5e1;
-      transform: scale(1.05);
+    /* Mobile Responsive Header Styles */
+    @media (max-width: 1024px) {
+      .center-nav-pill {
+        display: none;
+        position: absolute;
+        top: calc(100% + 0.75rem);
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(92%, 420px);
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        border-radius: 24px;
+        padding: 1.25rem 1.5rem;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        z-index: 1001;
+      }
+
+      .center-nav-pill.mobile-open {
+        display: block;
+        animation: mobileNavFade 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .site-nav-menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.1rem;
+      }
+
+      .site-nav-link.active::after {
+        position: static;
+        margin-top: 4px;
+      }
+
+      .site-header {
+        top: 0.4rem;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .brand-tagline {
+        display: block;
+        font-size: 0.44rem;
+        letter-spacing: 0.16em;
+        margin-top: 2px;
+      }
+
+      .brand-name {
+        font-size: 0.95rem;
+      }
+
+      .btn-talk-pill {
+        padding: 0.5rem 0.95rem;
+        font-size: 0.8rem;
+        gap: 0.4rem;
+      }
+
+      .btn-hamburger-circle,
+      .btn-search-circle {
+        width: 38px;
+        height: 38px;
+      }
+    }
+
+    @keyframes mobileNavFade {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
     }
 
     /* ==========================================================
@@ -480,22 +773,6 @@
     .brand-logo-text {
       display: flex;
       flex-direction: column;
-    }
-
-    .brand-name {
-      font-size: 1.25rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--color-black);
-      line-height: 1.1;
-    }
-
-    .brand-tagline {
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.28em;
-      color: var(--color-gray-muted);
-      margin-top: 3px;
     }
 
     /* Center Desk Table Image */
@@ -909,6 +1186,10 @@
       }
     }
 
+    .hero-mobile-badges-row {
+      display: none;
+    }
+
     @media (max-width: 1100px) {
       body {
         overflow-y: auto;
@@ -930,14 +1211,217 @@
         gap: 2rem;
       }
 
+      .hero-left-column {
+        order: 1;
+        padding-top: 5rem;
+        padding-left: 0;
+        max-width: 100%;
+      }
+
       .hero-right-column {
-        order: -1;
+        order: 2;
         max-width: 580px;
         margin: 0 auto;
       }
 
       .desk-hero-img {
         max-height: 50vh;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-viewport-frame {
+        height: 100vh;
+        height: 100dvh;
+        min-height: 100vh;
+        min-height: 100dvh;
+        max-height: 100vh;
+        max-height: 100dvh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-bottom: 0.75rem;
+      }
+
+      .hero-main-area {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-top: 3.8rem;
+        padding-bottom: 0.2rem;
+        min-height: 0;
+      }
+
+      .hero-layout-grid {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        gap: 0.25rem;
+      }
+
+      .hero-left-column {
+        order: 1;
+        padding-top: 0.2rem;
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%;
+      }
+
+      .hero-mobile-badges-row {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 0.75rem;
+        padding: 0 0.1rem;
+      }
+
+      .hero-mobile-badges-row .hero-floating-card-ideas {
+        position: relative;
+        top: auto;
+        left: auto;
+        display: flex;
+        padding: 0.45rem 0.75rem;
+        font-size: 0.7rem;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+        border-radius: 10px;
+      }
+
+      .hero-mobile-badges-row .hero-floating-card-ideas .floating-card-arrow {
+        right: -16px;
+        bottom: -12px;
+        width: 24px;
+        height: 16px;
+      }
+
+      .hero-mobile-badges-row .hero-annotation-top-right {
+        position: relative;
+        top: auto;
+        right: auto;
+        display: flex;
+        gap: 0.3rem;
+      }
+
+      .hero-mobile-badges-row .annotation-text-list {
+        font-size: 0.72rem;
+        line-height: 1.2;
+      }
+
+      .headline-text {
+        font-size: clamp(1.95rem, 6.8vw, 2.5rem);
+        line-height: 1.16;
+        letter-spacing: -0.03em;
+        margin-bottom: 0.6rem;
+      }
+
+      .headline-green-accent {
+        white-space: normal;
+        margin-top: 0.1rem;
+      }
+
+      .subdescription-text {
+        font-size: 0.88rem;
+        line-height: 1.48;
+        color: #4b5563;
+        margin-bottom: 0.9rem;
+        max-width: 100%;
+      }
+
+      .cta-button-row {
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 0.6rem;
+        flex-wrap: wrap;
+      }
+
+      .btn-primary-explore {
+        padding: 0.72rem 1.45rem;
+        font-size: 0.86rem;
+      }
+
+      .btn-secondary-services {
+        font-size: 0.86rem;
+      }
+
+      .hero-right-column {
+        order: 2;
+        padding-top: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        flex: 1;
+        min-height: 0;
+      }
+
+      .desk-image-container {
+        order: 1;
+        width: 100%;
+        max-width: 580px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .hero-slide-img {
+        width: 100%;
+        max-width: 96%;
+        max-height: 42vh;
+        height: auto;
+        object-fit: contain;
+      }
+
+      .hero-slide-img.active {
+        position: relative;
+        display: block;
+      }
+
+      .hero-slider-nav {
+        order: 2;
+        justify-content: center;
+        margin-top: 0.5rem;
+        margin-bottom: 0.25rem;
+        position: relative;
+        z-index: 20;
+      }
+
+      .hero-scroll-widget {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        margin: 0.15rem auto 0;
+        align-items: center;
+        text-align: center;
+        z-index: 25;
+      }
+
+      .hero-scroll-text {
+        color: #ffffff;
+        font-size: 0.65rem;
+        letter-spacing: 0.18em;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+      }
+
+      .hero-scroll-circle-btn {
+        width: 40px;
+        height: 40px;
+        background-color: #15803d;
+        border: 1.5px solid rgba(255, 255, 255, 0.5);
+      }
+
+      .hero-corner-wave-wrap {
+        width: 100vw;
+        height: 60vh;
+        bottom: 0;
+        right: 0;
+        opacity: 1;
       }
     }
 
@@ -1977,12 +2461,19 @@
     @media (max-width: 1100px) {
       .what-we-do-card {
         grid-template-columns: 1fr;
+        min-height: auto;
+        border-radius: 24px;
+        overflow: hidden;
       }
 
       .what-we-do-tabs-col {
         flex-direction: row;
-        padding: 1.5rem;
+        padding: 1rem 0.85rem;
+        width: 100%;
         overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border-bottom: 1px solid #f1f5f9;
+        background-color: #ffffff;
       }
 
       .tab-arrow-btn {
@@ -1990,53 +2481,100 @@
       }
 
       .tabs-nav-list {
+        display: flex;
         flex-direction: row;
+        width: 100%;
         margin: 0;
-        gap: 0.75rem;
+        gap: 0.6rem;
         max-height: none;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 0.25rem 0.1rem;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
       }
 
-      .tab-nav-btn.active {
-        border-radius: 9999px;
-        margin-right: 0;
+      .tabs-nav-list::-webkit-scrollbar {
+        display: none;
       }
 
       .tab-nav-btn {
-        padding: 0.65rem 1.4rem;
+        width: auto !important;
+        flex-shrink: 0;
+        padding: 0.6rem 1.25rem;
+        font-size: 0.9rem;
+        font-weight: 600;
         border-radius: 9999px;
         white-space: nowrap;
+        background-color: #f1f5f9;
+        color: #475569;
+        border: 1px solid #e2e8f0;
+        transition: all 0.25s ease;
+      }
+
+      .tab-nav-btn:hover {
+        background-color: #e2e8f0;
+        color: #0f172a;
+      }
+
+      .tab-nav-btn.active {
+        background: #16a34a !important;
+        color: #ffffff !important;
+        font-weight: 700;
+        border-radius: 9999px;
+        margin-right: 0;
+        border-color: #16a34a;
+        box-shadow: 0 4px 14px rgba(22, 163, 74, 0.35);
       }
 
       .what-we-do-panel {
         grid-template-columns: 1fr;
-        padding: 2.5rem 2rem;
-        gap: 2.5rem;
+        padding: 2rem 1.5rem;
+        gap: 2rem;
+        border-radius: 0 0 24px 24px;
+      }
+
+      .panel-service-title {
+        font-size: 1.45rem;
+        line-height: 1.3;
+        margin-bottom: 1rem;
+      }
+
+      .panel-service-desc {
+        font-size: 0.88rem;
+        line-height: 1.55;
+        margin-bottom: 1.5rem;
+      }
+
+      .panel-client-item {
+        font-size: 0.88rem;
       }
 
       .panel-media-col {
-        height: 290px;
+        height: 250px;
         min-width: unset;
+        width: 100%;
       }
 
       .media-card-1 {
         top: 0;
         left: 10px;
-        width: 140px;
-        height: 140px;
+        width: 130px;
+        height: 130px;
       }
 
       .media-card-2 {
         top: 0;
         right: 10px;
-        width: 140px;
-        height: 140px;
+        width: 130px;
+        height: 130px;
       }
 
       .media-card-3 {
         bottom: 0;
-        right: 40px;
-        width: 190px;
-        height: 150px;
+        right: 30px;
+        width: 180px;
+        height: 140px;
       }
     }
 
@@ -2084,44 +2622,85 @@
       align-items: center;
     }
 
-    .clients-logos-frame {
+    .clients-pyramid-grid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
       width: 100%;
-      max-width: 1160px;
+      max-width: 1100px;
       margin: 0 auto;
-      overflow: hidden;
+    }
+
+    .clients-row {
       display: flex;
       justify-content: center;
       align-items: center;
-      border-radius: 20px;
-      background-color: #ffffff;
-      padding: 0 1rem;
-    }
-
-    .clients-grid-img {
+      gap: 1.25rem;
       width: 100%;
-      height: auto;
-      display: block;
-      margin-top: -12.2%;
-      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.02));
-      transition: transform 0.35s ease, filter 0.35s ease;
+      flex-wrap: nowrap;
     }
 
-    .clients-grid-img:hover {
-      transform: scale(1.015);
-      filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.04));
+    .client-logo-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 1.1rem 1.6rem;
+      height: 92px;
+      min-width: 150px;
+      max-width: 230px;
+      flex: 1 1 170px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .client-logo-card:hover {
+      transform: translateY(-4px);
+      border-color: #cbd5e1;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08), 0 4px 10px rgba(0, 0, 0, 0.03);
+    }
+
+    .client-logo-img {
+      max-height: 52px;
+      max-width: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      filter: grayscale(15%) opacity(0.92);
+      transition: all 0.3s ease;
+    }
+
+    .client-logo-card:hover .client-logo-img {
+      filter: grayscale(0%) opacity(1);
+      transform: scale(1.05);
     }
 
     @media (max-width: 768px) {
       .clients-section {
-        padding: 4.5rem 0 5.5rem;
+        padding: 3.5rem 0 4.5rem;
       }
 
       .clients-header {
         margin-bottom: 1.8rem;
       }
 
-      .clients-logos-frame {
-        padding: 0;
+      .clients-row {
+        flex-wrap: wrap;
+        gap: 0.85rem;
+      }
+
+      .client-logo-card {
+        height: 76px;
+        min-width: 120px;
+        padding: 0.75rem 1rem;
+        flex: 1 1 130px;
+      }
+
+      .client-logo-img {
+        max-height: 40px;
       }
     }
 
@@ -3295,45 +3874,50 @@
 
 <body>
 
-  <!-- ==================== HEADER / TOP NAVIGATION (STANDALONE NAVBAR) ==================== -->
+  <!-- ==================== HEADER / FLOATING GLASS NAVIGATION ==================== -->
   <header class="site-header">
-    <div class="viewport-container">
-      <div class="header-content">
-        <!-- Logo with Assets Image & Typography -->
-        <a href="#" class="brand-logo-anchor" id="brand-logo">
-          <img src="assets/logo-white.png" alt="Stark Softech Logo" class="brand-logo-img">
-          <div class="brand-logo-text">
-            <span class="brand-name">STARK SOFTECH</span>
-            <span class="brand-tagline">BUILD &middot; SOLVE &middot; GROW</span>
-          </div>
-        </a>
+    <div class="header-floating-wrapper">
+      <div class="nav-glass-container">
 
-        <!-- Center Nav Links -->
-        <ul class="site-nav-menu">
-          <li><a href="#about" class="site-nav-link">About</a></li>
-          <li><a href="#products" class="site-nav-link">Products</a></li>
-          <li><a href="#services" class="site-nav-link">Services</a></li>
-          <li><a href="#" class="site-nav-link">Industries</a></li>
-          <li><a href="#" class="site-nav-link">Careers</a></li>
-        </ul>
+        <!-- Left Group: Brand Logo from Assets -->
+        <div class="header-left-group">
+          <a href="#" class="brand-logo-anchor" id="brand-logo">
+            <img src="assets/logo-white.png" alt="Stark Softech Logo" class="brand-logo-img">
+            <div class="brand-logo-text">
+              <span class="brand-name">STARK SOFTECH</span>
+              <span class="brand-tagline">BUILD &middot; SOLVE &middot; GROW</span>
+            </div>
+          </a>
+        </div>
 
-        <!-- Right Action Controls -->
-        <div class="header-action-group">
+        <!-- Center Navigation Pill -->
+        <nav class="center-nav-pill">
+          <ul class="site-nav-menu">
+            <li><a href="#home" class="site-nav-link active">Home</a></li>
+            <li><a href="about.html" class="site-nav-link">About Us</a></li>
+            <li><a href="service.html" class="site-nav-link">Services</a></li>
+            <li><a href="product.html" class="site-nav-link">Products</a></li>
+            <li><a href="#contact" class="site-nav-link">Contact Us</a></li>
+          </ul>
+        </nav>
+
+        <!-- Right Side: Let's Talk CTA & Hamburger Menu -->
+        <div class="header-right-group">
           <a href="#contact" class="btn-talk-pill" id="btn-header-talk">
             Let's Talk
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
               stroke-linecap="round" stroke-linejoin="round">
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
             </svg>
           </a>
-
-          <button class="btn-hamburger-circle" id="btn-header-hamburger" aria-label="Menu">
+          <button class="btn-hamburger-circle" id="btn-header-hamburger" aria-label="Toggle Navigation Menu">
             <span></span>
             <span></span>
             <span></span>
           </button>
         </div>
+
       </div>
     </div>
   </header>
@@ -3345,6 +3929,43 @@
         <div class="hero-layout-grid">
           <!-- Left Column: Synchronized Hero Content Slides -->
           <div class="hero-left-column">
+
+            <!-- Mobile Top Badges Row (Turn Ideas Into Solutions + People/Process/Tech/Growth) -->
+            <div class="hero-mobile-badges-row">
+              <div class="hero-floating-card-ideas">
+                <div class="floating-bulb-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18h6"></path>
+                    <path d="M10 22h4"></path>
+                    <path
+                      d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.76.76 1.23 1.52 1.41 2.5">
+                    </path>
+                  </svg>
+                </div>
+                <span class="floating-card-text">Turn Ideas<br>Into Solutions</span>
+                <svg class="floating-card-arrow" width="34" height="24" viewBox="0 0 34 24" fill="none">
+                  <path d="M 4 6 C 16 6, 26 12, 28 20" stroke="#475569" stroke-width="1.5" stroke-linecap="round" />
+                  <polyline points="22 18 28 21 31 14" stroke="#475569" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+
+              <div class="hero-annotation-top-right">
+                <svg class="annotation-arrow-svg" width="48" height="36" viewBox="0 0 55 42" fill="none">
+                  <path d="M 6 36 C 14 14, 34 10, 46 16" stroke="#475569" stroke-width="1.6" stroke-dasharray="4 3"
+                    stroke-linecap="round" />
+                  <polyline points="40 10 48 16 43 23" stroke="#475569" stroke-width="1.6" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+                <div class="annotation-text-list">
+                  <span>People</span>
+                  <span>Process</span>
+                  <span>Technology</span>
+                  <span>Growth</span>
+                </div>
+              </div>
+            </div>
 
             <!-- Slide Content Wrapper -->
             <div class="hero-slides-wrapper">
@@ -3360,9 +3981,9 @@
                   That Moves<br>
                   <span class="headline-green-accent">Businesses Forward.</span>
                 </h1>
-                <!-- <p class="subdescription-text">
-                  We build powerful software products and custom solutions that help businesses grow, simplify operations and create a better tomorrow.
-                </p> -->
+                <p class="subdescription-text">
+                  We build digital solutions that help businesses grow, innovate, and create a better tomorrow.
+                </p>
                 <div class="cta-button-row">
                   <a href="#products" class="btn-primary-explore" id="cta-explore">
                     Explore Our Products
@@ -3395,9 +4016,9 @@
                   Global Brands<br>
                   <span class="headline-green-accent">Through Code.</span>
                 </h1>
-                <!-- <p class="subdescription-text">
-                  From web applications to enterprise cloud infrastructure, we engineer high-performance digital platforms built for scale.
-                </p> -->
+                <p class="subdescription-text">
+                  We build digital solutions that help businesses grow, innovate, and create a better tomorrow.
+                </p>
                 <div class="cta-button-row">
                   <a href="#services" class="btn-primary-explore">
                     View Our Services
@@ -3430,9 +4051,9 @@
                   Complex Ideas Into<br>
                   <span class="headline-green-accent">Seamless Reality.</span>
                 </h1>
-                <!-- <p class="subdescription-text">
-                  Partner with Stark Softech to bring your visionary software concepts to life with intuitive design and modern engineering.
-                </p> -->
+                <p class="subdescription-text">
+                  We build digital solutions that help businesses grow, innovate, and create a better tomorrow.
+                </p>
                 <div class="cta-button-row">
                   <a href="#contact" class="btn-primary-explore">
                     Start Your Project
@@ -3454,15 +4075,6 @@
                 </div>
               </div>
 
-            </div>
-
-            <!-- 3 Expanding Loading Dots Navigation -->
-            <div class="hero-slider-nav">
-              <div class="hero-slider-dots">
-                <button class="hero-dot-btn active" data-slide="0" aria-label="Slide 1"><span class="dot-fill"></span></button>
-                <button class="hero-dot-btn" data-slide="1" aria-label="Slide 2"><span class="dot-fill"></span></button>
-                <button class="hero-dot-btn" data-slide="2" aria-label="Slide 3"><span class="dot-fill"></span></button>
-              </div>
             </div>
 
             <!-- Bottom Trust Tag -->
@@ -3522,6 +4134,16 @@
                 class="hero-slide-img" id="hero-img-3">
             </div>
 
+            <!-- 3 Expanding Loading Dots Navigation -->
+            <div class="hero-slider-nav">
+              <div class="hero-slider-dots">
+                <button class="hero-dot-btn active" data-slide="0" aria-label="Slide 1"><span
+                    class="dot-fill"></span></button>
+                <button class="hero-dot-btn" data-slide="1" aria-label="Slide 2"><span class="dot-fill"></span></button>
+                <button class="hero-dot-btn" data-slide="2" aria-label="Slide 3"><span class="dot-fill"></span></button>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -3577,7 +4199,7 @@
 
     <!-- Hero Section Right Bottom "SCROLL TO EXPLORE" Indicator -->
     <a href="#about" class="hero-scroll-widget" id="hero-scroll-explore" aria-label="Scroll to explore">
-      <span class="hero-scroll-text">SCROLL<br>TO EXPLORE</span>
+      <span class="hero-scroll-text">SCROLL TO EXPLORE</span>
       <div class="hero-scroll-circle-btn">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
           stroke-linecap="round" stroke-linejoin="round">
@@ -3818,7 +4440,8 @@
 
         <!-- Center Column: Floating Laptops Graphic from assets/product_crm.png -->
         <div class="crm-center-visual">
-          <img src="assets/product_crm.png" alt="Stark CRM Laptop Dashboard Showcase" class="crm-laptop-img" id="crm-laptop-img">
+          <img src="assets/product_crm.png" alt="Stark CRM Laptop Dashboard Showcase" class="crm-laptop-img"
+            id="crm-laptop-img">
         </div>
 
         <!-- Right Column: Light Mint Translucent Card -->
@@ -3827,7 +4450,8 @@
             <span class="crm-subtag-right" id="crm-subtag-right">ALL-IN-ONE SOLUTION</span>
             <h3 class="crm-title-right" id="crm-title-right">Stark <span class="crm-highlight">CRM</span></h3>
             <p class="crm-desc-right" id="crm-desc-right">
-              Build stronger customer relationships with intelligent tools, real-time insights, and seamless collaboration.
+              Build stronger customer relationships with intelligent tools, real-time insights, and seamless
+              collaboration.
             </p>
           </div>
 
@@ -3970,11 +4594,73 @@
         <h2 class="clients-title">Our Clients</h2>
       </div>
 
-      <!-- Clients Logos Grid Showcase -->
+      <!-- Clients Logos Pyramid Grid Showcase (2, 3, 4, 3, 2 layout) -->
       <div class="clients-showcase-card">
-        <div class="clients-logos-frame">
-          <img src="assets/clients_grid.png"
-            alt="Our Clients - Porsche, Skoda, Clikpay, Enovate, Redteam, Inflow, and more" class="clients-grid-img">
+        <div class="clients-pyramid-grid">
+
+          <!-- Row 1: 2 Logos -->
+          <div class="clients-row row-1">
+            <div class="client-logo-card">
+              <img src="assets/Our_clients/acacio.png" alt="Acacio Client Logo" class="client-logo-img">
+            </div>
+            <div class="client-logo-card">
+              <img src="assets/Our_clients/angelkart.jpg" alt="Angelkart Client Logo" class="client-logo-img">
+            </div>
+          </div>
+
+          <!-- Row 2: 3 Logos -->
+          <div class="clients-row row-2">
+            <div class="client-logo-card">
+              <img src="assets/Our_clients/apostle-logo.png" alt="Apostle Client Logo" class="client-logo-img">
+            </div>
+            <div class="client-logo-card">
+              <img src="assets/Our_clients/avanthiherbals.png" alt="Avanthi Herbals Client Logo"
+                class="client-logo-img">
+            </div>
+            <div class="client-logo-card">
+              <img src="assets/Our_clients/elizabeth.png" alt="Elizabeth Client Logo" class="client-logo-img">
+            </div>
+          </div>
+
+          <!-- Row 3: 4 Logos -->
+          <div class="clients-row row-3">
+            <div class="client-logo-card">
+              <img src="assets/Our_clients/elxavier.jpg" alt="El Xavier Client Logo" class="client-logo-img">
+            </div>
+            <div class="client-logo-card">
+              <img src="assets/Our_clients/espice-media.png" alt="Espice Media Client Logo" class="client-logo-img">
+            </div>
+            <div class="client-logo-card">
+              <img src="assets/Our_clients/intuc.png" alt="INTUC Client Logo" class="client-logo-img">
+            </div>
+            <div class="client-logo-card">
+              <img src="assets/Our_clients/matric-logo.png" alt="Matric Client Logo" class="client-logo-img">
+            </div>
+          </div>
+
+          <!-- Row 4: 3 Logos -->
+          <div class="clients-row row-4">
+            <div class="client-logo-card">
+              <img src="assets/Our_clients/sakthi.png" alt="Sakthi Client Logo" class="client-logo-img">
+            </div>
+            <div class="client-logo-card">
+              <img src="assets/Our_clients/tamilbreviary.png" alt="Tamil Breviary Client Logo" class="client-logo-img">
+            </div>
+            <div class="client-logo-card">
+              <img src="assets/Our_clients/transcript.png" alt="Transcript Client Logo" class="client-logo-img">
+            </div>
+          </div>
+
+          <!-- Row 5: 2 Logos -->
+          <div class="clients-row row-5">
+            <div class="client-logo-card">
+              <img src="assets/Our_clients/velavan-stores.png" alt="Velavan Stores Client Logo" class="client-logo-img">
+            </div>
+            <div class="client-logo-card">
+              <img src="assets/Our_clients/acacio.png" alt="Acacio Client Logo" class="client-logo-img">
+            </div>
+          </div>
+
         </div>
       </div>
 

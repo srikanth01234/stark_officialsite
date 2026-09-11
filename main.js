@@ -50,15 +50,65 @@ function initStatsCounter() {
 }
 
 /* ==========================================================
-   2. HAMBURGER BUTTON MICRO-INTERACTION
+   2. FLOATING GLASS NAVBAR & SEARCH & MENU INTERACTION
    ========================================================== */
 function initHamburgerMenu() {
   const hamburgerBtn = document.getElementById('btn-header-hamburger');
-  if (!hamburgerBtn) return;
+  const navPill = document.querySelector('.center-nav-pill');
 
-  hamburgerBtn.addEventListener('click', () => {
-    hamburgerBtn.classList.toggle('active');
+  if (hamburgerBtn) {
+    hamburgerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      hamburgerBtn.classList.toggle('active');
+      if (navPill) {
+        navPill.classList.toggle('mobile-open');
+      }
+    });
+  }
+
+  // Active Link Dot Indicator Switching
+  const navLinks = document.querySelectorAll('.site-nav-link');
+  navLinks.forEach(link => {
+    link.addEventListener('click', function () {
+      navLinks.forEach(l => l.classList.remove('active'));
+      this.classList.add('active');
+      if (navPill && navPill.classList.contains('mobile-open')) {
+        navPill.classList.remove('mobile-open');
+        if (hamburgerBtn) hamburgerBtn.classList.remove('active');
+      }
+    });
   });
+
+  // Search Button & Glass Overlay Modal Controls
+  const searchBtn = document.getElementById('btn-header-search');
+  const searchOverlay = document.getElementById('search-overlay');
+  const searchCloseBtn = document.getElementById('search-close-btn');
+  const searchInput = document.getElementById('site-search-input');
+
+  if (searchBtn && searchOverlay) {
+    searchBtn.addEventListener('click', () => {
+      searchOverlay.classList.add('active');
+      searchOverlay.setAttribute('aria-hidden', 'false');
+      if (searchInput) searchInput.focus();
+    });
+
+    const closeSearch = () => {
+      searchOverlay.classList.remove('active');
+      searchOverlay.setAttribute('aria-hidden', 'true');
+    };
+
+    if (searchCloseBtn) searchCloseBtn.addEventListener('click', closeSearch);
+
+    searchOverlay.addEventListener('click', (e) => {
+      if (e.target === searchOverlay) closeSearch();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && searchOverlay.classList.contains('active')) {
+        closeSearch();
+      }
+    });
+  }
 }
 
 /* ==========================================================
@@ -232,7 +282,7 @@ function initWhatWeDoTabs() {
       if (isActive) {
         btn.style.setProperty('--active-tab-color', data ? data.tabColor : '#3b52ff');
         if (tabsList) {
-          btn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         }
       }
     });
