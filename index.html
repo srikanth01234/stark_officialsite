@@ -449,25 +449,45 @@
         left: 50%;
         transform: translateX(-50%);
         width: min(92%, 420px);
-        background: rgba(255, 255, 255, 0.96);
+        background: rgba(255, 255, 255, 0.98);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(220, 245, 226, 0.9);
         border-radius: 24px;
         padding: 1.25rem 1.5rem;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
         z-index: 1001;
       }
 
       .center-nav-pill.mobile-open {
-        display: block;
+        display: block !important;
         animation: mobileNavFade 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       }
 
+      .center-nav-pill.mobile-open .site-nav-menu,
       .site-nav-menu {
-        flex-direction: column;
-        align-items: center;
-        gap: 1.1rem;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 1.1rem !important;
+        width: 100%;
+        margin: 0;
+        padding: 0.25rem 0;
+      }
+
+      .site-nav-link {
+        font-size: 1.02rem;
+        font-weight: 600;
+        color: #1e293b;
+        padding: 0.35rem 0;
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+      }
+
+      .site-nav-link:hover,
+      .site-nav-link.active {
+        color: #16a34a;
       }
 
       .site-nav-link.active::after {
@@ -976,8 +996,8 @@
       position: absolute;
       right: 0;
       bottom: 0;
-      width: clamp(580px, 60vw, 1050px);
-      height: 100%;
+      width: clamp(540px, 55vw, 960px);
+      height: clamp(420px, 65vh, 720px);
       pointer-events: none;
       z-index: 2;
       overflow: hidden;
@@ -988,6 +1008,8 @@
       height: 100%;
       display: block;
     }
+
+
 
     .hero-scroll-widget {
       position: absolute;
@@ -1201,9 +1223,7 @@
         min-height: 100vh;
       }
 
-      .site-nav-menu {
-        display: none;
-      }
+
 
       .hero-layout-grid {
         grid-template-columns: 1fr;
@@ -1263,11 +1283,7 @@
       }
 
       .hero-left-column {
-        order: 1;
-        padding-top: 0.2rem;
-        padding-left: 0;
-        padding-right: 0;
-        width: 100%;
+        display: contents;
       }
 
       .hero-mobile-badges-row {
@@ -1277,6 +1293,7 @@
         width: 100%;
         margin-bottom: 0.75rem;
         padding: 0 0.1rem;
+        order: 1;
       }
 
       .hero-mobile-badges-row .hero-floating-card-ideas {
@@ -1308,6 +1325,11 @@
       .hero-mobile-badges-row .annotation-text-list {
         font-size: 0.72rem;
         line-height: 1.2;
+      }
+
+      .hero-slides-wrapper {
+        order: 2;
+        width: 100%;
       }
 
       .headline-text {
@@ -1348,19 +1370,11 @@
       }
 
       .hero-right-column {
-        order: 2;
-        padding-top: 0;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-end;
-        flex: 1;
-        min-height: 0;
+        display: contents;
       }
 
       .desk-image-container {
-        order: 1;
+        order: 3;
         width: 100%;
         max-width: 580px;
         margin: 0 auto;
@@ -1384,7 +1398,7 @@
       }
 
       .hero-slider-nav {
-        order: 2;
+        order: 4;
         justify-content: center;
         margin-top: 0.5rem;
         margin-bottom: 0.25rem;
@@ -1418,7 +1432,7 @@
 
       .hero-corner-wave-wrap {
         width: 100vw;
-        height: 60vh;
+        height: 45vh;
         bottom: 0;
         right: 0;
         opacity: 1;
@@ -1675,8 +1689,8 @@
       display: inline-flex;
       align-items: center;
       padding: 0.4rem 1.25rem;
-      background-color: #eef4ff;
-      color: #2563eb;
+      background-color: #dcfce7;
+      color: #15803d;
       border-radius: 9999px;
       font-size: 0.88rem;
       font-weight: 600;
@@ -1713,14 +1727,14 @@
       min-width: 26px;
       min-height: 26px;
       border-radius: 50%;
-      background-color: #0d5ee8;
+      background-color: #16a34a;
       display: flex;
       align-items: center;
       justify-content: center;
       color: #ffffff;
       margin-top: 3px;
       flex-shrink: 0;
-      box-shadow: 0 4px 10px rgba(13, 94, 232, 0.25);
+      box-shadow: 0 4px 10px rgba(22, 163, 74, 0.25);
     }
 
     .about-check-icon svg {
@@ -1755,7 +1769,7 @@
       align-items: center;
       gap: 0.65rem;
       padding: 0.85rem 2.2rem;
-      border: 1.8px solid #0d5ee8;
+      border: 1.8px solid #16a34a;
       border-radius: 9999px;
       color: #0f172a;
       font-size: 0.98rem;
@@ -1770,10 +1784,10 @@
     }
 
     .about-btn-discover:hover {
-      background-color: #0d5ee8;
+      background-color: #16a34a;
       color: #ffffff;
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(13, 94, 232, 0.25);
+      box-shadow: 0 8px 20px rgba(22, 163, 74, 0.25);
     }
 
     .about-btn-discover:hover svg {
@@ -3095,11 +3109,12 @@
     .text-reveal-scroll-section {
       position: relative;
       width: 100%;
-      padding: clamp(2rem, 4vw, 3.5rem) 0 0 0;
-      margin-bottom: -15px;
+      padding: clamp(2.5rem, 5vw, 4.5rem) 0 0 0;
+      margin-bottom: clamp(-5.8rem, -8.5vw, -7.5rem);
       background-color: #ffffff;
       color: #0f172a;
       overflow: hidden;
+      z-index: 3;
     }
 
     .reveal-text-wrapper {
@@ -3111,13 +3126,14 @@
       text-align: center;
       padding: 0;
       margin: 0 auto;
+      transform: translateY(14px);
     }
 
     .reveal-text {
       font-size: clamp(5.2rem, 13vw, 15.5rem);
       /* Significantly enlarged text size */
       font-weight: 900;
-      line-height: 0.95;
+      line-height: 0.80;
       letter-spacing: -0.02em;
       text-transform: uppercase;
       white-space: nowrap;
@@ -3171,10 +3187,21 @@
     }
 
     @media (max-width: 900px) {
+      .text-reveal-scroll-section {
+        padding-top: 1.3rem;
+        margin-top: -0.1rem;
+        margin-bottom: -55px;
+      }
+
+      .reveal-text-wrapper {
+        transform: translateY(8px);
+      }
+
       .reveal-text {
-        white-space: normal;
-        font-size: clamp(3rem, 11vw, 5.5rem);
-        line-height: 1.05;
+        white-space: nowrap;
+        font-size: clamp(4.2rem, 16.5vw, 7.2rem);
+        line-height: 0.82;
+        letter-spacing: -0.01em;
       }
     }
 
@@ -3555,8 +3582,9 @@
     .site-main-footer {
       background-color: #04060a;
       color: #94a3b8;
-      padding: 1.5rem 0 2rem 0;
-      margin-top: 0;
+      padding: 3rem 0 2rem 0;
+      margin-top: clamp(2.5rem, 5vw, 4rem);
+      border-radius: 40px 40px 0 0;
       position: relative;
       overflow: hidden;
       font-family: var(--font-family);
@@ -3848,13 +3876,68 @@
     }
 
     @media (max-width: 768px) {
+      .site-main-footer {
+        border-radius: 28px 28px 0 0;
+        margin-top: 2rem;
+        padding-top: 2.5rem;
+      }
+
       .footer-main-row {
         grid-template-columns: 1fr;
         gap: 2.5rem;
+        text-align: center;
+      }
+
+      .footer-brand-col {
+        align-items: center;
+        text-align: center;
       }
 
       .footer-links-group {
+        display: grid;
         grid-template-columns: repeat(2, 1fr);
+        gap: 2.2rem 1.5rem;
+        text-align: center;
+        justify-items: center;
+        width: 100%;
+      }
+
+      .footer-links-group>div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .footer-col-header {
+        text-align: center;
+        margin-bottom: 0.85rem;
+      }
+
+      .footer-menu {
+        align-items: center;
+        text-align: center;
+        gap: 0.75rem;
+      }
+
+      .footer-right-col {
+        align-items: center;
+        text-align: center;
+        gap: 1.8rem;
+        width: 100%;
+      }
+
+      .footer-badges-row {
+        justify-content: center;
+        width: 100%;
+        gap: 0.85rem;
+        flex-wrap: wrap;
+      }
+
+      .footer-social-row {
+        justify-content: center;
+        width: 100%;
+        gap: 0.85rem;
       }
 
       .footer-bottom-bar {
@@ -3866,7 +3949,35 @@
 
       .footer-bottom-right {
         flex-direction: column;
+        align-items: center;
         gap: 1.2rem;
+      }
+
+      .footer-legal-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+
+      .footer-better-tomorrow {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .footer-links-group {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-links-group>div:nth-child(3) {
+        grid-column: span 2;
+      }
+
+      .floating-top-btn {
+        bottom: 1.25rem;
+        right: 1.25rem;
+        width: 42px;
+        height: 42px;
       }
     }
   </style>
@@ -4077,6 +4188,16 @@
 
             </div>
 
+            <!-- 3 Expanding Loading Dots Navigation (Placed below CTA buttons in Laptop view) -->
+            <div class="hero-slider-nav">
+              <div class="hero-slider-dots">
+                <button class="hero-dot-btn active" data-slide="0" aria-label="Slide 1"><span
+                    class="dot-fill"></span></button>
+                <button class="hero-dot-btn" data-slide="1" aria-label="Slide 2"><span class="dot-fill"></span></button>
+                <button class="hero-dot-btn" data-slide="2" aria-label="Slide 3"><span class="dot-fill"></span></button>
+              </div>
+            </div>
+
             <!-- Bottom Trust Tag -->
             <div class="trust-footer-tag">
               <!-- <span class="trust-dash-line"></span>
@@ -4134,16 +4255,6 @@
                 class="hero-slide-img" id="hero-img-3">
             </div>
 
-            <!-- 3 Expanding Loading Dots Navigation -->
-            <div class="hero-slider-nav">
-              <div class="hero-slider-dots">
-                <button class="hero-dot-btn active" data-slide="0" aria-label="Slide 1"><span
-                    class="dot-fill"></span></button>
-                <button class="hero-dot-btn" data-slide="1" aria-label="Slide 2"><span class="dot-fill"></span></button>
-                <button class="hero-dot-btn" data-slide="2" aria-label="Slide 3"><span class="dot-fill"></span></button>
-              </div>
-            </div>
-
           </div>
         </div>
       </div>
@@ -4154,51 +4265,66 @@
       <svg class="hero-corner-wave-svg" viewBox="0 0 1000 900" fill="none" preserveAspectRatio="none"
         xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <!-- Deep Forest Emerald Gradient for Main S-Curve Hill -->
-          <linearGradient id="cornerForestGrad" x1="20%" y1="30%" x2="90%" y2="100%">
+          <!-- Native SVG Linear Mask for smooth organic bottom fade of the wave -->
+          <linearGradient id="waveMaskGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+            <stop offset="82%" stop-color="#ffffff" stop-opacity="1" />
+            <stop offset="94%" stop-color="#ffffff" stop-opacity="0.45" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+          </linearGradient>
+          <mask id="waveBottomFadeMask">
+            <rect x="0" y="0" width="1000" height="900" fill="url(#waveMaskGrad)" />
+          </mask>
+
+          <!-- Rich Forest to Light Mint Upward-Matching Gradients with Shorter Fade Length -->
+          <linearGradient id="cornerForestGrad" x1="30%" y1="0%" x2="70%" y2="100%">
             <stop offset="0%" stop-color="#16a34a" />
-            <stop offset="28%" stop-color="#15803d" />
-            <stop offset="65%" stop-color="#0e3b1f" />
-            <stop offset="100%" stop-color="#052613" />
+            <stop offset="45%" stop-color="#15803d" />
+            <stop offset="80%" stop-color="#16a34a" />
+            <stop offset="92%" stop-color="#22c55e" />
+            <stop offset="100%" stop-color="#4ade80" />
           </linearGradient>
 
-          <!-- Soft Mint / Sage Ambient Wave Gradient -->
-          <linearGradient id="cornerMintGrad" x1="10%" y1="20%" x2="100%" y2="90%">
-            <stop offset="0%" stop-color="#86efac" stop-opacity="0.55" />
-            <stop offset="45%" stop-color="#4ade80" stop-opacity="0.32" />
-            <stop offset="85%" stop-color="#22c55e" stop-opacity="0.16" />
-            <stop offset="100%" stop-color="#15803d" stop-opacity="0.08" />
+          <!-- Soft Mint / Sage Ambient Wave Gradient Matching Upward & Downward -->
+          <linearGradient id="cornerMintGrad" x1="10%" y1="0%" x2="90%" y2="100%">
+            <stop offset="0%" stop-color="#86efac" stop-opacity="0.6" />
+            <stop offset="60%" stop-color="#4ade80" stop-opacity="0.35" />
+            <stop offset="88%" stop-color="#22c55e" stop-opacity="0.2" />
+            <stop offset="100%" stop-color="#86efac" stop-opacity="0.1" />
           </linearGradient>
         </defs>
 
-        <!-- Outer soft ambient aura wave rising high up the right edge -->
-        <path d="M 60 900 C 180 760, 360 620, 620 520 C 800 450, 930 320, 1000 180 L 1000 900 Z"
-          fill="url(#cornerMintGrad)" />
+        <!-- Wave Paths wrapped in native SVG Fade Mask -->
+        <g mask="url(#waveBottomFadeMask)">
+          <!-- Outer soft ambient aura wave rising high up the right edge -->
+          <path d="M 60 900 C 180 760, 360 620, 620 520 C 800 450, 930 320, 1000 180 L 1000 900 Z"
+            fill="url(#cornerMintGrad)" />
 
-        <!-- Mint Contour Stroke 1 -->
-        <path d="M 90 900 C 210 760, 390 620, 640 520 C 820 450, 940 320, 1000 190" stroke="#4ade80" stroke-width="2.2"
-          stroke-linecap="round" stroke-opacity="0.65" />
+          <!-- Mint Contour Stroke 1 -->
+          <path d="M 90 900 C 210 760, 390 620, 640 520 C 820 450, 940 320, 1000 190" stroke="#4ade80"
+            stroke-width="2.2" stroke-linecap="round" stroke-opacity="0.65" />
 
-        <!-- Subtle Dashed Accent Contour Line -->
-        <path d="M 140 900 C 260 770, 430 640, 670 550 C 840 480, 955 370, 1000 250" stroke="#86efac" stroke-width="1.6"
-          stroke-dasharray="7 6" stroke-linecap="round" stroke-opacity="0.55" />
+          <!-- Subtle Dashed Accent Contour Line -->
+          <path d="M 140 900 C 260 770, 430 640, 670 550 C 840 480, 955 370, 1000 250" stroke="#86efac"
+            stroke-width="1.6" stroke-dasharray="7 6" stroke-linecap="round" stroke-opacity="0.55" />
 
-        <!-- Primary Rich Forest Green Wave (Flows under desk & fills bottom right + rises up right side) -->
-        <path d="M 180 900 C 290 780, 480 670, 720 600 C 860 550, 950 440, 1000 310 L 1000 900 Z"
-          fill="url(#cornerForestGrad)" />
+          <!-- Primary Rich Forest Green Wave (Flows under desk & fills bottom right + rises up right side) -->
+          <path d="M 180 900 C 290 780, 480 670, 720 600 C 860 550, 950 440, 1000 310 L 1000 900 Z"
+            fill="url(#cornerForestGrad)" />
 
-        <!-- Glowing Mint Crest Accent Line along the Forest Wave -->
-        <path d="M 210 900 C 310 785, 495 675, 730 605 C 870 555, 955 445, 1000 320" stroke="#86efac" stroke-width="1.6"
-          stroke-linecap="round" stroke-opacity="0.45" />
+          <!-- Glowing Mint Crest Accent Line along the Forest Wave -->
+          <path d="M 210 900 C 310 785, 495 675, 730 605 C 870 555, 955 445, 1000 320" stroke="#86efac"
+            stroke-width="1.6" stroke-linecap="round" stroke-opacity="0.45" />
 
-        <!-- Gentle secondary contour within the forest green area -->
-        <path d="M 320 900 C 440 810, 600 730, 800 680 C 910 650, 970 580, 1000 480" stroke="#4ade80" stroke-width="1.2"
-          stroke-dasharray="5 5" stroke-linecap="round" stroke-opacity="0.25" />
+          <!-- Gentle secondary contour within the forest green area -->
+          <path d="M 320 900 C 440 810, 600 730, 800 680 C 910 650, 970 580, 1000 480" stroke="#4ade80"
+            stroke-width="1.2" stroke-dasharray="5 5" stroke-linecap="round" stroke-opacity="0.25" />
+        </g>
       </svg>
     </div>
 
     <!-- Hero Section Right Bottom "SCROLL TO EXPLORE" Indicator -->
-    <a href="#about" class="hero-scroll-widget" id="hero-scroll-explore" aria-label="Scroll to explore">
+    <!-- <a href="#about" class="hero-scroll-widget" id="hero-scroll-explore" aria-label="Scroll to explore">
       <span class="hero-scroll-text">SCROLL TO EXPLORE</span>
       <div class="hero-scroll-circle-btn">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
@@ -4207,7 +4333,7 @@
           <polyline points="19 12 12 19 5 12"></polyline>
         </svg>
       </div>
-    </a>
+    </a> -->
   </div>
 
   <!-- ==================== ABOUT US SECTION (EXACT REFERENCE DESIGN) ==================== -->

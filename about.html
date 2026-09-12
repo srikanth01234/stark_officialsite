@@ -965,6 +965,10 @@
       line-height: 1.3;
     }
 
+    .mobile-br {
+      display: none;
+    }
+
     /* ==========================================================
        OUR HAPPY CLIENTS TICKER BANNER
        ========================================================== */
@@ -1057,10 +1061,11 @@
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     }
 
-    .client-logo-svg {
-      max-height: 40px;
+    .client-logo-svg,
+    .client-logo-img {
+      max-height: 42px;
       width: auto;
-      max-width: 180px;
+      max-width: 170px;
       display: block;
       object-fit: contain;
     }
@@ -1087,19 +1092,6 @@
     @media (max-width: 640px) {
       .story-top-collage-row {
         grid-template-columns: 1fr;
-      }
-
-      .story-bottom-collage-row {
-        grid-template-columns: 1fr;
-      }
-
-      .story-features-row {
-        grid-template-columns: 1fr;
-        gap: 1.2rem;
-      }
-
-      .feature-item-pill:not(:last-child)::after {
-        display: none;
       }
     }
 
@@ -1602,13 +1594,23 @@
       margin-bottom: 1.5rem;
     }
 
-    .footer-menu {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    .footer-menu,
+    .footer-nav-list {
+      list-style: none !important;
+      list-style-type: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
       display: flex;
       flex-direction: column;
       gap: 0.9rem;
+    }
+
+    .footer-menu li,
+    .footer-nav-list li {
+      list-style: none !important;
+      list-style-type: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
     }
 
     .footer-menu a {
@@ -1644,14 +1646,28 @@
       flex-wrap: wrap;
     }
 
-    .ms-partner-badge {
+    .ms-partner-badge,
+    .stark-partner-badge {
       display: flex;
       align-items: center;
       gap: 0.65rem;
       background: #0d121d;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.35);
       padding: 0.55rem 1rem;
       border-radius: 8px;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.15);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .stark-partner-badge:hover {
+      border-color: rgba(34, 197, 94, 0.7);
+      box-shadow: 0 0 18px rgba(34, 197, 94, 0.3);
+    }
+
+    .stark-badge-logo {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
     }
 
     .ms-badge-text {
@@ -1805,14 +1821,502 @@
       }
     }
 
+    /* ==========================================================
+       MOBILE RESPONSIVENESS OVERRIDES
+       ========================================================== */
+    @media (max-width: 992px) {
+      /* Header & Nav */
+      .center-nav-pill {
+        background: transparent;
+        box-shadow: none;
+        border: none;
+        padding: 0;
+      }
+      .btn-talk-pill {
+        display: none !important;
+      }
+      .mobile-menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 22px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1001;
+      }
+      .mobile-menu-toggle span {
+        width: 100%;
+        height: 3px;
+        background-color: var(--primary-green);
+        border-radius: 3px;
+        transition: all 0.3s ease;
+      }
+      .nav-glass-container {
+        padding: 0.6rem 1.2rem;
+      }
+      
+      /* Mobile Menu Dropdown */
+      .site-nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 5%;
+        width: 90%;
+        background: rgba(255, 255, 255, 0.98);
+        padding: 2rem;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        text-align: center;
+        gap: 2rem;
+      }
+      .site-nav-menu.mobile-active {
+        display: flex;
+      }
+
+      /* Hero Section */
+      .about-hero-lower-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .about-hero-section {
+        padding-top: 8rem;
+      }
+      .main-title-about, .main-title-us {
+        font-size: clamp(3rem, 10vw, 4rem);
+      }
+      .right-col-content {
+        order: 3;
+      }
+      .center-card-frame {
+        order: 2;
+        max-height: 400px;
+      }
+      .left-col-content {
+        order: 1;
+        padding-right: 0;
+      }
+      .left-description {
+        max-width: 100%;
+      }
+
+      /* Our Story Mobile Layout (Matching Reference Design) */
+      .our-story-section {
+        padding: 2.8rem 0;
+      }
+      .story-watermark-svg {
+        top: 0;
+        right: -15%;
+        width: 90vw;
+        opacity: 0.08;
+      }
+      .story-grid-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .story-left-collage,
+      .story-right-content {
+        display: contents;
+      }
+
+      /* Mobile Element Order & Typography */
+      .story-header-tag {
+        order: 1;
+        margin-bottom: 0.5rem;
+      }
+      .story-section-title {
+        order: 2;
+        font-size: clamp(2.2rem, 7.5vw, 2.8rem);
+        margin-bottom: 0.8rem;
+        line-height: 1.08;
+      }
+      .story-lead-subtitle {
+        order: 3;
+        max-width: 100%;
+        font-size: 1.05rem;
+        margin-bottom: 1.2rem;
+        line-height: 1.45;
+      }
+      .story-body-paragraph:nth-of-type(1) {
+        order: 4;
+        margin-bottom: 1rem;
+      }
+      .story-body-paragraph:nth-of-type(2) {
+        order: 5;
+        margin-bottom: 1.6rem;
+      }
+
+      /* Main Office Photo Card */
+      .story-top-collage-row {
+        order: 6;
+        grid-template-columns: 1fr;
+        gap: 0;
+        margin-bottom: 12px;
+        width: 100%;
+      }
+      .story-tag-block {
+        display: none;
+      }
+      .story-main-img-wrap {
+        height: auto;
+        aspect-ratio: 16/9;
+        min-height: 190px;
+        border-radius: 20px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      }
+      .wall-stark-brand {
+        top: 16%;
+        left: 10%;
+        transform: none;
+        background: transparent;
+        backdrop-filter: none;
+        padding: 0;
+        border-radius: 0;
+      }
+      .wall-stark-brand .brand-main {
+        font-size: 1.2rem;
+      }
+      .wall-stark-brand .brand-sub {
+        font-size: 0.58rem;
+      }
+      .wall-glass-words {
+        top: 22%;
+        right: 8%;
+        font-size: 0.6rem;
+      }
+
+      /* 3 Bottom Cards Row Side-by-Side */
+      .story-bottom-collage-row {
+        order: 7;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-bottom: 1.8rem;
+        width: 100%;
+      }
+      .story-sub-img-wrap {
+        height: auto;
+        aspect-ratio: 1/1;
+        min-height: 105px;
+        max-height: 160px;
+        border-radius: 16px;
+      }
+      .glass-ideas-impact-tag {
+        top: 10%;
+        left: 8%;
+        background: transparent;
+        backdrop-filter: none;
+        padding: 0;
+        border-radius: 0;
+        font-size: 0.65rem;
+      }
+      .glass-ideas-impact-tag .impact-word {
+        font-size: 0.78rem;
+      }
+
+      /* Green Metrics Card */
+      .story-green-card {
+        height: auto;
+        aspect-ratio: 1/1;
+        min-height: 105px;
+        max-height: 160px;
+        background-color: #386e35;
+        border-radius: 16px;
+        padding: 0.85rem 0.6rem 0.75rem 0.6rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: none;
+      }
+      .story-green-card:hover {
+        transform: none;
+      }
+      .card-number {
+        font-size: clamp(1.75rem, 5vw, 2.3rem);
+        font-weight: 800;
+        line-height: 1;
+        margin-bottom: 0.2rem;
+      }
+      .card-text {
+        font-size: clamp(0.6rem, 1.75vw, 0.72rem);
+        font-weight: 600;
+        line-height: 1.2;
+      }
+      .card-dash {
+        width: 24px;
+        height: 2px;
+        margin-top: 0.3rem;
+      }
+
+      /* 3 Features Horizontal Row with Separators */
+      .story-features-row {
+        order: 8;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.25rem;
+        margin-top: 0.4rem;
+        margin-bottom: 1.8rem;
+        padding-top: 1.2rem;
+        padding-bottom: 0.8rem;
+        border-top: 1px solid rgba(226, 232, 240, 0.85);
+        grid-template-columns: unset;
+      }
+      .feature-item-pill {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding-bottom: 0;
+        border-bottom: none;
+        position: relative;
+      }
+      .feature-item-pill:not(:last-child)::after {
+        content: '';
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 15%;
+        height: 70%;
+        width: 1px;
+        background-color: rgba(226, 232, 240, 0.9);
+      }
+      .feature-icon-badge {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+        min-height: 36px;
+      }
+      .feature-icon-badge svg {
+        width: 17px;
+        height: 17px;
+      }
+      .feature-title-bold {
+        font-size: clamp(0.68rem, 2vw, 0.78rem);
+        font-weight: 700;
+      }
+      .feature-sub-muted {
+        font-size: clamp(0.58rem, 1.7vw, 0.68rem);
+      }
+
+      /* CTA Button & Tagline */
+      .story-cta-flex-row {
+        order: 9;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.2rem;
+        width: 100%;
+      }
+      .story-cta-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.85rem 1.5rem;
+        font-size: 0.92rem;
+        background-color: #245e31;
+      }
+      .story-bottom-tagline {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+      .story-bottom-dash {
+        width: 24px;
+        height: 2px;
+        background-color: #245e31;
+      }
+      .story-bottom-text {
+        font-size: 0.65rem;
+        letter-spacing: 0.15em;
+      }
+
+      /* Core Values - Mobile Framing Layout (Side Gap & Compact Spacing) */
+      .core-values-section {
+        padding: 1.5rem 0;
+        overflow: hidden;
+      }
+      .core-values-section .viewport-container {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+      .values-intro-paragraph {
+        margin-bottom: 0.8rem;
+        font-size: 0.88rem;
+        padding: 0 0.5rem;
+        line-height: 1.45;
+      }
+      .core-values-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        position: relative;
+        align-items: center;
+        gap: 0.25rem;
+        min-height: 260px;
+        padding: 0.25rem 0;
+        width: 100%;
+      }
+      .values-col-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        max-width: 220px;
+        z-index: 1;
+        pointer-events: none;
+        order: unset;
+        display: flex;
+        justify-content: center;
+      }
+      .values-center-character-img {
+        width: 100%;
+        max-width: 205px;
+        height: auto;
+        opacity: 0.88;
+        filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.12));
+      }
+
+      /* Left Side Column Items - Attached Pair (Text + Icon) */
+      .values-col-left {
+        display: flex;
+        flex-direction: column;
+        gap: 1.1rem;
+        z-index: 2;
+        position: relative;
+        padding-left: 0.5rem;
+        padding-right: 0;
+        align-items: flex-start;
+      }
+      .value-row-item-left {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        text-align: right;
+        width: auto;
+        gap: 0.35rem;
+      }
+
+      /* Right Side Column Items - Attached Pair (Icon + Text) */
+      .values-col-right {
+        display: flex;
+        flex-direction: column;
+        gap: 1.1rem;
+        z-index: 2;
+        position: relative;
+        padding-right: 0.5rem;
+        padding-left: 0;
+        align-items: flex-end;
+      }
+      .value-row-item-right {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        text-align: left;
+        width: auto;
+        gap: 0.35rem;
+      }
+
+      /* Responsive Icon & 2-Line Text Styling */
+      .mobile-br {
+        display: block;
+      }
+      .value-3d-icon-box {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+        min-height: 36px;
+        margin: 0;
+        background: rgba(255, 255, 255, 0.94);
+        border-radius: 50%;
+        backdrop-filter: blur(4px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        flex-shrink: 0;
+      }
+      .value-3d-icon-img {
+        width: 28px;
+        height: 28px;
+      }
+      .value-item-heading {
+        font-size: clamp(0.68rem, 2.3vw, 0.8rem);
+        font-weight: 700;
+        line-height: 1.25;
+        text-shadow: 0 1px 4px rgba(255, 255, 255, 0.95);
+      }
+
+      /* Our Journey */
+      .journey-main-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .journey-image-col {
+        order: -1;
+      }
+    }
+
     @media (max-width: 768px) {
       .footer-main-row {
         grid-template-columns: 1fr;
         gap: 2.5rem;
+        text-align: center;
+      }
+
+      .footer-brand-col {
+        align-items: center;
+        text-align: center;
       }
 
       .footer-links-group {
+        display: grid;
         grid-template-columns: repeat(2, 1fr);
+        gap: 2.2rem 1.5rem;
+        text-align: center;
+        justify-items: center;
+        width: 100%;
+      }
+
+      .footer-links-group > div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .footer-col-header {
+        text-align: center;
+        margin-bottom: 0.85rem;
+      }
+
+      .footer-menu {
+        align-items: center;
+        text-align: center;
+        gap: 0.75rem;
+      }
+
+      .footer-right-col {
+        align-items: center;
+        text-align: center;
+        gap: 1.8rem;
+        width: 100%;
+      }
+
+      .footer-badges-row {
+        justify-content: center;
+        width: 100%;
+        gap: 0.85rem;
+        flex-wrap: wrap;
+      }
+
+      .footer-social-row {
+        justify-content: center;
+        width: 100%;
+        gap: 0.85rem;
       }
 
       .footer-bottom-bar {
@@ -1824,7 +2328,47 @@
 
       .footer-bottom-right {
         flex-direction: column;
+        align-items: center;
         gap: 1.2rem;
+      }
+
+      .footer-legal-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+
+      .footer-better-tomorrow {
+        justify-content: center;
+      }
+
+      /* Client Ticker */
+      .clients-ticker-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+      }
+      .ticker-left-label {
+        background: transparent;
+        margin-bottom: 1rem;
+        padding-left: clamp(1.5rem, 3.8vw, 3.8rem);
+      }
+      .ticker-v-line {
+        display: none;
+      }
+      .ticker-marquee-wrapper {
+        mask-image: none;
+        -webkit-mask-image: none;
+      }
+    }
+    @media (max-width: 580px) {
+      .footer-links-group {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-links-group > div:nth-child(3) {
+        grid-column: span 2;
       }
     }
   </style>
@@ -1869,6 +2413,11 @@
               <polyline points="12 5 19 12 12 19"></polyline>
             </svg>
           </a>
+          <button class="mobile-menu-toggle" aria-label="Toggle Menu" onclick="document.querySelector('.site-nav-menu').classList.toggle('mobile-active')">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
 
       </div>
@@ -2046,7 +2595,7 @@
 
           <!-- Story Paragraphs -->
           <p class="story-body-paragraph">
-            Stark Softech was founded with a simple vision — to help businesses grow through innovative technology and
+            Stark Softech was founded with a simple vision &mdash; to help businesses grow through innovative technology and
             strategic digital solutions. We combine creativity, technical expertise, and business insight to deliver
             solutions that help organizations build a stronger digital presence and achieve sustainable growth.
           </p>
@@ -2152,117 +2701,87 @@
     <!-- Infinite Scroll Ticker Track -->
     <div class="ticker-marquee-wrapper">
       <div class="ticker-marquee-track">
-
-        <!-- Client Logo 1: SANKARA -->
+        <!-- Client Logos Set 1 -->
         <div class="client-logo-card">
-          <svg class="client-logo-svg" viewBox="0 0 200 45" fill="none">
-            <rect x="5" y="8" width="28" height="28" rx="6" fill="#1e3a8a" />
-            <path d="M19 14L25 25H13L19 14Z" fill="#ef4444" />
-            <text x="40" y="24" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="13"
-              fill="#1e3a8a" letter-spacing="0.5">SANKARA</text>
-            <text x="40" y="33" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="6.5"
-              fill="#dc2626" letter-spacing="0.8">COLLEGE OF SCIENCE &amp; COMMERCE</text>
-          </svg>
+          <img src="assets/Our_clients/acacio.png" alt="Acacio Client Logo" class="client-logo-img">
+        </div>
+        <div class="client-logo-card">
+          <img src="assets/Our_clients/angelkart.jpg" alt="Angelkart Client Logo" class="client-logo-img">
+        </div>
+        <div class="client-logo-card">
+          <img src="assets/Our_clients/apostle-logo.png" alt="Apostle Client Logo" class="client-logo-img">
+        </div>
+        <div class="client-logo-card">
+          <img src="assets/Our_clients/avanthiherbals.png" alt="Avanthi Herbals Client Logo" class="client-logo-img">
+        </div>
+        <div class="client-logo-card">
+          <img src="assets/Our_clients/elizabeth.png" alt="Elizabeth Client Logo" class="client-logo-img">
+        </div>
+        <div class="client-logo-card">
+          <img src="assets/Our_clients/elxavier.jpg" alt="El Xavier Client Logo" class="client-logo-img">
+        </div>
+        <div class="client-logo-card">
+          <img src="assets/Our_clients/espice-media.png" alt="Espice Media Client Logo" class="client-logo-img">
+        </div>
+        <div class="client-logo-card">
+          <img src="assets/Our_clients/intuc.png" alt="INTUC Client Logo" class="client-logo-img">
+        </div>
+        <div class="client-logo-card">
+          <img src="assets/Our_clients/matric-logo.png" alt="Matric Client Logo" class="client-logo-img">
+        </div>
+        <div class="client-logo-card">
+          <img src="assets/Our_clients/sakthi.png" alt="Sakthi Client Logo" class="client-logo-img">
+        </div>
+        <div class="client-logo-card">
+          <img src="assets/Our_clients/tamilbreviary.png" alt="Tamil Breviary Client Logo" class="client-logo-img">
+        </div>
+        <div class="client-logo-card">
+          <img src="assets/Our_clients/transcript.png" alt="Transcript Client Logo" class="client-logo-img">
+        </div>
+        <div class="client-logo-card">
+          <img src="assets/Our_clients/velavan-stores.png" alt="Velavan Stores Client Logo" class="client-logo-img">
         </div>
 
-        <!-- Client Logo 2: SHRI DHANALAKSHMI GROUPS -->
+        <!-- Duplicated Loop Items for Seamless Infinite Scroll -->
         <div class="client-logo-card">
-          <svg class="client-logo-svg" viewBox="0 0 210 45" fill="none">
-            <polygon points="20,8 30,18 20,28 10,18" fill="#eab308" />
-            <polygon points="20,13 25,18 20,23 15,18" fill="#2563eb" />
-            <text x="38" y="26" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="9"
-              fill="#15803d" letter-spacing="1">SHRI DHANALAKSHMI GROUPS</text>
-          </svg>
+          <img src="assets/Our_clients/acacio.png" alt="Acacio Client Logo" class="client-logo-img">
         </div>
-
-        <!-- Client Logo 3: VEEYESKAY -->
         <div class="client-logo-card">
-          <svg class="client-logo-svg" viewBox="0 0 200 45" fill="none">
-            <path d="M12 12L18 28L24 12" stroke="#0284c7" stroke-width="4" stroke-linecap="round" />
-            <text x="32" y="24" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="15"
-              fill="#0284c7">VSK</text>
-            <text x="32" y="33" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="7"
-              fill="#0369a1" letter-spacing="0.5">VEEYESKAY CONSULTANCY SERVICES</text>
-          </svg>
+          <img src="assets/Our_clients/angelkart.jpg" alt="Angelkart Client Logo" class="client-logo-img">
         </div>
-
-        <!-- Client Logo 4: DSR SAREES -->
         <div class="client-logo-card">
-          <svg class="client-logo-svg" viewBox="0 0 180 45" fill="none">
-            <text x="15" y="28" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="17"
-              fill="#800020" letter-spacing="1">DSR</text>
-            <path d="M58 12C62 12 66 16 66 20C66 26 58 28 66 32" stroke="#800020" stroke-width="2.5"
-              stroke-linecap="round" />
-            <text x="15" y="38" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="7"
-              fill="#800020" letter-spacing="2">sarees</text>
-          </svg>
+          <img src="assets/Our_clients/apostle-logo.png" alt="Apostle Client Logo" class="client-logo-img">
         </div>
-
-        <!-- Client Logo 5: MOUNT BANYAN -->
         <div class="client-logo-card">
-          <svg class="client-logo-svg" viewBox="0 0 200 45" fill="none">
-            <circle cx="20" cy="22" r="14" fill="#16a34a" opacity="0.15" />
-            <path d="M20 12C15 12 12 16 12 21C12 27 20 31 20 31C20 31 28 27 28 21C28 16 25 12 20 12Z" fill="#16a34a" />
-            <text x="42" y="22" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="11"
-              fill="#065f46">MOUNT BANYAN</text>
-            <text x="42" y="31" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="7"
-              fill="#047857" letter-spacing="1">GLOBAL SCHOOL</text>
-          </svg>
+          <img src="assets/Our_clients/avanthiherbals.png" alt="Avanthi Herbals Client Logo" class="client-logo-img">
         </div>
-
-        <!-- Duplicate Loop Items for 100% Seamless Infinite Animation -->
         <div class="client-logo-card">
-          <svg class="client-logo-svg" viewBox="0 0 200 45" fill="none">
-            <rect x="5" y="8" width="28" height="28" rx="6" fill="#1e3a8a" />
-            <path d="M19 14L25 25H13L19 14Z" fill="#ef4444" />
-            <text x="40" y="24" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="13"
-              fill="#1e3a8a" letter-spacing="0.5">SANKARA</text>
-            <text x="40" y="33" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="6.5"
-              fill="#dc2626" letter-spacing="0.8">COLLEGE OF SCIENCE &amp; COMMERCE</text>
-          </svg>
+          <img src="assets/Our_clients/elizabeth.png" alt="Elizabeth Client Logo" class="client-logo-img">
         </div>
-
         <div class="client-logo-card">
-          <svg class="client-logo-svg" viewBox="0 0 210 45" fill="none">
-            <polygon points="20,8 30,18 20,28 10,18" fill="#eab308" />
-            <polygon points="20,13 25,18 20,23 15,18" fill="#2563eb" />
-            <text x="38" y="26" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="9"
-              fill="#15803d" letter-spacing="1">SHRI DHANALAKSHMI GROUPS</text>
-          </svg>
+          <img src="assets/Our_clients/elxavier.jpg" alt="El Xavier Client Logo" class="client-logo-img">
         </div>
-
         <div class="client-logo-card">
-          <svg class="client-logo-svg" viewBox="0 0 200 45" fill="none">
-            <path d="M12 12L18 28L24 12" stroke="#0284c7" stroke-width="4" stroke-linecap="round" />
-            <text x="32" y="24" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="15"
-              fill="#0284c7">VSK</text>
-            <text x="32" y="33" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="7"
-              fill="#0369a1" letter-spacing="0.5">VEEYESKAY CONSULTANCY SERVICES</text>
-          </svg>
+          <img src="assets/Our_clients/espice-media.png" alt="Espice Media Client Logo" class="client-logo-img">
         </div>
-
         <div class="client-logo-card">
-          <svg class="client-logo-svg" viewBox="0 0 180 45" fill="none">
-            <text x="15" y="28" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="17"
-              fill="#800020" letter-spacing="1">DSR</text>
-            <path d="M58 12C62 12 66 16 66 20C66 26 58 28 66 32" stroke="#800020" stroke-width="2.5"
-              stroke-linecap="round" />
-            <text x="15" y="38" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="7"
-              fill="#800020" letter-spacing="2">sarees</text>
-          </svg>
+          <img src="assets/Our_clients/intuc.png" alt="INTUC Client Logo" class="client-logo-img">
         </div>
-
         <div class="client-logo-card">
-          <svg class="client-logo-svg" viewBox="0 0 200 45" fill="none">
-            <circle cx="20" cy="22" r="14" fill="#16a34a" opacity="0.15" />
-            <path d="M20 12C15 12 12 16 12 21C12 27 20 31 20 31C20 31 28 27 28 21C28 16 25 12 20 12Z" fill="#16a34a" />
-            <text x="42" y="22" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="11"
-              fill="#065f46">MOUNT BANYAN</text>
-            <text x="42" y="31" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="7"
-              fill="#047857" letter-spacing="1">GLOBAL SCHOOL</text>
-          </svg>
+          <img src="assets/Our_clients/matric-logo.png" alt="Matric Client Logo" class="client-logo-img">
         </div>
-
+        <div class="client-logo-card">
+          <img src="assets/Our_clients/sakthi.png" alt="Sakthi Client Logo" class="client-logo-img">
+        </div>
+        <div class="client-logo-card">
+          <img src="assets/Our_clients/tamilbreviary.png" alt="Tamil Breviary Client Logo" class="client-logo-img">
+        </div>
+        <div class="client-logo-card">
+          <img src="assets/Our_clients/transcript.png" alt="Transcript Client Logo" class="client-logo-img">
+        </div>
+        <div class="client-logo-card">
+          <img src="assets/Our_clients/velavan-stores.png" alt="Velavan Stores Client Logo" class="client-logo-img">
+        </div>
       </div>
     </div>
 
@@ -2289,16 +2808,16 @@
 
           <!-- Value 1: Creativity & Innovation -->
           <div class="value-row-item-left">
-            <h3 class="value-item-heading">Creativity &amp; Innovation</h3>
+            <h3 class="value-item-heading">Creativity &amp;<br class="mobile-br">Innovation</h3>
             <div class="value-3d-icon-box">
-              <img src="https://img.icons8.com/3d-fluency/94/light-bulb.png" alt="Creativity & Innovation Icon"
+              <img src="https://img.icons8.com/3d-fluency/94/idea.png" alt="Creativity & Innovation Icon"
                 class="value-3d-icon-img">
             </div>
           </div>
 
           <!-- Value 2: Quality & Trust -->
           <div class="value-row-item-left">
-            <h3 class="value-item-heading">Quality &amp; Trust</h3>
+            <h3 class="value-item-heading">Quality &amp;<br class="mobile-br">Trust</h3>
             <div class="value-3d-icon-box">
               <img src="https://img.icons8.com/3d-fluency/94/shield.png" alt="Quality & Trust Icon"
                 class="value-3d-icon-img">
@@ -2307,7 +2826,7 @@
 
           <!-- Value 3: Transparent Collaboration -->
           <div class="value-row-item-left">
-            <h3 class="value-item-heading">Transparent Collaboration</h3>
+            <h3 class="value-item-heading">Transparent<br class="mobile-br">Collaboration</h3>
             <div class="value-3d-icon-box">
               <img src="https://img.icons8.com/3d-fluency/94/handshake.png" alt="Transparent Collaboration Icon"
                 class="value-3d-icon-img">
@@ -2331,7 +2850,7 @@
               <img src="https://img.icons8.com/3d-fluency/94/scales.png" alt="Honesty & Integrity Icon"
                 class="value-3d-icon-img">
             </div>
-            <h3 class="value-item-heading">Honesty &amp; Integrity</h3>
+            <h3 class="value-item-heading">Honesty &amp;<br class="mobile-br">Integrity</h3>
           </div>
 
           <!-- Value 5: Passion & Team Work -->
@@ -2340,7 +2859,7 @@
               <img src="https://img.icons8.com/3d-fluency/94/conference-call.png" alt="Passion & Team Work Icon"
                 class="value-3d-icon-img">
             </div>
-            <h3 class="value-item-heading">Passion &amp; Team Work</h3>
+            <h3 class="value-item-heading">Passion &amp;<br class="mobile-br">Team Work</h3>
           </div>
 
           <!-- Value 6: Exemplary Outcomes -->
@@ -2349,7 +2868,7 @@
               <img src="https://img.icons8.com/3d-fluency/94/bar-chart.png" alt="Exemplary Outcomes Icon"
                 class="value-3d-icon-img">
             </div>
-            <h3 class="value-item-heading">Exemplary Outcomes</h3>
+            <h3 class="value-item-heading">Exemplary<br class="mobile-br">Outcomes</h3>
           </div>
 
         </div>
@@ -2557,7 +3076,7 @@
       <div class="footer-main-row">
         <!-- Left Brand & Logo Column -->
         <div class="footer-brand-col">
-          <a href="index.html" class="footer-logo-anchor">
+          <a href="#" class="footer-logo-anchor">
             <img src="assets/logo-footer.png" alt="Stark Softech Logo" class="footer-logo-img">
           </a>
           <div class="footer-company-name">
@@ -2571,30 +3090,30 @@
           <div class="footer-nav-col">
             <h4 class="footer-col-header">PRODUCTS</h4>
             <ul class="footer-menu">
-              <li><a href="index.html#products">Stark CRM</a></li>
-              <li><a href="index.html#products">Business Software</a></li>
-              <li><a href="index.html#products">Workflow Automation</a></li>
-              <li><a href="index.html#products">E-commerce Solutions</a></li>
+              <li><a href="#">Stark CRM</a></li>
+              <li><a href="#">Business Software</a></li>
+              <li><a href="#">Workflow Automation</a></li>
+              <li><a href="#">E-commerce Solutions</a></li>
             </ul>
           </div>
 
           <div class="footer-nav-col">
             <h4 class="footer-col-header">SERVICES</h4>
             <ul class="footer-menu">
-              <li><a href="index.html#solutions">Web Development</a></li>
-              <li><a href="index.html#solutions">Mobile Applications</a></li>
-              <li><a href="index.html#solutions">UI/UX Design</a></li>
-              <li><a href="index.html#solutions">Digital Marketing</a></li>
+              <li><a href="#services">Web Development</a></li>
+              <li><a href="#services">Mobile Applications</a></li>
+              <li><a href="#services">UI/UX Design</a></li>
+              <li><a href="#services">Digital Marketing</a></li>
             </ul>
           </div>
 
           <div class="footer-nav-col">
             <h4 class="footer-col-header">COMPANY</h4>
             <ul class="footer-menu">
-              <li><a href="about.html">About Us</a></li>
-              <li><a href="about.html#our-story">Our Story</a></li>
-              <li><a href="about.html#our-journey">Our Journey</a></li>
-              <li><a href="index.html#contact">Contact Us</a></li>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#contact">Contact Us</a></li>
+              <li><a href="#">Blog</a></li>
             </ul>
           </div>
         </div>
@@ -2605,18 +3124,13 @@
         <!-- Right Column (Partners & Follow Us) -->
         <div class="footer-right-col">
           <div class="footer-cert-block">
-            <h4 class="footer-col-header">OUR PARTNERS &amp; CERTIFICATIONS</h4>
+            <h4 class="footer-col-header">OUR PARTNERS & CERTIFICATIONS</h4>
             <div class="footer-badges-row">
-              <!-- Microsoft Solutions Partner Card -->
-              <div class="ms-partner-badge">
-                <svg width="22" height="22" viewBox="0 0 23 23" fill="none">
-                  <path fill="#f25022" d="M1 1h10v10H1z" />
-                  <path fill="#7fba00" d="M12 1h10v10H12z" />
-                  <path fill="#00a4ef" d="M1 12h10v10H1z" />
-                  <path fill="#ffb900" d="M12 12h10v10H12z" />
-                </svg>
+              <!-- Stark Enterprise Solutions Partner Card -->
+              <div class="stark-partner-badge">
+                <img src="assets/logo-white.png" alt="Stark Softech Logo" class="stark-badge-logo">
                 <div class="ms-badge-text">
-                  <strong>Microsoft</strong>
+                  <strong>Stark Softech</strong>
                   <span>Solutions Partner</span>
                 </div>
               </div>

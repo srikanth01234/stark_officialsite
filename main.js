@@ -79,6 +79,16 @@ function initHamburgerMenu() {
     });
   });
 
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (navPill && navPill.classList.contains('mobile-open')) {
+      if (!navPill.contains(e.target) && hamburgerBtn && !hamburgerBtn.contains(e.target)) {
+        navPill.classList.remove('mobile-open');
+        if (hamburgerBtn) hamburgerBtn.classList.remove('active');
+      }
+    }
+  });
+
   // Search Button & Glass Overlay Modal Controls
   const searchBtn = document.getElementById('btn-header-search');
   const searchOverlay = document.getElementById('search-overlay');

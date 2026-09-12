@@ -246,8 +246,68 @@
     }
 
     @media (max-width: 992px) {
+
+      /* Header & Nav */
       .center-nav-pill {
+        background: transparent;
+        box-shadow: none;
+        border: none;
+        padding: 0;
+      }
+
+      .btn-talk-pill {
+        display: none !important;
+      }
+
+      .mobile-menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 22px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1001;
+      }
+
+      .mobile-menu-toggle span {
+        width: 100%;
+        height: 3px;
+        background-color: var(--primary-green, #1b4d29);
+        border-radius: 3px;
+        transition: all 0.3s ease;
+      }
+
+      .nav-glass-container {
+        padding: 0.6rem 1.2rem;
+      }
+
+      /* Mobile Menu Dropdown */
+      .site-nav-menu {
         display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 5%;
+        width: 90%;
+        background: rgba(255, 255, 255, 0.98);
+        padding: 2rem;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        gap: 2rem;
+      }
+
+      .site-nav-menu.mobile-active {
+        display: flex;
+      }
+
+      /* Hero Padding Fix */
+      .service-banner-section {
+        padding-top: 7rem;
+        padding-bottom: 3.5rem;
       }
     }
 
@@ -570,6 +630,7 @@
       .explore-services-grid {
         grid-template-columns: 1fr;
       }
+
       .explore-card-label-box {
         width: 90%;
       }
@@ -1003,16 +1064,33 @@
       display: flex;
       align-items: center;
       gap: 0.85rem;
+      flex-wrap: nowrap;
     }
 
-    .ms-partner-badge {
+    .ms-partner-badge,
+    .stark-partner-badge {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 0.5rem 0.85rem;
-      border-radius: 12px;
+      gap: 0.65rem;
+      background: #0d121d;
+      border: 1px solid rgba(34, 197, 94, 0.35);
+      padding: 0.55rem 1rem;
+      border-radius: 8px;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.15);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      width: max-content;
+      flex-shrink: 0;
+    }
+
+    .stark-partner-badge:hover {
+      border-color: rgba(34, 197, 94, 0.7);
+      box-shadow: 0 0 18px rgba(34, 197, 94, 0.3);
+    }
+
+    .stark-badge-logo {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
     }
 
     .ms-badge-text {
@@ -1032,26 +1110,50 @@
     }
 
     .iso-badge-circle {
-      color: #94a3b8;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.02);
+      transition: border-color 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .iso-badge-circle:hover {
+      border-color: #16a34a;
+      color: #16a34a;
     }
 
     .footer-social-row {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.85rem;
     }
 
     .social-circle-btn {
-      width: 36px;
-      height: 36px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #94a3b8;
-      transition: all 0.25s ease;
+      color: #ffffff;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.02);
+      transition: all 0.3s ease;
+    }
+
+    .social-circle-btn:hover {
+      background: #16a34a;
+      border-color: #16a34a;
+      color: #ffffff;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(22, 163, 74, 0.4);
     }
 
     .social-circle-btn:hover {
@@ -1135,21 +1237,93 @@
     @media (max-width: 768px) {
       .footer-main-row {
         grid-template-columns: 1fr;
+        gap: 2.5rem;
+        text-align: center;
+      }
+
+      .footer-brand-col {
+        align-items: center;
+        text-align: center;
       }
 
       .footer-links-group {
+        display: grid;
         grid-template-columns: repeat(2, 1fr);
+        gap: 2.2rem 1.5rem;
+        text-align: center;
+        justify-items: center;
+        width: 100%;
+      }
+
+      .footer-links-group>div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .footer-col-header {
+        text-align: center;
+        margin-bottom: 0.85rem;
+      }
+
+      .footer-menu {
+        align-items: center;
+        text-align: center;
+        gap: 0.75rem;
+      }
+
+      .footer-right-col {
+        align-items: center;
+        text-align: center;
+        gap: 1.8rem;
+        width: 100%;
+      }
+
+      .footer-badges-row {
+        justify-content: center;
+        width: 100%;
+        gap: 0.85rem;
+        flex-wrap: wrap;
+      }
+
+      .footer-social-row {
+        justify-content: center;
+        width: 100%;
+        gap: 0.85rem;
       }
 
       .footer-bottom-bar {
         flex-direction: column;
-        gap: 1rem;
+        align-items: center;
+        gap: 1.2rem;
         text-align: center;
       }
 
       .footer-bottom-right {
         flex-direction: column;
-        gap: 1rem;
+        align-items: center;
+        gap: 1.2rem;
+      }
+
+      .footer-legal-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+
+      .footer-better-tomorrow {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .footer-links-group {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-links-group>div:nth-child(3) {
+        grid-column: span 2;
       }
     }
   </style>
@@ -1194,6 +1368,12 @@
               <polyline points="12 5 19 12 12 19"></polyline>
             </svg>
           </a>
+          <button class="mobile-menu-toggle" aria-label="Toggle Menu"
+            onclick="document.querySelector('.site-nav-menu').classList.toggle('mobile-active')">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
 
       </div>
@@ -1204,31 +1384,40 @@
   <section class="service-banner-section">
 
     <!-- Honeycomb Hexagon Grid Pattern Layer -->
-    <svg class="service-banner-hex-bg" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg class="service-banner-hex-bg" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" fill="none"
+      xmlns="http://www.w3.org/2000/svg">
       <defs>
         <!-- Hexagon Honeycomb Tile Pattern -->
         <pattern id="hex-grid-pattern" width="60" height="104" patternUnits="userSpaceOnUse">
           <path d="M30 0 L60 17.32 L60 51.96 L30 69.28 L0 51.96 L0 17.32 Z 
                    M30 104 L60 86.68 L60 51.96 L30 69.28 L0 51.96 L0 86.68 Z
-                   M0 51.96 L-30 34.64 L-30 0 M60 51.96 L90 34.64 L90 0" 
-                stroke="rgba(34, 197, 94, 0.16)" stroke-width="1.1" fill="none" />
+                   M0 51.96 L-30 34.64 L-30 0 M60 51.96 L90 34.64 L90 0" stroke="rgba(34, 197, 94, 0.16)"
+            stroke-width="1.1" fill="none" />
         </pattern>
       </defs>
 
       <rect width="100%" height="100%" fill="url(#hex-grid-pattern)" />
 
       <!-- Highlighted Scattered Hexagons with Subtle Green Fills -->
-      <polygon points="120,86.68 150,104 180,86.68 180,51.96 150,34.64 120,51.96" fill="rgba(34, 197, 94, 0.07)" stroke="rgba(34, 197, 94, 0.24)" stroke-width="1.2"/>
-      <polygon points="270,190.64 300,208 330,190.64 330,155.92 300,138.6 270,155.92" fill="rgba(34, 197, 94, 0.05)" stroke="rgba(34, 197, 94, 0.2)" stroke-width="1"/>
-      <polygon points="90,294.6 120,312 150,294.6 150,259.88 120,242.56 90,259.88" fill="rgba(34, 197, 94, 0.08)" stroke="rgba(34, 197, 94, 0.28)" stroke-width="1.2"/>
-      <polygon points="210,398.56 240,416 270,398.56 270,363.84 240,346.52 210,363.84" fill="rgba(34, 197, 94, 0.06)" stroke="rgba(34, 197, 94, 0.22)" stroke-width="1"/>
-      
-      <polygon points="1260,104 1290,121.32 1320,104 1320,69.28 1290,51.96 1260,69.28" fill="rgba(34, 197, 94, 0.08)" stroke="rgba(34, 197, 94, 0.28)" stroke-width="1.2"/>
-      <polygon points="1140,242.56 1170,259.88 1200,242.56 1200,207.84 1170,190.52 1140,207.84" fill="rgba(34, 197, 94, 0.05)" stroke="rgba(34, 197, 94, 0.2)" stroke-width="1"/>
-      <polygon points="1320,346.52 1350,363.84 1380,346.52 1380,311.8 1350,294.48 1320,311.8" fill="rgba(34, 197, 94, 0.07)" stroke="rgba(34, 197, 94, 0.25)" stroke-width="1.2"/>
-      <polygon points="1050,415.88 1080,433.2 1110,415.88 1110,381.16 1080,363.84 1050,381.16" fill="rgba(34, 197, 94, 0.06)" stroke="rgba(34, 197, 94, 0.22)" stroke-width="1"/>
+      <polygon points="120,86.68 150,104 180,86.68 180,51.96 150,34.64 120,51.96" fill="rgba(34, 197, 94, 0.07)"
+        stroke="rgba(34, 197, 94, 0.24)" stroke-width="1.2" />
+      <polygon points="270,190.64 300,208 330,190.64 330,155.92 300,138.6 270,155.92" fill="rgba(34, 197, 94, 0.05)"
+        stroke="rgba(34, 197, 94, 0.2)" stroke-width="1" />
+      <polygon points="90,294.6 120,312 150,294.6 150,259.88 120,242.56 90,259.88" fill="rgba(34, 197, 94, 0.08)"
+        stroke="rgba(34, 197, 94, 0.28)" stroke-width="1.2" />
+      <polygon points="210,398.56 240,416 270,398.56 270,363.84 240,346.52 210,363.84" fill="rgba(34, 197, 94, 0.06)"
+        stroke="rgba(34, 197, 94, 0.22)" stroke-width="1" />
 
-      <circle cx="720" cy="260" r="280" fill="rgba(220, 252, 231, 0.5)" filter="blur(60px)"/>
+      <polygon points="1260,104 1290,121.32 1320,104 1320,69.28 1290,51.96 1260,69.28" fill="rgba(34, 197, 94, 0.08)"
+        stroke="rgba(34, 197, 94, 0.28)" stroke-width="1.2" />
+      <polygon points="1140,242.56 1170,259.88 1200,242.56 1200,207.84 1170,190.52 1140,207.84"
+        fill="rgba(34, 197, 94, 0.05)" stroke="rgba(34, 197, 94, 0.2)" stroke-width="1" />
+      <polygon points="1320,346.52 1350,363.84 1380,346.52 1380,311.8 1350,294.48 1320,311.8"
+        fill="rgba(34, 197, 94, 0.07)" stroke="rgba(34, 197, 94, 0.25)" stroke-width="1.2" />
+      <polygon points="1050,415.88 1080,433.2 1110,415.88 1110,381.16 1080,363.84 1050,381.16"
+        fill="rgba(34, 197, 94, 0.06)" stroke="rgba(34, 197, 94, 0.22)" stroke-width="1" />
+
+      <circle cx="720" cy="260" r="280" fill="rgba(220, 252, 231, 0.5)" filter="blur(60px)" />
     </svg>
 
     <div class="viewport-container">
@@ -1257,7 +1446,8 @@
 
         <!-- 4. Subtitle / Paragraph -->
         <p class="service-banner-description">
-          We design and develop scalable web, mobile, AI and cloud solutions to help businesses innovate, grow and succeed in the digital world.
+          We design and develop scalable web, mobile, AI and cloud solutions to help businesses innovate, grow and
+          succeed in the digital world.
         </p>
 
         <!-- 5. CTA Action Buttons -->
@@ -1301,7 +1491,8 @@
           <span class="text-highlight-green">digital growth</span>
         </h2>
         <p class="explore-services-subtitle">
-          Choose a service hub below. Each page covers specialized capabilities you can launch with &mdash; or expand into dedicated landing pages after keyword validation.
+          Choose a service hub below. Each page covers specialized capabilities you can launch with &mdash; or expand
+          into dedicated landing pages after keyword validation.
         </p>
       </div>
 
@@ -1396,60 +1587,61 @@
       <div class="ecosystem-content">
 
         <!-- 5 Overlapping Vector Venn Diagram Circles -->
-        <svg class="ecosystem-svg-diagram" viewBox="0 0 1200 440" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+        <svg class="ecosystem-svg-diagram" viewBox="0 0 1200 440" width="100%" height="100%"
+          preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <!-- Vertical Background Lines Gradient -->
             <linearGradient id="v-line-grad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="rgba(255, 255, 255, 0.01)"/>
-              <stop offset="50%" stop-color="rgba(255, 255, 255, 0.05)"/>
-              <stop offset="100%" stop-color="rgba(255, 255, 255, 0.01)"/>
+              <stop offset="0%" stop-color="rgba(255, 255, 255, 0.01)" />
+              <stop offset="50%" stop-color="rgba(255, 255, 255, 0.05)" />
+              <stop offset="100%" stop-color="rgba(255, 255, 255, 0.01)" />
             </linearGradient>
 
             <!-- Fills -->
             <!-- 1 & 5: Outer Dark Translucent Fill -->
             <radialGradient id="fill-outer-dark" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#14532d" stop-opacity="0.55"/>
-              <stop offset="70%" stop-color="#0f381e" stop-opacity="0.38"/>
-              <stop offset="100%" stop-color="#04140a" stop-opacity="0.15"/>
+              <stop offset="0%" stop-color="#14532d" stop-opacity="0.55" />
+              <stop offset="70%" stop-color="#0f381e" stop-opacity="0.38" />
+              <stop offset="100%" stop-color="#04140a" stop-opacity="0.15" />
             </radialGradient>
 
             <!-- 2 & 4: Mid Bright Translucent Fill -->
             <radialGradient id="fill-mid-green" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#15803d" stop-opacity="0.68"/>
-              <stop offset="70%" stop-color="#14532d" stop-opacity="0.50"/>
-              <stop offset="100%" stop-color="#062410" stop-opacity="0.22"/>
+              <stop offset="0%" stop-color="#15803d" stop-opacity="0.68" />
+              <stop offset="70%" stop-color="#14532d" stop-opacity="0.50" />
+              <stop offset="100%" stop-color="#062410" stop-opacity="0.22" />
             </radialGradient>
 
             <!-- 3: Center Brightest Translucent Fill -->
             <radialGradient id="fill-center-bright" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#16a34a" stop-opacity="0.85"/>
-              <stop offset="65%" stop-color="#15803d" stop-opacity="0.65"/>
-              <stop offset="100%" stop-color="#0b3b1c" stop-opacity="0.35"/>
+              <stop offset="0%" stop-color="#16a34a" stop-opacity="0.85" />
+              <stop offset="65%" stop-color="#15803d" stop-opacity="0.65" />
+              <stop offset="100%" stop-color="#0b3b1c" stop-opacity="0.35" />
             </radialGradient>
 
             <!-- Strokes -->
             <!-- Outer Circles (1 & 5): Faint stroke fading to top/bottom -->
             <linearGradient id="stroke-outer-faint" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#22c55e" stop-opacity="0.05"/>
-              <stop offset="50%" stop-color="#22c55e" stop-opacity="0.3"/>
-              <stop offset="100%" stop-color="#22c55e" stop-opacity="0.05"/>
+              <stop offset="0%" stop-color="#22c55e" stop-opacity="0.05" />
+              <stop offset="50%" stop-color="#22c55e" stop-opacity="0.3" />
+              <stop offset="100%" stop-color="#22c55e" stop-opacity="0.05" />
             </linearGradient>
 
             <!-- Mid Circles (2 & 4): Bright stroke on BOTTOM arc, invisible/faint on TOP arc -->
             <linearGradient id="stroke-bottom-bright" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#22c55e" stop-opacity="0.02"/>
-              <stop offset="35%" stop-color="#22c55e" stop-opacity="0.2"/>
-              <stop offset="70%" stop-color="#22c55e" stop-opacity="0.95"/>
-              <stop offset="100%" stop-color="#86efac" stop-opacity="1.0"/>
+              <stop offset="0%" stop-color="#22c55e" stop-opacity="0.02" />
+              <stop offset="35%" stop-color="#22c55e" stop-opacity="0.2" />
+              <stop offset="70%" stop-color="#22c55e" stop-opacity="0.95" />
+              <stop offset="100%" stop-color="#86efac" stop-opacity="1.0" />
             </linearGradient>
 
             <!-- Center Circle (3): Bright stroke on BOTH TOP and BOTTOM arcs -->
             <linearGradient id="stroke-top-bottom-bright" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#86efac" stop-opacity="1.0"/>
-              <stop offset="25%" stop-color="#22c55e" stop-opacity="0.65"/>
-              <stop offset="50%" stop-color="#16a34a" stop-opacity="0.3"/>
-              <stop offset="75%" stop-color="#22c55e" stop-opacity="0.65"/>
-              <stop offset="100%" stop-color="#86efac" stop-opacity="1.0"/>
+              <stop offset="0%" stop-color="#86efac" stop-opacity="1.0" />
+              <stop offset="25%" stop-color="#22c55e" stop-opacity="0.65" />
+              <stop offset="50%" stop-color="#16a34a" stop-opacity="0.3" />
+              <stop offset="75%" stop-color="#22c55e" stop-opacity="0.65" />
+              <stop offset="100%" stop-color="#86efac" stop-opacity="1.0" />
             </linearGradient>
           </defs>
 
@@ -1470,35 +1662,46 @@
           <!-- Layer 1: Back Circles (Security & Cloud) -->
           <!-- Circle 1: Security -->
           <g class="svg-ecosystem-node" data-label="Security">
-            <circle cx="210" cy="220" r="160" fill="url(#fill-outer-dark)" stroke="url(#stroke-outer-faint)" stroke-width="1.3" />
-            <text x="210" y="227" text-anchor="middle" fill="#ffffff" font-size="25" font-weight="600" font-family="'Plus Jakarta Sans', sans-serif">Discover</text>
+            <circle cx="210" cy="220" r="160" fill="url(#fill-outer-dark)" stroke="url(#stroke-outer-faint)"
+              stroke-width="1.3" />
+            <text x="210" y="227" text-anchor="middle" fill="#ffffff" font-size="25" font-weight="600"
+              font-family="'Plus Jakarta Sans', sans-serif">Discover</text>
           </g>
 
           <!-- Circle 5: Cloud -->
           <g class="svg-ecosystem-node" data-label="Cloud">
-            <circle cx="990" cy="220" r="160" fill="url(#fill-outer-dark)" stroke="url(#stroke-outer-faint)" stroke-width="1.3" />
-            <text x="990" y="227" text-anchor="middle" fill="#ffffff" font-size="25" font-weight="600" font-family="'Plus Jakarta Sans', sans-serif">Grow</text>
+            <circle cx="990" cy="220" r="160" fill="url(#fill-outer-dark)" stroke="url(#stroke-outer-faint)"
+              stroke-width="1.3" />
+            <text x="990" y="227" text-anchor="middle" fill="#ffffff" font-size="25" font-weight="600"
+              font-family="'Plus Jakarta Sans', sans-serif">Grow</text>
           </g>
 
           <!-- Layer 2: Mid Circles (Network & Voice) -->
           <!-- Circle 2: Network -->
           <g class="svg-ecosystem-node" data-label="Network">
-            <circle cx="405" cy="220" r="160" fill="url(#fill-mid-green)" stroke="url(#stroke-bottom-bright)" stroke-width="1.5" />
-            <text x="405" y="227" text-anchor="middle" fill="#ffffff" font-size="25" font-weight="600" font-family="'Plus Jakarta Sans', sans-serif">Strategize</text>
+            <circle cx="405" cy="220" r="160" fill="url(#fill-mid-green)" stroke="url(#stroke-bottom-bright)"
+              stroke-width="1.5" />
+            <text x="405" y="227" text-anchor="middle" fill="#ffffff" font-size="25" font-weight="600"
+              font-family="'Plus Jakarta Sans', sans-serif">Strategize</text>
           </g>
 
           <!-- Circle 4: Voice -->
           <g class="svg-ecosystem-node" data-label="Voice">
-            <circle cx="795" cy="220" r="160" fill="url(#fill-mid-green)" stroke="url(#stroke-bottom-bright)" stroke-width="1.5" />
-            <text x="795" y="227" text-anchor="middle" fill="#ffffff" font-size="25" font-weight="600" font-family="'Plus Jakarta Sans', sans-serif">Launch</text>
+            <circle cx="795" cy="220" r="160" fill="url(#fill-mid-green)" stroke="url(#stroke-bottom-bright)"
+              stroke-width="1.5" />
+            <text x="795" y="227" text-anchor="middle" fill="#ffffff" font-size="25" font-weight="600"
+              font-family="'Plus Jakarta Sans', sans-serif">Launch</text>
           </g>
 
           <!-- Layer 3: Top Front Circle (Managed Services) -->
           <!-- Circle 3: Managed Services -->
           <g class="svg-ecosystem-node" data-label="Managed Services">
-            <circle cx="600" cy="220" r="160" fill="url(#fill-center-bright)" stroke="url(#stroke-top-bottom-bright)" stroke-width="1.6" />
-            <text x="600" y="210" text-anchor="middle" fill="#ffffff" font-size="25" font-weight="600" font-family="'Plus Jakarta Sans', sans-serif">Craft</text>
-            <text x="600" y="244" text-anchor="middle" fill="#ffffff" font-size="25" font-weight="600" font-family="'Plus Jakarta Sans', sans-serif">Solutions</text>
+            <circle cx="600" cy="220" r="160" fill="url(#fill-center-bright)" stroke="url(#stroke-top-bottom-bright)"
+              stroke-width="1.6" />
+            <text x="600" y="210" text-anchor="middle" fill="#ffffff" font-size="25" font-weight="600"
+              font-family="'Plus Jakarta Sans', sans-serif">Craft</text>
+            <text x="600" y="244" text-anchor="middle" fill="#ffffff" font-size="25" font-weight="600"
+              font-family="'Plus Jakarta Sans', sans-serif">Solutions</text>
           </g>
         </svg>
 
@@ -1516,14 +1719,14 @@
     <!-- Decorative Dot Grid Patterns -->
     <svg class="process-bg-dots-left" width="60" height="90" viewBox="0 0 60 90" fill="none">
       <pattern id="dot-grid-1" x="0" y="0" width="15" height="15" patternUnits="userSpaceOnUse">
-        <circle cx="4" cy="4" r="2" fill="rgba(34, 197, 94, 0.22)"/>
+        <circle cx="4" cy="4" r="2" fill="rgba(34, 197, 94, 0.22)" />
       </pattern>
       <rect width="60" height="90" fill="url(#dot-grid-1)" />
     </svg>
 
     <svg class="process-bg-dots-right" width="60" height="90" viewBox="0 0 60 90" fill="none">
       <pattern id="dot-grid-2" x="0" y="0" width="15" height="15" patternUnits="userSpaceOnUse">
-        <circle cx="4" cy="4" r="2" fill="rgba(34, 197, 94, 0.22)"/>
+        <circle cx="4" cy="4" r="2" fill="rgba(34, 197, 94, 0.22)" />
       </pattern>
       <rect width="60" height="90" fill="url(#dot-grid-2)" />
     </svg>
@@ -1560,14 +1763,14 @@
             <div class="process-img-box">
               <span class="process-number-badge">01</span>
               <svg width="110" height="90" viewBox="0 0 110 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="18" y="12" width="65" height="66" rx="14" fill="#ffffff" stroke="#bbf7d0" stroke-width="2"/>
-                <rect x="27" y="24" width="34" height="5" rx="2.5" fill="#86efac"/>
-                <rect x="27" y="35" width="28" height="4" rx="2" fill="#bbf7d0"/>
-                <rect x="27" y="45" width="38" height="4" rx="2" fill="#bbf7d0"/>
-                <rect x="27" y="55" width="22" height="4" rx="2" fill="#bbf7d0"/>
-                <circle cx="68" cy="58" r="15" fill="#15803d"/>
-                <circle cx="68" cy="58" r="8" stroke="#ffffff" stroke-width="2.2"/>
-                <line x1="74" y1="64" x2="81" y2="71" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+                <rect x="18" y="12" width="65" height="66" rx="14" fill="#ffffff" stroke="#bbf7d0" stroke-width="2" />
+                <rect x="27" y="24" width="34" height="5" rx="2.5" fill="#86efac" />
+                <rect x="27" y="35" width="28" height="4" rx="2" fill="#bbf7d0" />
+                <rect x="27" y="45" width="38" height="4" rx="2" fill="#bbf7d0" />
+                <rect x="27" y="55" width="22" height="4" rx="2" fill="#bbf7d0" />
+                <circle cx="68" cy="58" r="15" fill="#15803d" />
+                <circle cx="68" cy="58" r="8" stroke="#ffffff" stroke-width="2.2" />
+                <line x1="74" y1="64" x2="81" y2="71" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
               </svg>
             </div>
             <h3 class="process-card-title">We learn your goals</h3>
@@ -1579,29 +1782,35 @@
             <div class="process-img-box">
               <span class="process-number-badge">02</span>
               <svg width="130" height="100" viewBox="0 0 130 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <line x1="65" y1="50" x2="35" y2="28" stroke="#16a34a" stroke-width="1.8"/>
-                <line x1="65" y1="50" x2="65" y2="20" stroke="#16a34a" stroke-width="1.8"/>
-                <line x1="65" y1="50" x2="95" y2="28" stroke="#16a34a" stroke-width="1.8"/>
-                <line x1="65" y1="50" x2="35" y2="72" stroke="#16a34a" stroke-width="1.8"/>
-                <line x1="65" y1="50" x2="95" y2="72" stroke="#16a34a" stroke-width="1.8"/>
-                
-                <circle cx="65" cy="50" r="18" fill="#15803d"/>
-                <text x="65" y="53.5" text-anchor="middle" fill="#ffffff" font-size="8.5" font-weight="800" font-family="sans-serif">POD</text>
+                <line x1="65" y1="50" x2="35" y2="28" stroke="#16a34a" stroke-width="1.8" />
+                <line x1="65" y1="50" x2="65" y2="20" stroke="#16a34a" stroke-width="1.8" />
+                <line x1="65" y1="50" x2="95" y2="28" stroke="#16a34a" stroke-width="1.8" />
+                <line x1="65" y1="50" x2="35" y2="72" stroke="#16a34a" stroke-width="1.8" />
+                <line x1="65" y1="50" x2="95" y2="72" stroke="#16a34a" stroke-width="1.8" />
 
-                <circle cx="35" cy="28" r="12" fill="#16a34a"/>
-                <text x="35" y="31" text-anchor="middle" fill="#ffffff" font-size="7.5" font-weight="700" font-family="sans-serif">Ops</text>
-                
-                <circle cx="65" cy="20" r="12" fill="#16a34a"/>
-                <text x="65" y="23" text-anchor="middle" fill="#ffffff" font-size="7.5" font-weight="700" font-family="sans-serif">Eng</text>
+                <circle cx="65" cy="50" r="18" fill="#15803d" />
+                <text x="65" y="53.5" text-anchor="middle" fill="#ffffff" font-size="8.5" font-weight="800"
+                  font-family="sans-serif">POD</text>
 
-                <circle cx="95" cy="28" r="12" fill="#16a34a"/>
-                <text x="95" y="31" text-anchor="middle" fill="#ffffff" font-size="7.5" font-weight="700" font-family="sans-serif">Dev</text>
+                <circle cx="35" cy="28" r="12" fill="#16a34a" />
+                <text x="35" y="31" text-anchor="middle" fill="#ffffff" font-size="7.5" font-weight="700"
+                  font-family="sans-serif">Ops</text>
 
-                <circle cx="35" cy="72" r="12" fill="#16a34a"/>
-                <text x="35" y="75" text-anchor="middle" fill="#ffffff" font-size="7.5" font-weight="700" font-family="sans-serif">QA</text>
+                <circle cx="65" cy="20" r="12" fill="#16a34a" />
+                <text x="65" y="23" text-anchor="middle" fill="#ffffff" font-size="7.5" font-weight="700"
+                  font-family="sans-serif">Eng</text>
 
-                <circle cx="95" cy="72" r="12" fill="#16a34a"/>
-                <text x="95" y="75" text-anchor="middle" fill="#ffffff" font-size="7.5" font-weight="700" font-family="sans-serif">PM</text>
+                <circle cx="95" cy="28" r="12" fill="#16a34a" />
+                <text x="95" y="31" text-anchor="middle" fill="#ffffff" font-size="7.5" font-weight="700"
+                  font-family="sans-serif">Dev</text>
+
+                <circle cx="35" cy="72" r="12" fill="#16a34a" />
+                <text x="35" y="75" text-anchor="middle" fill="#ffffff" font-size="7.5" font-weight="700"
+                  font-family="sans-serif">QA</text>
+
+                <circle cx="95" cy="72" r="12" fill="#16a34a" />
+                <text x="95" y="75" text-anchor="middle" fill="#ffffff" font-size="7.5" font-weight="700"
+                  font-family="sans-serif">PM</text>
               </svg>
             </div>
             <h3 class="process-card-title">We plan it out</h3>
@@ -1613,25 +1822,31 @@
             <div class="process-img-box">
               <span class="process-number-badge">03</span>
               <svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <text x="25" y="19" text-anchor="middle" fill="#16a34a" font-size="7.5" font-weight="800" font-family="sans-serif">To Do</text>
-                <text x="60" y="19" text-anchor="middle" fill="#16a34a" font-size="7.5" font-weight="800" font-family="sans-serif">WIP</text>
-                <text x="95" y="19" text-anchor="middle" fill="#16a34a" font-size="7.5" font-weight="800" font-family="sans-serif">Done</text>
-                
-                <rect x="15" y="25" width="20" height="13" rx="4" fill="#a7f3d0"/>
-                <rect x="15" y="42" width="20" height="13" rx="4" fill="#a7f3d0"/>
-                <rect x="15" y="59" width="20" height="13" rx="4" fill="#a7f3d0"/>
-                
-                <rect x="50" y="25" width="20" height="13" rx="4" fill="#16a34a"/>
-                <rect x="50" y="42" width="20" height="13" rx="4" fill="#16a34a"/>
-                
-                <rect x="85" y="25" width="20" height="13" rx="4" fill="#ffffff" stroke="#bbf7d0"/>
-                <path d="M91.5 31.5L93.5 33.5L97 29" stroke="#15803d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                
-                <rect x="85" y="42" width="20" height="13" rx="4" fill="#ffffff" stroke="#bbf7d0"/>
-                <path d="M91.5 48.5L93.5 50.5L97 46" stroke="#15803d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                
-                <rect x="85" y="59" width="20" height="13" rx="4" fill="#ffffff" stroke="#bbf7d0"/>
-                <path d="M91.5 65.5L93.5 67.5L97 63" stroke="#15803d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <text x="25" y="19" text-anchor="middle" fill="#16a34a" font-size="7.5" font-weight="800"
+                  font-family="sans-serif">To Do</text>
+                <text x="60" y="19" text-anchor="middle" fill="#16a34a" font-size="7.5" font-weight="800"
+                  font-family="sans-serif">WIP</text>
+                <text x="95" y="19" text-anchor="middle" fill="#16a34a" font-size="7.5" font-weight="800"
+                  font-family="sans-serif">Done</text>
+
+                <rect x="15" y="25" width="20" height="13" rx="4" fill="#a7f3d0" />
+                <rect x="15" y="42" width="20" height="13" rx="4" fill="#a7f3d0" />
+                <rect x="15" y="59" width="20" height="13" rx="4" fill="#a7f3d0" />
+
+                <rect x="50" y="25" width="20" height="13" rx="4" fill="#16a34a" />
+                <rect x="50" y="42" width="20" height="13" rx="4" fill="#16a34a" />
+
+                <rect x="85" y="25" width="20" height="13" rx="4" fill="#ffffff" stroke="#bbf7d0" />
+                <path d="M91.5 31.5L93.5 33.5L97 29" stroke="#15803d" stroke-width="1.8" stroke-linecap="round"
+                  stroke-linejoin="round" />
+
+                <rect x="85" y="42" width="20" height="13" rx="4" fill="#ffffff" stroke="#bbf7d0" />
+                <path d="M91.5 48.5L93.5 50.5L97 46" stroke="#15803d" stroke-width="1.8" stroke-linecap="round"
+                  stroke-linejoin="round" />
+
+                <rect x="85" y="59" width="20" height="13" rx="4" fill="#ffffff" stroke="#bbf7d0" />
+                <path d="M91.5 65.5L93.5 67.5L97 63" stroke="#15803d" stroke-width="1.8" stroke-linecap="round"
+                  stroke-linejoin="round" />
               </svg>
             </div>
             <h3 class="process-card-title">We build it with you</h3>
@@ -1643,13 +1858,15 @@
             <div class="process-img-box">
               <span class="process-number-badge">04</span>
               <svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M25 73C25 68 30 63 38 63C40 58 48 56 55 60C60 54 70 54 75 60C80 56 90 60 90 68C95 68 98 73 95 78H20C20 76 22 73 25 73Z" fill="#bbf7d0" opacity="0.85"/>
-                <path d="M60 18C60 18 72 33 72 50H48C48 33 60 18 60 18Z" fill="#15803d"/>
-                <circle cx="60" cy="34" r="5" fill="#ffffff"/>
-                <circle cx="60" cy="34" r="3" fill="#16a34a"/>
-                <path d="M48 44L40 52V56H48V44Z" fill="#16a34a"/>
-                <path d="M72 44L80 52V56H72V44Z" fill="#16a34a"/>
-                <path d="M55 50L60 60L65 50H55Z" fill="#f59e0b"/>
+                <path
+                  d="M25 73C25 68 30 63 38 63C40 58 48 56 55 60C60 54 70 54 75 60C80 56 90 60 90 68C95 68 98 73 95 78H20C20 76 22 73 25 73Z"
+                  fill="#bbf7d0" opacity="0.85" />
+                <path d="M60 18C60 18 72 33 72 50H48C48 33 60 18 60 18Z" fill="#15803d" />
+                <circle cx="60" cy="34" r="5" fill="#ffffff" />
+                <circle cx="60" cy="34" r="3" fill="#16a34a" />
+                <path d="M48 44L40 52V56H48V44Z" fill="#16a34a" />
+                <path d="M72 44L80 52V56H72V44Z" fill="#16a34a" />
+                <path d="M55 50L60 60L65 50H55Z" fill="#f59e0b" />
               </svg>
             </div>
             <h3 class="process-card-title">We launch &amp; support</h3>
@@ -1665,7 +1882,8 @@
         <!-- Stat Card 1 -->
         <div class="process-stat-card">
           <div class="stat-icon-circle">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
               <line x1="18" y1="20" x2="18" y2="10"></line>
               <line x1="12" y1="20" x2="12" y2="4"></line>
               <line x1="6" y1="20" x2="6" y2="14"></line>
@@ -1680,7 +1898,8 @@
         <!-- Stat Card 2 -->
         <div class="process-stat-card">
           <div class="stat-icon-circle">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
             </svg>
           </div>
@@ -1693,7 +1912,8 @@
         <!-- Stat Card 3 -->
         <div class="process-stat-card">
           <div class="stat-icon-circle">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
               <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
             </svg>
           </div>
@@ -1706,7 +1926,8 @@
         <!-- Stat Card 4 -->
         <div class="process-stat-card">
           <div class="stat-icon-circle">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="10"></circle>
               <polyline points="12 6 12 12 16 14"></polyline>
             </svg>
@@ -1727,69 +1948,68 @@
     <div class="viewport-container">
 
       <div class="footer-main-row">
-        <!-- Brand Column -->
+        <!-- Left Brand & Logo Column -->
         <div class="footer-brand-col">
-          <a href="index.html" class="footer-logo-anchor">
-            <img src="assets/logo-white.png" alt="Stark Softech Logo" class="footer-logo-img">
+          <a href="#" class="footer-logo-anchor">
+            <img src="assets/logo-footer.png" alt="Stark Softech Logo" class="footer-logo-img">
           </a>
           <div class="footer-company-name">
-            <span class="footer-company-main">STARK SOFTECH</span>
-            <span class="footer-company-sub">Software &amp; Product Company</span>
+            <span class="footer-company-main">StarkSoftech</span>
+            <span class="footer-company-sub">Technologies Pvt.Ltd</span>
           </div>
         </div>
 
-        <!-- Quick Links -->
+        <!-- Center Columns (Products, Services, Company) -->
         <div class="footer-links-group">
-          <div>
+          <div class="footer-nav-col">
+            <h4 class="footer-col-header">PRODUCTS</h4>
+            <ul class="footer-menu">
+              <li><a href="#">Stark CRM</a></li>
+              <li><a href="#">Business Software</a></li>
+              <li><a href="#">Workflow Automation</a></li>
+              <li><a href="#">E-commerce Solutions</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-nav-col">
+            <h4 class="footer-col-header">SERVICES</h4>
+            <ul class="footer-menu">
+              <li><a href="#services">Web Development</a></li>
+              <li><a href="#services">Mobile Applications</a></li>
+              <li><a href="#services">UI/UX Design</a></li>
+              <li><a href="#services">Digital Marketing</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-nav-col">
             <h4 class="footer-col-header">COMPANY</h4>
-            <ul class="footer-nav-list">
-              <li><a href="about.html">About Us</a></li>
-              <li><a href="service.html">Services</a></li>
-              <li><a href="product.html">Products</a></li>
-              <li><a href="contact.html">Contact Us</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="footer-col-header">SOLUTIONS</h4>
-            <ul class="footer-nav-list">
-              <li><a href="#">Custom Software</a></li>
-              <li><a href="#">Cloud &amp; DevOps</a></li>
-              <li><a href="#">AI Solutions</a></li>
-              <li><a href="#">Mobile Apps</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="footer-col-header">RESOURCES</h4>
-            <ul class="footer-nav-list">
-              <li><a href="#">Case Studies</a></li>
-              <li><a href="#">Documentation</a></li>
+            <ul class="footer-menu">
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#contact">Contact Us</a></li>
               <li><a href="#">Blog</a></li>
-              <li><a href="#">Support</a></li>
             </ul>
           </div>
         </div>
 
-        <!-- Divider -->
+        <!-- Vertical Divider -->
         <div class="footer-divider-v"></div>
 
-        <!-- Partners & Social -->
+        <!-- Right Column (Partners & Follow Us) -->
         <div class="footer-right-col">
           <div class="footer-cert-block">
-            <h4 class="footer-col-header">OUR PARTNERS &amp; CERTIFICATIONS</h4>
+            <h4 class="footer-col-header">OUR PARTNERS & CERTIFICATIONS</h4>
             <div class="footer-badges-row">
-              <div class="ms-partner-badge">
-                <svg width="22" height="22" viewBox="0 0 23 23" fill="none">
-                  <path fill="#f25022" d="M1 1h10v10H1z" />
-                  <path fill="#7fba00" d="M12 1h10v10H12z" />
-                  <path fill="#00a4ef" d="M1 12h10v10H1z" />
-                  <path fill="#ffb900" d="M12 12h10v10H12z" />
-                </svg>
+              <!-- Stark Enterprise Solutions Partner Card -->
+              <div class="stark-partner-badge">
+                <img src="assets/logo-white.png" alt="Stark Softech Logo" class="stark-badge-logo">
                 <div class="ms-badge-text">
-                  <strong>Microsoft</strong>
+                  <strong>Stark Softech</strong>
                   <span>Solutions Partner</span>
                 </div>
               </div>
 
+              <!-- ISO 27001 Circle -->
               <div class="iso-badge-circle">
                 <svg width="34" height="34" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
                   <circle cx="20" cy="20" r="18" stroke-dasharray="2 2" />
@@ -1800,6 +2020,7 @@
                 </svg>
               </div>
 
+              <!-- ISO 9001:2015 Circle -->
               <div class="iso-badge-circle">
                 <svg width="34" height="34" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
                   <circle cx="20" cy="20" r="18" stroke-dasharray="2 2" />
@@ -1862,6 +2083,7 @@
       <!-- Bottom Bar -->
       <div class="footer-bottom-bar">
         <p class="footer-copyright">&copy; 2026 Stark Softech. All rights reserved.</p>
+
         <div class="footer-bottom-right">
           <div class="footer-legal-links">
             <a href="#">Privacy Policy</a>
