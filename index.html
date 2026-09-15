@@ -1083,7 +1083,7 @@
     /* Floating Ideas Card (Top Left of Desk) */
     .hero-floating-card-ideas {
       position: absolute;
-      top: 5%;
+      top: 14%;
       left: -1.2rem;
       z-index: 12;
       background: #ffffff;
@@ -1140,7 +1140,7 @@
     /* Top Right Sketched Annotation (People / Process / Technology / Growth) */
     .hero-annotation-top-right {
       position: absolute;
-      top: 2%;
+      top: 12%;
       right: -0.5rem;
       display: flex;
       align-items: flex-start;
@@ -1187,8 +1187,10 @@
 
     @media (max-width: 900px) {
       .hero-corner-wave-wrap {
-        width: 80vw;
-        height: 50%;
+        width: 100%;
+        max-width: 100vw;
+        height: 380px;
+        max-height: 55%;
         opacity: 0.95;
       }
 
@@ -1251,12 +1253,10 @@
 
     @media (max-width: 768px) {
       .hero-viewport-frame {
-        height: 100vh;
-        height: 100dvh;
         min-height: 100vh;
-        min-height: 100dvh;
-        max-height: 100vh;
-        max-height: 100dvh;
+        min-height: 100svh;
+        height: auto;
+        max-height: none;
         overflow: hidden;
         display: flex;
         flex-direction: column;
@@ -1431,8 +1431,10 @@
       }
 
       .hero-corner-wave-wrap {
-        width: 100vw;
-        height: 45vh;
+        width: 100%;
+        max-width: 100vw;
+        height: 360px;
+        max-height: 50%;
         bottom: 0;
         right: 0;
         opacity: 1;
@@ -4262,7 +4264,7 @@
 
     <!-- Hero Section Right-Side & Bottom Sweeping Fluid Green Wave Backdrop -->
     <div class="hero-corner-wave-wrap" aria-hidden="true">
-      <svg class="hero-corner-wave-svg" viewBox="0 0 1000 900" fill="none" preserveAspectRatio="none"
+      <svg class="hero-corner-wave-svg" viewBox="0 0 1000 900" fill="none" preserveAspectRatio="xMaxYMax slice"
         xmlns="http://www.w3.org/2000/svg">
         <defs>
           <!-- Native SVG Linear Mask for smooth organic bottom fade of the wave -->
