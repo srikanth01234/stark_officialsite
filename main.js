@@ -3,6 +3,14 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Ensure page opens at the top hero section on load/refresh when no anchor is in the URL
+  if (!window.location.hash) {
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+  }
+
   initHeroSlider();
   initStatsCounter();
   initHamburgerMenu();
@@ -277,7 +285,7 @@ function initWhatWeDoTabs() {
   const tabList = Array.from(tabs);
   let currentIndex = 0;
 
-  function switchTab(index) {
+  function switchTab(index, isUserAction = false) {
     if (index < 0) index = tabList.length - 1;
     if (index >= tabList.length) index = 0;
     currentIndex = index;
@@ -291,8 +299,10 @@ function initWhatWeDoTabs() {
       btn.setAttribute('aria-selected', isActive);
       if (isActive) {
         btn.style.setProperty('--active-tab-color', data ? data.tabColor : '#3b52ff');
-        if (tabsList) {
-          btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        if (isUserAction && tabsList) {
+          // Scroll tab within tabsList horizontally only, without moving the window/page
+          const offset = btn.offsetLeft - (tabsList.clientWidth / 2) + (btn.clientWidth / 2);
+          tabsList.scrollTo({ left: Math.max(0, offset), behavior: 'smooth' });
         }
       }
     });
@@ -339,18 +349,18 @@ function initWhatWeDoTabs() {
   }
 
   tabs.forEach((tab, index) => {
-    tab.addEventListener('click', () => switchTab(index));
+    tab.addEventListener('click', () => switchTab(index, true));
   });
 
   if (prevBtn) {
-    prevBtn.addEventListener('click', () => switchTab(currentIndex - 1));
+    prevBtn.addEventListener('click', () => switchTab(currentIndex - 1, true));
   }
   if (nextBtn) {
-    nextBtn.addEventListener('click', () => switchTab(currentIndex + 1));
+    nextBtn.addEventListener('click', () => switchTab(currentIndex + 1, true));
   }
 
-  // Set initial active state and colors
-  switchTab(0);
+  // Set initial active state and colors without scrolling the page
+  switchTab(0, false);
 }
 
 /* ==========================================================
