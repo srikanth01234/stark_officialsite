@@ -1572,8 +1572,8 @@
     /* Floating Back-To-Top Button */
     .floating-top-btn {
       position: fixed;
-      bottom: 2.5rem;
-      right: 2.5rem;
+      bottom: 5.5rem;
+      right: 2.2rem;
       width: 46px;
       height: 46px;
       border-radius: 50%;
@@ -3113,11 +3113,11 @@
       position: relative;
       width: 100%;
       padding: clamp(2.5rem, 5vw, 4.5rem) 0 0 0;
-      margin-bottom: clamp(-5.8rem, -8.5vw, -7.5rem);
+      margin-bottom: -18px;
       background-color: #ffffff;
       color: #0f172a;
       overflow: hidden;
-      z-index: 3;
+      z-index: 1;
     }
 
     .reveal-text-wrapper {
@@ -3129,7 +3129,7 @@
       text-align: center;
       padding: 0;
       margin: 0 auto;
-      transform: translateY(14px);
+      transform: none;
     }
 
     .reveal-text {
@@ -3191,13 +3191,13 @@
 
     @media (max-width: 900px) {
       .text-reveal-scroll-section {
-        padding-top: 1.3rem;
-        margin-top: -0.1rem;
-        margin-bottom: -55px;
+        padding: 1.8rem 0 0 0;
+        margin-top: 0;
+        margin-bottom: -10px;
       }
 
       .reveal-text-wrapper {
-        transform: translateY(8px);
+        transform: none;
       }
 
       .reveal-text {
@@ -3580,17 +3580,26 @@
     }
 
     /* ==========================================================
-       SITE FOOTER (EXACT REFERENCE DESIGN)
+       SITE FOOTER
        ========================================================== */
     .site-main-footer {
       background-color: #04060a;
       color: #94a3b8;
-      padding: 3rem 0 2rem 0;
-      margin-top: clamp(2.5rem, 5vw, 4rem);
-      border-radius: 40px 40px 0 0;
+      padding: 1.5rem 0 2rem 0;
+      margin-top: 0;
       position: relative;
+      z-index: 10;
       overflow: hidden;
-      font-family: var(--font-family);
+      font-family: var(--font-body, var(--font-family, 'Plus Jakarta Sans', sans-serif));
+      border-radius: 0;
+    }
+
+    .site-main-footer .viewport-container {
+      width: 100%;
+      max-width: 1480px;
+      margin: 0 auto;
+      padding-left: clamp(1.5rem, 3.8vw, 3.8rem);
+      padding-right: clamp(1.5rem, 3.8vw, 3.8rem);
     }
 
     .footer-main-row {
@@ -3603,14 +3612,13 @@
       z-index: 2;
     }
 
-    /* Left Column: Brand & Connect */
     .footer-brand-col {
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
       gap: 1rem;
-      padding-top: 0.85rem;
+      padding-top: 0.25rem;
     }
 
     .footer-logo-anchor {
@@ -3655,7 +3663,6 @@
       line-height: 1.25;
     }
 
-    /* Center Columns Group */
     .footer-links-group {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -3671,16 +3678,27 @@
       margin-bottom: 1.5rem;
     }
 
-    .footer-menu {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    .footer-menu,
+    .footer-nav-list {
+      list-style: none !important;
+      list-style-type: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
       display: flex;
       flex-direction: column;
       gap: 0.9rem;
     }
 
-    .footer-menu a {
+    .footer-menu li,
+    .footer-nav-list li {
+      list-style: none !important;
+      list-style-type: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+
+    .footer-menu a,
+    .footer-nav-list a {
       color: #94a3b8;
       font-size: 0.9rem;
       text-decoration: none;
@@ -3688,12 +3706,12 @@
       display: inline-block;
     }
 
-    .footer-menu a:hover {
+    .footer-menu a:hover,
+    .footer-nav-list a:hover {
       color: #ffffff;
       transform: translateX(3px);
     }
 
-    /* Vertical Divider */
     .footer-divider-v {
       width: 1px;
       height: 100%;
@@ -3701,7 +3719,6 @@
       background: rgba(255, 255, 255, 0.08);
     }
 
-    /* Right Column: Partners & Follow Us */
     .footer-right-col {
       display: flex;
       flex-direction: column;
@@ -3715,14 +3732,29 @@
       flex-wrap: wrap;
     }
 
-    .ms-partner-badge {
+    .ms-partner-badge,
+    .stark-partner-badge {
       display: flex;
       align-items: center;
       gap: 0.65rem;
       background: #0d121d;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.35);
       padding: 0.55rem 1rem;
       border-radius: 8px;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.15);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .stark-partner-badge:hover,
+    .ms-partner-badge:hover {
+      border-color: rgba(34, 197, 94, 0.7);
+      box-shadow: 0 0 18px rgba(34, 197, 94, 0.3);
+    }
+
+    .stark-badge-logo {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
     }
 
     .ms-badge-text {
@@ -3788,7 +3820,6 @@
       box-shadow: 0 6px 18px rgba(22, 163, 74, 0.4);
     }
 
-    /* Curved Green Arc SVG */
     .footer-arc-wrapper {
       position: relative;
       width: 100%;
@@ -3805,7 +3836,6 @@
       filter: drop-shadow(0 -4px 12px rgba(34, 197, 94, 0.35));
     }
 
-    /* Bottom Bar */
     .footer-bottom-bar {
       display: flex;
       align-items: center;
@@ -3879,12 +3909,6 @@
     }
 
     @media (max-width: 768px) {
-      .site-main-footer {
-        border-radius: 28px 28px 0 0;
-        margin-top: 2rem;
-        padding-top: 2.5rem;
-      }
-
       .footer-main-row {
         grid-template-columns: 1fr;
         gap: 2.5rem;
@@ -3917,7 +3941,8 @@
         margin-bottom: 0.85rem;
       }
 
-      .footer-menu {
+      .footer-menu,
+      .footer-nav-list {
         align-items: center;
         text-align: center;
         gap: 0.75rem;
@@ -3977,7 +4002,7 @@
       }
 
       .floating-top-btn {
-        bottom: 1.25rem;
+        bottom: 5.25rem;
         right: 1.25rem;
         width: 42px;
         height: 42px;
@@ -4481,7 +4506,7 @@
 
       </div>
 
-      <!-- Bottom Row: 2 Equal Width Cards (Stark POS + Stark HRMS) -->
+      <!-- Bottom Row: 2 Equal Width Cards (Stark POS + Stark Jobs) -->
       <div class="products-bottom-row">
 
         <!-- Bottom Card 1: Stark POS -->
@@ -4508,11 +4533,11 @@
           </p>
         </div>
 
-        <!-- Bottom Card 2: Stark HRMS -->
+        <!-- Bottom Card 2: Stark Jobs -->
         <div class="product-card-item product-card-bottom">
           <div class="card-top-header">
             <div class="card-icon-box">
-              <!-- Stark HRMS Icon SVG -->
+              <!-- Stark Jobs Icon SVG -->
               <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="44" height="44" rx="12" fill="#dcfce7" />
                 <path
@@ -4526,7 +4551,7 @@
               </svg>
             </div>
             <div class="card-title-group">
-              <h3 class="card-product-title">Stark HRMS</h3>
+              <h3 class="card-product-title">Stark Jobs</h3>
               <span class="card-product-tagline">Human Resources</span>
             </div>
           </div>
@@ -5213,7 +5238,7 @@
       <div class="footer-main-row">
         <!-- Left Brand & Logo Column -->
         <div class="footer-brand-col">
-          <a href="#" class="footer-logo-anchor">
+          <a href="index.html" class="footer-logo-anchor">
             <img src="assets/logo-footer.png" alt="Stark Softech Logo" class="footer-logo-img">
           </a>
           <div class="footer-company-name">
@@ -5227,29 +5252,29 @@
           <div class="footer-nav-col">
             <h4 class="footer-col-header">PRODUCTS</h4>
             <ul class="footer-menu">
-              <li><a href="#">Stark CRM</a></li>
-              <li><a href="#">Business Software</a></li>
-              <li><a href="#">Workflow Automation</a></li>
-              <li><a href="#">E-commerce Solutions</a></li>
+              <li><a href="product.html">Stark CRM</a></li>
+              <li><a href="product.html">Business Software</a></li>
+              <li><a href="product.html">Workflow Automation</a></li>
+              <li><a href="product.html">E-commerce Solutions</a></li>
             </ul>
           </div>
 
           <div class="footer-nav-col">
             <h4 class="footer-col-header">SERVICES</h4>
             <ul class="footer-menu">
-              <li><a href="#services">Web Development</a></li>
-              <li><a href="#services">Mobile Applications</a></li>
-              <li><a href="#services">UI/UX Design</a></li>
-              <li><a href="#services">Digital Marketing</a></li>
+              <li><a href="service.html">Web Development</a></li>
+              <li><a href="service.html">Mobile Applications</a></li>
+              <li><a href="service.html">UI/UX Design</a></li>
+              <li><a href="service.html">Digital Marketing</a></li>
             </ul>
           </div>
 
           <div class="footer-nav-col">
             <h4 class="footer-col-header">COMPANY</h4>
             <ul class="footer-menu">
-              <li><a href="#about">About Us</a></li>
+              <li><a href="about.html">About Us</a></li>
               <li><a href="#">Careers</a></li>
-              <li><a href="#contact">Contact Us</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
               <li><a href="#">Blog</a></li>
             </ul>
           </div>
@@ -5263,16 +5288,11 @@
           <div class="footer-cert-block">
             <h4 class="footer-col-header">OUR PARTNERS & CERTIFICATIONS</h4>
             <div class="footer-badges-row">
-              <!-- Microsoft Solutions Partner Card -->
-              <div class="ms-partner-badge">
-                <svg width="22" height="22" viewBox="0 0 23 23" fill="none">
-                  <path fill="#f25022" d="M1 1h10v10H1z" />
-                  <path fill="#7fba00" d="M12 1h10v10H12z" />
-                  <path fill="#00a4ef" d="M1 12h10v10H1z" />
-                  <path fill="#ffb900" d="M12 12h10v10H12z" />
-                </svg>
+              <!-- Stark Enterprise Solutions Partner Card -->
+              <div class="stark-partner-badge">
+                <img src="assets/logo-white.png" alt="Stark Softech Logo" class="stark-badge-logo">
                 <div class="ms-badge-text">
-                  <strong>Microsoft</strong>
+                  <strong>Stark Softech</strong>
                   <span>Solutions Partner</span>
                 </div>
               </div>

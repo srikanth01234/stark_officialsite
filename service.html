@@ -964,10 +964,19 @@
       background-color: #04060a;
       color: #94a3b8;
       padding: 2.5rem 0 2rem 0;
+      margin-top: 0;
       position: relative;
       overflow: hidden;
-      font-family: var(--font-body);
+      font-family: var(--font-body, var(--font-family, 'Plus Jakarta Sans', sans-serif));
       border-radius: 40px 40px 0 0;
+    }
+
+    .site-main-footer .viewport-container {
+      width: 100%;
+      max-width: 1480px;
+      margin: 0 auto;
+      padding-left: clamp(1.5rem, 3.8vw, 3.8rem);
+      padding-right: clamp(1.5rem, 3.8vw, 3.8rem);
     }
 
     .footer-main-row {
@@ -989,11 +998,22 @@
       padding-top: 0.85rem;
     }
 
+    .footer-logo-anchor {
+      display: inline-block;
+    }
+
     .footer-logo-img {
       height: 96px;
       width: auto;
       object-fit: contain;
       display: block;
+      margin: 0 auto;
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.25));
+      transition: transform 0.25s ease;
+    }
+
+    .footer-logo-anchor:hover .footer-logo-img {
+      transform: scale(1.03);
     }
 
     .footer-company-name {
@@ -1008,12 +1028,16 @@
       font-size: 1.35rem;
       font-weight: 500;
       color: #e2e8f0;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
     }
 
     .footer-company-sub {
       font-size: 1.15rem;
       font-weight: 400;
       color: #94a3b8;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
     }
 
     .footer-links-group {
@@ -1028,43 +1052,61 @@
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.5rem;
     }
 
+    .footer-menu,
     .footer-nav-list {
-      list-style: none;
+      list-style: none !important;
+      list-style-type: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
       display: flex;
       flex-direction: column;
-      gap: 0.7rem;
+      gap: 0.9rem;
     }
 
+    .footer-menu li,
+    .footer-nav-list li {
+      list-style: none !important;
+      list-style-type: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+
+    .footer-menu a,
     .footer-nav-list a {
-      font-size: 0.9rem;
       color: #94a3b8;
-      transition: color 0.2s ease;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: color 0.25s ease, transform 0.25s ease;
+      display: inline-block;
     }
 
+    .footer-menu a:hover,
     .footer-nav-list a:hover {
-      color: #22c55e;
+      color: #ffffff;
+      transform: translateX(3px);
     }
 
     .footer-divider-v {
       width: 1px;
       height: 100%;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.05) 100%);
+      min-height: 180px;
+      background: rgba(255, 255, 255, 0.08);
     }
 
     .footer-right-col {
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 2.2rem;
     }
 
     .footer-badges-row {
       display: flex;
       align-items: center;
-      gap: 0.85rem;
-      flex-wrap: nowrap;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
 
     .ms-partner-badge,
@@ -1078,11 +1120,10 @@
       border-radius: 8px;
       box-shadow: 0 0 12px rgba(34, 197, 94, 0.15);
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
-      width: max-content;
-      flex-shrink: 0;
     }
 
-    .stark-partner-badge:hover {
+    .stark-partner-badge:hover,
+    .ms-partner-badge:hover {
       border-color: rgba(34, 197, 94, 0.7);
       box-shadow: 0 0 18px rgba(34, 197, 94, 0.3);
     }
@@ -1096,17 +1137,18 @@
     .ms-badge-text {
       display: flex;
       flex-direction: column;
-      line-height: 1.1;
+      line-height: 1.2;
     }
 
     .ms-badge-text strong {
       color: #ffffff;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
+      font-weight: 700;
     }
 
     .ms-badge-text span {
       color: #94a3b8;
-      font-size: 0.7rem;
+      font-size: 0.68rem;
     }
 
     .iso-badge-circle {
@@ -1120,7 +1162,6 @@
       color: #ffffff;
       background: rgba(255, 255, 255, 0.02);
       transition: border-color 0.3s ease;
-      flex-shrink: 0;
     }
 
     .iso-badge-circle:hover {
@@ -1156,77 +1197,87 @@
       box-shadow: 0 6px 18px rgba(22, 163, 74, 0.4);
     }
 
-    .social-circle-btn:hover {
-      background: #22c55e;
-      color: #ffffff;
-      border-color: #22c55e;
-      transform: translateY(-2px);
-    }
-
     .footer-arc-wrapper {
+      position: relative;
       width: 100%;
       height: 60px;
-      overflow: hidden;
-      margin: 1rem 0;
+      margin: -1rem 0 1rem 0;
+      pointer-events: none;
+      overflow: visible;
     }
 
     .footer-arc-svg {
       width: 100%;
       height: 100%;
+      display: block;
+      filter: drop-shadow(0 -4px 12px rgba(34, 197, 94, 0.35));
     }
 
     .footer-bottom-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-top: 1.5rem;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
-      font-size: 0.82rem;
+      padding-top: 1.8rem;
+      font-size: 0.85rem;
+      color: #64748b;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-copyright {
+      margin: 0;
     }
 
     .footer-bottom-right {
       display: flex;
       align-items: center;
-      gap: 2rem;
+      gap: 2.2rem;
     }
 
     .footer-legal-links {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.85rem;
     }
 
     .footer-legal-links a {
       color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.82rem;
+      transition: color 0.25s ease;
     }
 
     .footer-legal-links a:hover {
-      color: #22c55e;
+      color: #ffffff;
     }
 
     .legal-sep {
-      color: #334155;
+      color: rgba(255, 255, 255, 0.15);
+      font-size: 0.75rem;
     }
 
     .footer-better-tomorrow {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      color: #64748b;
+      gap: 0.65rem;
+      font-size: 0.72rem;
       font-weight: 700;
-      letter-spacing: 0.1em;
-      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #94a3b8;
     }
 
     .better-dash {
-      width: 18px;
-      height: 1.5px;
-      background-color: #22c55e;
+      width: 20px;
+      height: 2px;
+      background-color: #16a34a;
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1100px) {
       .footer-main-row {
         grid-template-columns: 1fr 1fr;
+        gap: 3rem;
       }
 
       .footer-divider-v {
@@ -1267,7 +1318,8 @@
         margin-bottom: 0.85rem;
       }
 
-      .footer-menu {
+      .footer-menu,
+      .footer-nav-list {
         align-items: center;
         text-align: center;
         gap: 0.75rem;
@@ -1491,87 +1543,87 @@
           <span class="text-highlight-green">digital growth</span>
         </h2>
         <p class="explore-services-subtitle">
-          Choose a service hub below. Each page covers specialized capabilities you can launch with &mdash; or expand
-          into dedicated landing pages after keyword validation.
+          From custom business applications and software development to web &amp; mobile apps, e-commerce, static &amp;
+          dynamic websites, SEO, and workflow automation &mdash; explore our services built for your growth.
         </p>
       </div>
 
       <!-- 3-Column Service Grid -->
       <div class="explore-services-grid">
 
-        <!-- Card 1: Cloud -->
+        <!-- Card 1: Custom Business Applications -->
         <div class="service-explore-card">
           <div class="explore-card-img-wrap">
-            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80"
-              alt="Cloud Services" class="explore-card-img">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"
+              alt="Custom Business Applications" class="explore-card-img">
             <div class="explore-card-label-box">
-              <h3 class="explore-card-title-text">Cloud</h3>
+              <h3 class="explore-card-title-text">Custom Business Applications</h3>
             </div>
           </div>
         </div>
 
-        <!-- Card 2: Customer first -->
+        <!-- Card 2: Software -->
         <div class="service-explore-card">
           <div class="explore-card-img-wrap">
-            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
-              alt="Customer First Services" class="explore-card-img">
+            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80"
+              alt="Software Development Services" class="explore-card-img">
             <div class="explore-card-label-box">
-              <h3 class="explore-card-title-text">Customer first</h3>
+              <h3 class="explore-card-title-text">Software</h3>
             </div>
           </div>
         </div>
 
-        <!-- Card 3: Cybersecurity -->
+        <!-- Card 3: Web & Mobile App -->
         <div class="service-explore-card">
           <div class="explore-card-img-wrap">
-            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80"
-              alt="Cybersecurity Services" class="explore-card-img">
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80"
+              alt="Web and Mobile App Development" class="explore-card-img">
             <div class="explore-card-label-box">
-              <h3 class="explore-card-title-text">Cybersecurity</h3>
+              <h3 class="explore-card-title-text">Web &amp; Mobile App</h3>
             </div>
           </div>
         </div>
 
-        <!-- Card 4: Data and artificial intelligence -->
+        <!-- Card 4: E-commerce -->
+        <div class="service-explore-card">
+          <div class="explore-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1556742049-0a67c5574f73?auto=format&fit=crop&w=800&q=80"
+              alt="E-commerce Solutions" class="explore-card-img">
+            <div class="explore-card-label-box">
+              <h3 class="explore-card-title-text">E-commerce</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5: Static and Dynamic Website -->
+        <div class="service-explore-card">
+          <div class="explore-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80"
+              alt="Static and Dynamic Website Development" class="explore-card-img">
+            <div class="explore-card-label-box">
+              <h3 class="explore-card-title-text">Static and Dynamic Website</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6: SEO and Digital Marketing -->
+        <div class="service-explore-card">
+          <div class="explore-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1432888622747-4eb9a8f2c293?auto=format&fit=crop&w=800&q=80"
+              alt="SEO and Digital Marketing Services" class="explore-card-img">
+            <div class="explore-card-label-box">
+              <h3 class="explore-card-title-text">SEO and Digital Marketing</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 7: Workflow Automation -->
         <div class="service-explore-card">
           <div class="explore-card-img-wrap">
             <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80"
-              alt="Data and Artificial Intelligence Services" class="explore-card-img">
+              alt="Workflow Automation Services" class="explore-card-img">
             <div class="explore-card-label-box">
-              <h3 class="explore-card-title-text">Data and artificial intelligence</h3>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 5: Enterprise management -->
-        <div class="service-explore-card">
-          <div class="explore-card-img-wrap">
-            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80"
-              alt="Enterprise Management Services" class="explore-card-img">
-            <div class="explore-card-label-box">
-              <h3 class="explore-card-title-text">Enterprise management</h3>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 6: Intelligent industry -->
-        <div class="service-explore-card">
-          <div class="explore-card-img-wrap">
-            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80"
-              alt="Intelligent Industry Services" class="explore-card-img">
-            <div class="explore-card-label-box">
-              <h3 class="explore-card-title-text">Intelligent industry</h3>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 7: Sustainable business -->
-        <div class="service-explore-card">
-          <div class="explore-card-img-wrap">
-            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
-              alt="Sustainable Business Services" class="explore-card-img">
-            <div class="explore-card-label-box">
-              <h3 class="explore-card-title-text">Sustainable business</h3>
+              <h3 class="explore-card-title-text">Workflow Automation</h3>
             </div>
           </div>
         </div>
@@ -1943,14 +1995,14 @@
     </div>
   </section>
 
-  <!-- ==================== SITE FOOTER ==================== -->
+  <!-- ==================== SITE FOOTER SECTION ==================== -->
   <footer class="site-main-footer">
     <div class="viewport-container">
 
       <div class="footer-main-row">
         <!-- Left Brand & Logo Column -->
         <div class="footer-brand-col">
-          <a href="#" class="footer-logo-anchor">
+          <a href="index.html" class="footer-logo-anchor">
             <img src="assets/logo-footer.png" alt="Stark Softech Logo" class="footer-logo-img">
           </a>
           <div class="footer-company-name">
@@ -1964,29 +2016,29 @@
           <div class="footer-nav-col">
             <h4 class="footer-col-header">PRODUCTS</h4>
             <ul class="footer-menu">
-              <li><a href="#">Stark CRM</a></li>
-              <li><a href="#">Business Software</a></li>
-              <li><a href="#">Workflow Automation</a></li>
-              <li><a href="#">E-commerce Solutions</a></li>
+              <li><a href="product.html">Stark CRM</a></li>
+              <li><a href="product.html">Business Software</a></li>
+              <li><a href="product.html">Workflow Automation</a></li>
+              <li><a href="product.html">E-commerce Solutions</a></li>
             </ul>
           </div>
 
           <div class="footer-nav-col">
             <h4 class="footer-col-header">SERVICES</h4>
             <ul class="footer-menu">
-              <li><a href="#services">Web Development</a></li>
-              <li><a href="#services">Mobile Applications</a></li>
-              <li><a href="#services">UI/UX Design</a></li>
-              <li><a href="#services">Digital Marketing</a></li>
+              <li><a href="service.html">Web Development</a></li>
+              <li><a href="service.html">Mobile Applications</a></li>
+              <li><a href="service.html">UI/UX Design</a></li>
+              <li><a href="service.html">Digital Marketing</a></li>
             </ul>
           </div>
 
           <div class="footer-nav-col">
             <h4 class="footer-col-header">COMPANY</h4>
             <ul class="footer-menu">
-              <li><a href="#about">About Us</a></li>
+              <li><a href="about.html">About Us</a></li>
               <li><a href="#">Careers</a></li>
-              <li><a href="#contact">Contact Us</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
               <li><a href="#">Blog</a></li>
             </ul>
           </div>

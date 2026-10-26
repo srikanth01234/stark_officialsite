@@ -1514,8 +1514,16 @@
       margin-top: 0;
       position: relative;
       overflow: hidden;
-      font-family: var(--font-body);
+      font-family: var(--font-body, var(--font-family, 'Plus Jakarta Sans', sans-serif));
       border-radius: 40px 40px 0 0;
+    }
+
+    .site-main-footer .viewport-container {
+      width: 100%;
+      max-width: 1480px;
+      margin: 0 auto;
+      padding-left: clamp(1.5rem, 3.8vw, 3.8rem);
+      padding-right: clamp(1.5rem, 3.8vw, 3.8rem);
     }
 
     .footer-main-row {
@@ -2440,15 +2448,15 @@
         <div class="left-col-content">
           <div class="main-title-us">US</div>
 
-          <div class="left-subtag">Software & Product Innovation</div>
+          <div class="left-subtag">A Software Touch to Boost Your Business Growth</div>
 
           <p class="left-description">
-            We are a team of innovators, problem solvers and creators, building technology that empowers businesses for
-            a better tomorrow.
+            Create a unique path in your business with an amazing set-up of programming which will assist you in your
+            entire business. Makes IT Simple.
           </p>
 
           <a href="#our-story" class="left-cta-btn">
-            Our Story
+            Our History
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
               stroke-linecap="round" stroke-linejoin="round">
               <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -2476,8 +2484,7 @@
           <div class="philosophy-block">
             <h2 class="philosophy-title">Our Philosophy</h2>
             <p class="philosophy-text">
-              We believe in creating meaningful digital solutions that bring value, build lasting relationships, and
-              make a positive impact.
+              We design for human, so user first. A software touch to boost your business growth.
             </p>
           </div>
 
@@ -2579,38 +2586,39 @@
           <!-- Category Header Tag -->
           <div class="story-header-tag">
             <span class="story-header-dash"></span>
-            <span class="story-header-label">ABOUT US</span>
+            <span class="story-header-label">HISTORY</span>
           </div>
 
           <!-- Main Title -->
           <h2 class="story-section-title">
             <span class="story-title-dark">Our </span>
-            <span class="story-title-green">Story</span>
+            <span class="story-title-green">History</span>
           </h2>
 
           <!-- Subtitle Lead -->
           <p class="story-lead-subtitle">
-            A journey of ideas, people and technology built to create real impact.
+            Give us a task &amp; we’ll implement it &mdash; Makes IT Simple.
           </p>
 
           <!-- Story Paragraphs -->
           <p class="story-body-paragraph">
-            Stark Softech was founded with a simple vision &mdash; to help businesses grow through innovative technology and
-            strategic digital solutions. We combine creativity, technical expertise, and business insight to deliver
-            solutions that help organizations build a stronger digital presence and achieve sustainable growth.
+            Stark Softech is a Tuticorin based IT Company which was founded by Mr. J. Dayas Elmer who worked hard in
+            various fields also in micro and small businesses. After successful completion of his younger brother Mr. J.
+            Iruthaya Elricks's work experience as a Team leader in a reputed MNC company, Mr. J. Dayas Elmer planned to start
+            a software company for providing IT support for various micro and small businesses to digitalize and fasten
+            their growth to lead a happy life.
           </p>
 
           <p class="story-body-paragraph">
-            Over the years, we have worked with startups, growing businesses, and established brands across different
-            industries. Every project begins with understanding the client's business, challenges, audience, and goals,
-            so our team can create solutions that are visually strong, technically reliable, scalable, and built for
-            long-term performance.
+            Later with the blessings of God and prayers of Rev.Fr. Pepe, our company found a glorious path to begin its
+            successful journey on 10th July of 2020 and was inaugurated by Rev.Fr. Johnson Raj. Create a unique path in
+            your business with an amazing set-up of programming which will assist you in your entire business.
           </p>
 
           <!-- 3 Feature Highlight Pillars -->
           <div class="story-features-row">
 
-            <!-- Item 1: People First -->
+            <!-- Item 1: User First (Philosophy) -->
             <div class="feature-item-pill">
               <div class="feature-icon-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -2622,42 +2630,39 @@
                 </svg>
               </div>
               <div class="feature-text-group">
-                <span class="feature-title-bold">People</span>
+                <span class="feature-title-bold">User</span>
                 <span class="feature-sub-muted">First</span>
               </div>
             </div>
 
-            <!-- Item 2: Innovation Driven -->
+            <!-- Item 2: Our Mission -->
             <div class="feature-item-pill">
               <div class="feature-icon-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                   stroke-linejoin="round">
-                  <line x1="9" y1="18" x2="15" y2="18"></line>
-                  <line x1="10" y1="22" x2="14" y2="22"></line>
-                  <path
-                    d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1.55.62 2.95 1.6 3.96.76.76 1.23 1.52 1.41 2.5">
-                  </path>
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
                 </svg>
               </div>
               <div class="feature-text-group">
-                <span class="feature-title-bold">Innovation</span>
-                <span class="feature-sub-muted">Driven</span>
+                <span class="feature-title-bold">Our</span>
+                <span class="feature-sub-muted">Mission</span>
               </div>
             </div>
 
-            <!-- Item 3: Growth Together -->
+            <!-- Item 3: Our Vision -->
             <div class="feature-item-pill">
               <div class="feature-icon-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                   stroke-linejoin="round">
-                  <line x1="18" y1="20" x2="18" y2="10"></line>
-                  <line x1="12" y1="20" x2="12" y2="4"></line>
-                  <line x1="6" y1="20" x2="6" y2="14"></line>
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
                 </svg>
               </div>
               <div class="feature-text-group">
-                <span class="feature-title-bold">Growth</span>
-                <span class="feature-sub-muted">Together</span>
+                <span class="feature-title-bold">Our</span>
+                <span class="feature-sub-muted">Vision</span>
               </div>
             </div>
 
@@ -2666,7 +2671,7 @@
           <!-- Bottom CTA & Tagline Row -->
           <div class="story-cta-flex-row">
 
-            <a href="index.html#contact" class="story-cta-btn">
+            <a href="contact.html" class="story-cta-btn">
               Learn More About Us
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                 stroke-linecap="round" stroke-linejoin="round">
@@ -2795,8 +2800,9 @@
       <div class="values-header-wrap">
         <h2 class="values-main-title">CORE VALUES</h2>
         <p class="values-intro-paragraph">
-          Stark Softech delivers seamless project experiences through passionate innovation, a client-centric approach
-          built on trust, excellence driven by integrity, and collaborative teamwork.
+          <strong>Mission:</strong> Our central goal is to make the technology open to all the individuals in our neighbourhood.
+          <br>
+          <strong>Vision:</strong> Our vision is to make our mission globally without defects.
         </p>
       </div>
 
@@ -2891,7 +2897,7 @@
       <div class="journey-header-wrap">
         <div class="journey-tag-line">
           <span class="journey-tag-dash"></span>
-          <span class="journey-tag-text">OUR STORY</span>
+          <span class="journey-tag-text">OUR HISTORY</span>
           <span class="journey-tag-dash"></span>
         </div>
 
@@ -2901,8 +2907,8 @@
         </h2>
 
         <p class="journey-intro-subtitle">
-          From our beginnings to where we are today, our journey is driven by innovation, commitment, and a vision to
-          create a better, smarter tomorrow.
+          From our beginning in Tuticorin on 10th July 2020 to our continuous growth, our journey is driven by user-first
+          innovation and a mission to make technology accessible and simple.
         </p>
       </div>
 
@@ -2912,12 +2918,12 @@
         <!-- LEFT COLUMN: Timeline Accordion List -->
         <div class="journey-timeline-list">
 
-          <!-- Card 1: 2021 (Default Active) -->
+          <!-- Card 1: 2020 (Default Active) -->
           <div class="journey-card active" data-journey-card>
             <div class="journey-card-header">
               <div class="journey-card-left-group">
-                <div class="journey-year-badge">2021</div>
-                <h3 class="journey-card-title">The Foundation</h3>
+                <div class="journey-year-badge">2020</div>
+                <h3 class="journey-card-title">Inception &amp; Inauguration</h3>
               </div>
               <div class="journey-toggle-icon">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
@@ -2928,19 +2934,19 @@
             </div>
             <div class="journey-card-body">
               <p class="journey-card-desc">
-                The company was founded in India by two passionate entrepreneurs with a vision to build impactful
-                digital solutions.
+                Founded in Tuticorin by Mr. J. Dayas Elmer alongside Mr. J. Iruthaya Elricks. With prayers of Rev.Fr. Pepe,
+                our company began its glorious journey on 10th July 2020 and was inaugurated by Rev.Fr. Johnson Raj.
               </p>
             </div>
             <div class="journey-dot-connector"></div>
           </div>
 
-          <!-- Card 2: 2023 -->
+          <!-- Card 2: 2022 -->
           <div class="journey-card" data-journey-card>
             <div class="journey-card-header">
               <div class="journey-card-left-group">
-                <div class="journey-year-badge">2023</div>
-                <h3 class="journey-card-title">Expansion and Product Launch</h3>
+                <div class="journey-year-badge">2022</div>
+                <h3 class="journey-card-title">Empowering Micro &amp; Small Businesses</h3>
               </div>
               <div class="journey-toggle-icon">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
@@ -2951,8 +2957,8 @@
             </div>
             <div class="journey-card-body">
               <p class="journey-card-desc">
-                Launched core software products and expanded team capabilities, serving over 50+ enterprise clients
-                across healthcare, education, and retail.
+                Provided dedicated IT support for micro and small businesses to digitalize and fasten their growth,
+                assisting businesses with innovative programming setups.
               </p>
             </div>
             <div class="journey-dot-connector"></div>
@@ -2963,7 +2969,7 @@
             <div class="journey-card-header">
               <div class="journey-card-left-group">
                 <div class="journey-year-badge">2024</div>
-                <h3 class="journey-card-title">Platform Expansion</h3>
+                <h3 class="journey-card-title">Open Technology in Neighbourhood</h3>
               </div>
               <div class="journey-toggle-icon">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
@@ -2974,8 +2980,8 @@
             </div>
             <div class="journey-card-body">
               <p class="journey-card-desc">
-                Scalable cloud solutions and AI-driven workflow engines integrated into our core product ecosystem for
-                global scalability.
+                Advanced our central mission to make technology accessible and open to all individuals in our
+                neighbourhood, building user-first custom software and CRM products.
               </p>
             </div>
             <div class="journey-dot-connector"></div>
@@ -2985,8 +2991,8 @@
           <div class="journey-card" data-journey-card>
             <div class="journey-card-header">
               <div class="journey-card-left-group">
-                <div class="journey-year-badge">2025</div>
-                <h3 class="journey-card-title">Innovation Acceleration</h3>
+                <div class="journey-year-badge">2025+</div>
+                <h3 class="journey-card-title">Global Mission Without Defects</h3>
               </div>
               <div class="journey-toggle-icon">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
@@ -2997,8 +3003,8 @@
             </div>
             <div class="journey-card-body">
               <p class="journey-card-desc">
-                Accelerating next-generation technologies, strategic global partnerships, and driving continuous digital
-                transformation for tomorrow.
+                Taking our mission globally without defects &mdash; delivering reliable cloud ecosystems, enterprise
+                automation, and strategic digital solutions worldwide.
               </p>
             </div>
             <div class="journey-dot-connector"></div>
@@ -3020,16 +3026,15 @@
             <!-- Glass Window Watermark Text -->
             <div class="journey-glass-watermark">
               <span class="wm-dot">&bull;</span>
-              <span>IDEAS</span>
-              <span>PEOPLE</span>
-              <span>TECHNOLOGY</span>
-              <span>GROWTH</span>
+              <span>USER FIRST</span>
+              <span>MAKES IT SIMPLE</span>
+              <span>GLOBAL VISION</span>
             </div>
           </div>
 
           <!-- Bottom-Right Floating Green Badge Card -->
           <div class="journey-floating-badge">
-            <div class="badge-heading-text">Building<br>What's<br>Next</div>
+            <div class="badge-heading-text">Makes<br>IT<br>Simple</div>
             <div class="badge-dash-line"></div>
           </div>
 
@@ -3041,7 +3046,7 @@
       <div class="journey-bottom-bar">
         <div class="journey-bottom-left">
           <span class="bottom-bar-dash"></span>
-          <span class="bottom-bar-text-left">PEOPLE &nbsp;|&nbsp; TECHNOLOGY &nbsp;|&nbsp; IMPACT</span>
+          <span class="bottom-bar-text-left">USER FIRST &nbsp;|&nbsp; SIMPLE IT &nbsp;|&nbsp; GLOBAL VISION</span>
         </div>
         <div class="bottom-bar-text-right">A BRIGHTER TOMORROW TOGETHER</div>
       </div>
@@ -3076,7 +3081,7 @@
       <div class="footer-main-row">
         <!-- Left Brand & Logo Column -->
         <div class="footer-brand-col">
-          <a href="#" class="footer-logo-anchor">
+          <a href="index.html" class="footer-logo-anchor">
             <img src="assets/logo-footer.png" alt="Stark Softech Logo" class="footer-logo-img">
           </a>
           <div class="footer-company-name">
@@ -3090,29 +3095,29 @@
           <div class="footer-nav-col">
             <h4 class="footer-col-header">PRODUCTS</h4>
             <ul class="footer-menu">
-              <li><a href="#">Stark CRM</a></li>
-              <li><a href="#">Business Software</a></li>
-              <li><a href="#">Workflow Automation</a></li>
-              <li><a href="#">E-commerce Solutions</a></li>
+              <li><a href="product.html">Stark CRM</a></li>
+              <li><a href="product.html">Business Software</a></li>
+              <li><a href="product.html">Workflow Automation</a></li>
+              <li><a href="product.html">E-commerce Solutions</a></li>
             </ul>
           </div>
 
           <div class="footer-nav-col">
             <h4 class="footer-col-header">SERVICES</h4>
             <ul class="footer-menu">
-              <li><a href="#services">Web Development</a></li>
-              <li><a href="#services">Mobile Applications</a></li>
-              <li><a href="#services">UI/UX Design</a></li>
-              <li><a href="#services">Digital Marketing</a></li>
+              <li><a href="service.html">Web Development</a></li>
+              <li><a href="service.html">Mobile Applications</a></li>
+              <li><a href="service.html">UI/UX Design</a></li>
+              <li><a href="service.html">Digital Marketing</a></li>
             </ul>
           </div>
 
           <div class="footer-nav-col">
             <h4 class="footer-col-header">COMPANY</h4>
             <ul class="footer-menu">
-              <li><a href="#about">About Us</a></li>
+              <li><a href="about.html">About Us</a></li>
               <li><a href="#">Careers</a></li>
-              <li><a href="#contact">Contact Us</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
               <li><a href="#">Blog</a></li>
             </ul>
           </div>

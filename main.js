@@ -657,10 +657,10 @@ function initCrmShowcaseSlider() {
     },
     {
       subtagLeft: "— HUMAN CAPITAL MANAGEMENT",
-      titleLeft: "Stark HRMS",
+      titleLeft: "Stark Jobs",
       descLeft: "Empower your workforce with automated attendance, payroll, leave management, and employee portals.",
       subtagRight: "WORKFORCE PLATFORM",
-      titleRight: 'Stark <span class="crm-highlight">HRMS</span>',
+      titleRight: 'Stark <span class="crm-highlight">Jobs</span>',
       descRight: "Simplify HR administration, performance evaluations, and employee self-service in one portal.",
       counter: "04 <span>/ 04</span>"
     }
