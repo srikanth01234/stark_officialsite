@@ -143,51 +143,38 @@
       gap: 0.9rem;
     }
 
-    .btn-hamburger-circle {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.88);
-      border: 1px solid rgba(255, 255, 255, 0.95);
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      display: flex;
+    .mobile-menu-toggle {
+      display: none;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
+      justify-content: space-between;
+      width: 30px;
+      height: 22px;
+      background: transparent;
+      border: none;
       cursor: pointer;
-      flex-shrink: 0;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      padding: 0;
+      z-index: 1001;
     }
 
-    .btn-hamburger-circle span {
-      display: block;
-      width: 16px;
-      height: 2px;
-      background-color: #111111;
-      border-radius: 2px;
-      transition: all 0.25s ease;
+    .mobile-menu-toggle span {
+      width: 100%;
+      height: 3px;
+      background-color: #1b4d29;
+      border-radius: 3px;
+      transition: all 0.3s ease;
     }
 
-    .btn-hamburger-circle:hover {
-      background: #ffffff;
-      transform: scale(1.06);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    .mobile-menu-toggle.active span:nth-child(1) {
+      transform: translateY(9px) rotate(45deg);
     }
 
-    .btn-hamburger-circle.active span:nth-child(1) {
-      transform: translateY(6px) rotate(45deg);
-    }
-
-    .btn-hamburger-circle.active span:nth-child(2) {
+    .mobile-menu-toggle.active span:nth-child(2) {
       opacity: 0;
       transform: scaleX(0);
     }
 
-    .btn-hamburger-circle.active span:nth-child(3) {
-      transform: translateY(-6px) rotate(-45deg);
+    .mobile-menu-toggle.active span:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg);
     }
 
     .brand-logo-anchor {
@@ -237,18 +224,18 @@
     }
 
     .center-nav-pill {
-      background: rgba(255, 255, 255, 0.92);
-      padding: 0.4rem 1.4rem;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 0.35rem 0.6rem;
       border-radius: 9999px;
-      box-shadow: 0 4px 18px rgba(27, 77, 41, 0.05), inset 0 1px 0 rgba(255, 255, 255, 1);
-      border: 1px solid rgba(220, 245, 226, 0.9);
+      box-shadow: 0 4px 20px rgba(27, 77, 41, 0.06), inset 0 1px 0 rgba(255, 255, 255, 1);
+      border: 1px solid rgba(220, 245, 226, 0.95);
       transition: all 0.25s ease;
     }
 
     .site-nav-menu {
       display: flex;
       align-items: center;
-      gap: 1.5rem;
+      gap: 0.4rem;
       list-style: none;
       margin: 0;
       padding: 0;
@@ -257,36 +244,32 @@
     .site-nav-link {
       font-size: 0.88rem;
       font-weight: 500;
-      color: #2d3748;
+      color: #334155;
       text-decoration: none;
-      transition: color 0.2s ease;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
-      padding: 0.2rem 0;
-      display: flex;
-      flex-direction: column;
+      padding: 0.42rem 1.05rem;
+      border-radius: 9999px;
+      display: inline-flex;
       align-items: center;
+      justify-content: center;
     }
 
     .site-nav-link:hover {
-      color: #1b4d29;
+      color: #15803d;
+      background-color: rgba(34, 197, 94, 0.08);
     }
 
     .site-nav-link.active {
-      color: #1b4d29;
-      font-weight: 600;
+      color: #14532d;
+      background-color: #dcfce7;
+      font-weight: 700;
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      box-shadow: 0 2px 8px rgba(22, 163, 74, 0.12);
     }
 
     .site-nav-link.active::after {
-      content: '';
-      display: block;
-      width: 5px;
-      height: 5px;
-      background-color: #1b4d29;
-      border-radius: 50%;
-      position: absolute;
-      bottom: -6px;
-      box-shadow: 0 0 6px rgba(27, 77, 41, 0.4);
-      animation: navDotPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: none !important;
     }
 
     @keyframes navDotPop {
@@ -445,7 +428,15 @@
     }
 
     /* Mobile Responsive Header Styles */
-    @media (max-width: 1024px) {
+    @media (max-width: 991px) {
+      .btn-talk-pill {
+        display: none !important;
+      }
+
+      .mobile-menu-toggle {
+        display: flex;
+      }
+
       .center-nav-pill {
         display: none;
         position: absolute;
@@ -489,43 +480,23 @@
         justify-content: center;
       }
 
-      .site-nav-link:hover,
-      .site-nav-link.active {
+      .site-nav-link:hover {
         color: #16a34a;
       }
 
+      .site-nav-link.active {
+        color: #14532d;
+        background-color: #dcfce7;
+        font-weight: 700;
+        border: 1px solid rgba(34, 197, 94, 0.4);
+      }
+
       .site-nav-link.active::after {
-        position: static;
-        margin-top: 4px;
+        display: none !important;
       }
 
       .site-header {
         top: 0.4rem;
-      }
-    }
-
-    @media (max-width: 580px) {
-      .brand-tagline {
-        display: block;
-        font-size: 0.44rem;
-        letter-spacing: 0.16em;
-        margin-top: 2px;
-      }
-
-      .brand-name {
-        font-size: 0.95rem;
-      }
-
-      .btn-talk-pill {
-        padding: 0.5rem 0.95rem;
-        font-size: 0.8rem;
-        gap: 0.4rem;
-      }
-
-      .btn-hamburger-circle,
-      .btn-search-circle {
-        width: 38px;
-        height: 38px;
       }
     }
 
@@ -852,39 +823,14 @@
       pointer-events: auto;
     }
 
-    /* Staggered entrance for child text elements inside left content */
-    .hero-slide-item .pretitle-badge,
-    .hero-slide-item .headline-text,
+    /* Fluid staggered entrance for child text elements inside left content handled by GSAP */
+    .hero-slide-item .headline-text {
+      will-change: transform, opacity, clip-path;
+    }
+
     .hero-slide-item .subdescription-text,
     .hero-slide-item .cta-button-row {
-      opacity: 0;
-      transform: translateX(-40px);
-      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-        transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .hero-slide-item.active .pretitle-badge,
-    .hero-slide-item.active .headline-text,
-    .hero-slide-item.active .subdescription-text,
-    .hero-slide-item.active .cta-button-row {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    .hero-slide-item.active .pretitle-badge {
-      transition-delay: 0.08s;
-    }
-
-    .hero-slide-item.active .headline-text {
-      transition-delay: 0.15s;
-    }
-
-    .hero-slide-item.active .subdescription-text {
-      transition-delay: 0.22s;
-    }
-
-    .hero-slide-item.active .cta-button-row {
-      transition-delay: 0.28s;
+      will-change: transform, opacity;
     }
 
     /* Right Image Entrance from Outside Right */
@@ -1542,6 +1488,11 @@
       width: 46px;
       height: 46px;
       display: block;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .product-card-item:hover .card-icon-box svg {
+      transform: scale(1.12);
     }
 
     .card-title-group {
@@ -1861,6 +1812,36 @@
       padding: 2.5rem clamp(1.8rem, 3.5vw, 3.2rem);
       gap: 1.5rem;
       box-shadow: 0 20px 50px rgba(22, 163, 74, 0.16);
+      touch-action: pan-y;
+      user-select: none;
+    }
+
+    .crm-left-col,
+    .crm-card-header {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+      will-change: transform, opacity;
+    }
+
+    .crm-slide-exit-left {
+      transform: translateX(-50px) !important;
+      opacity: 0 !important;
+    }
+
+    .crm-slide-exit-right {
+      transform: translateX(50px) !important;
+      opacity: 0 !important;
+    }
+
+    .crm-slide-enter-left {
+      transform: translateX(-50px) !important;
+      opacity: 0 !important;
+      transition: none !important;
+    }
+
+    .crm-slide-enter-right {
+      transform: translateX(50px) !important;
+      opacity: 0 !important;
+      transition: none !important;
     }
 
     .crm-banner-glow-1 {
@@ -1966,11 +1947,34 @@
       height: auto;
       object-fit: contain;
       filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.22));
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+      will-change: transform, opacity;
     }
 
     .crm-laptop-img:hover {
       transform: translateY(-4px) scale(1.02);
+    }
+
+    .crm-laptop-img.exit-left {
+      transform: translateX(-70px) scale(0.92) !important;
+      opacity: 0 !important;
+    }
+
+    .crm-laptop-img.exit-right {
+      transform: translateX(70px) scale(0.92) !important;
+      opacity: 0 !important;
+    }
+
+    .crm-laptop-img.enter-left {
+      transform: translateX(-70px) scale(0.92) !important;
+      opacity: 0 !important;
+      transition: none !important;
+    }
+
+    .crm-laptop-img.enter-right {
+      transform: translateX(70px) scale(0.92) !important;
+      opacity: 0 !important;
+      transition: none !important;
     }
 
     .crm-right-card {
@@ -2372,27 +2376,38 @@
     /* Right Media Collage Container */
     .panel-media-col {
       position: relative;
-      height: 380px;
       width: 100%;
-      min-width: 440px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      max-width: 480px;
+      height: 360px;
+      display: grid;
+      gap: 16px;
       z-index: 2;
+      align-items: stretch;
+      margin: 0 auto;
+      perspective: 1200px;
+      transform-style: preserve-3d;
+      transition: background 0.35s ease, gap 0.35s ease;
     }
 
     .media-card-item {
-      border-radius: 22px;
+      position: relative;
+      border-radius: 20px;
       overflow: hidden;
       background-color: #0f172a;
       border: 2px solid rgba(255, 255, 255, 0.22);
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.32);
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      will-change: transform, opacity;
+      width: 100%;
+      height: 100%;
     }
 
     .media-card-item:hover {
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 28px 55px rgba(0, 0, 0, 0.45);
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+      border-color: rgba(255, 255, 255, 0.45);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     }
 
     .media-card-item img {
@@ -2401,81 +2416,59 @@
       object-fit: cover;
       display: block;
       border-radius: inherit;
-      transition: opacity 0.3s ease;
+      transition: transform 0.5s ease;
     }
 
-    /* ================= Dynamic Layout: Web Development ================= */
-    .panel-media-col.layout-web-dev .media-card-1 {
-      position: absolute;
-      right: 35px;
-      left: auto;
-      top: -50px;
-      bottom: auto;
-      width: 230px;
-      height: 260px;
-      z-index: 3;
-      border-radius: 26px;
+    .media-card-item:hover img {
+      transform: scale(1.05);
+    }
+
+    /* ================= 1st Alignment: Left Tall + Right Stacked (Web Dev, Logo, Enterprise, SEO) ================= */
+    .panel-media-col.layout-web-dev {
+      grid-template-columns: 190px 1fr;
+      grid-template-rows: 1fr 1fr;
     }
 
     .panel-media-col.layout-web-dev .media-card-2 {
-      position: absolute;
-      right: 275px;
-      bottom: 15px;
-      top: auto;
-      left: auto;
-      width: 185px;
-      height: 185px;
-      z-index: 4;
+      grid-column: 1;
+      grid-row: 1 / span 2;
       border-radius: 24px;
+    }
+
+    .panel-media-col.layout-web-dev .media-card-1 {
+      grid-column: 2;
+      grid-row: 1;
+      border-radius: 20px;
     }
 
     .panel-media-col.layout-web-dev .media-card-3 {
-      position: absolute;
-      right: 25px;
-      bottom: 15px;
-      top: auto;
-      left: auto;
-      width: 225px;
-      height: 185px;
-      z-index: 4;
-      border-radius: 24px;
+      grid-column: 2;
+      grid-row: 2;
+      border-radius: 20px;
     }
 
-    /* ================= Dynamic Layout: Mobile App ================= */
+    /* ================= 2nd Alignment: Left Stacked + Right Tall (Mobile App, Branding, SMO) ================= */
+    .panel-media-col.layout-mobile-app {
+      grid-template-columns: 1fr 190px;
+      grid-template-rows: 1fr 1fr;
+    }
+
     .panel-media-col.layout-mobile-app .media-card-1 {
-      position: absolute;
-      right: 230px;
-      left: auto;
-      top: -45px;
-      bottom: auto;
-      width: 170px;
-      height: 170px;
-      z-index: 3;
-      border-radius: 24px;
-    }
-
-    .panel-media-col.layout-mobile-app .media-card-2 {
-      position: absolute;
-      right: 20px;
-      left: auto;
-      top: -45px;
-      bottom: auto;
-      width: 170px;
-      height: 170px;
-      z-index: 3;
-      border-radius: 24px;
+      grid-column: 1;
+      grid-row: 1;
+      border-radius: 20px;
     }
 
     .panel-media-col.layout-mobile-app .media-card-3 {
-      position: absolute;
-      right: 25px;
-      left: auto;
-      bottom: 15px;
-      top: auto;
-      width: 275px;
-      height: 215px;
-      z-index: 4;
-      border-radius: 26px;
+      grid-column: 1;
+      grid-row: 2;
+      border-radius: 20px;
+    }
+
+    .panel-media-col.layout-mobile-app .media-card-2 {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      border-radius: 24px;
     }
 
     /* Responsive Design */
@@ -2572,30 +2565,17 @@
       }
 
       .panel-media-col {
-        height: 250px;
-        min-width: unset;
-        width: 100%;
+        height: 290px;
+        max-width: 400px;
+        gap: 12px;
       }
 
-      .media-card-1 {
-        top: 0;
-        left: 10px;
-        width: 130px;
-        height: 130px;
+      .panel-media-col.layout-web-dev {
+        grid-template-columns: 145px 1fr;
       }
 
-      .media-card-2 {
-        top: 0;
-        right: 10px;
-        width: 130px;
-        height: 130px;
-      }
-
-      .media-card-3 {
-        bottom: 0;
-        right: 30px;
-        width: 180px;
-        height: 140px;
+      .panel-media-col.layout-mobile-app {
+        grid-template-columns: 1fr 145px;
       }
     }
 
@@ -3172,26 +3152,7 @@
       }
     }
 
-    .text-layer-green {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      margin: auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #16a34a;
-      /* Brand Green */
-      z-index: 2;
-      clip-path: inset(0% 100% 0% 0%);
-      -webkit-clip-path: inset(0% 100% 0% 0%);
-      will-change: clip-path, -webkit-clip-path;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-    }
+
 
     @media (max-width: 900px) {
       .text-reveal-scroll-section {
@@ -4044,7 +4005,7 @@
           </ul>
         </nav>
 
-        <!-- Right Side: Let's Talk CTA & Hamburger Menu -->
+        <!-- Right Side: Let's Talk CTA & Mobile Hamburger Menu -->
         <div class="header-right-group">
           <a href="#contact" class="btn-talk-pill" id="btn-header-talk">
             Let's Talk
@@ -4054,7 +4015,7 @@
               <polyline points="12 5 19 12 12 19"></polyline>
             </svg>
           </a>
-          <button class="btn-hamburger-circle" id="btn-header-hamburger" aria-label="Toggle Navigation Menu">
+          <button class="mobile-menu-toggle" id="btn-header-hamburger" aria-label="Toggle Navigation Menu">
             <span></span>
             <span></span>
             <span></span>
@@ -5225,11 +5186,8 @@
     <div class="viewport-container">
       <div class="reveal-text-wrapper">
 
-        <!-- Base Layer: Shining Black text -->
+        <!-- Shining Black Text (No green color overlay) -->
         <h1 class="reveal-text text-layer-base">STARK</h1>
-
-        <!-- Brand Green Reveal Layer: Solid #16a34a green clipped left to right -->
-        <h2 class="reveal-text text-layer-green" aria-hidden="true">STARK</h2>
 
       </div>
     </div>

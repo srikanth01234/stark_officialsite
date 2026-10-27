@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initCtaScrollAnimation();
   initCrmShowcaseSlider();
+  initPageAnimations();
 });
 
 /* ==========================================================
@@ -30,18 +31,19 @@ function initStatsCounter() {
   const statElements = document.querySelectorAll('[data-target-val]');
   if (!statElements.length) return;
 
-  statElements.forEach(stat => {
+  function runCounter(stat) {
+    if (stat.getAttribute('data-counted') === 'true') return;
+    stat.setAttribute('data-counted', 'true');
     const target = parseInt(stat.getAttribute('data-target-val'), 10);
     if (isNaN(target)) return;
 
     let current = 0;
-    const duration = 1500;
+    const duration = 1800;
     const startTime = performance.now();
 
     const animateCount = (currentTime) => {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      // Ease out quartic
       const ease = 1 - Math.pow(1 - progress, 4);
       current = Math.floor(ease * target);
       stat.textContent = current + '+';
@@ -54,7 +56,20 @@ function initStatsCounter() {
     };
 
     requestAnimationFrame(animateCount);
-  });
+  }
+
+  if (typeof ScrollTrigger !== 'undefined') {
+    statElements.forEach(stat => {
+      ScrollTrigger.create({
+        trigger: stat,
+        start: "top 88%",
+        onEnter: () => runCounter(stat),
+        once: true
+      });
+    });
+  } else {
+    statElements.forEach(stat => runCounter(stat));
+  }
 }
 
 /* ==========================================================
@@ -284,10 +299,47 @@ function initWhatWeDoTabs() {
 
   const tabList = Array.from(tabs);
   let currentIndex = 0;
+  let isTransitioning = false;
+  let transitionTimeout = null;
+
+  const mediaCol = document.querySelector('.panel-media-col');
+  const cards = mediaCol ? Array.from(mediaCol.querySelectorAll('.media-card-item')) : [];
+
+  // Interactive 3D mousemove depth effect on the media collage
+  if (mediaCol && typeof gsap !== 'undefined') {
+    mediaCol.addEventListener('mousemove', (e) => {
+      if (isTransitioning) return;
+      const rect = mediaCol.getBoundingClientRect();
+      const normX = ((e.clientX - rect.left) / rect.width) - 0.5;
+      const normY = ((e.clientY - rect.top) / rect.height) - 0.5;
+      gsap.to(mediaCol, {
+        rotationY: normX * 10,
+        rotationX: -normY * 10,
+        duration: 0.35,
+        ease: 'power2.out',
+        transformPerspective: 1200
+      });
+    });
+
+    mediaCol.addEventListener('mouseleave', () => {
+      if (isTransitioning) return;
+      gsap.to(mediaCol, {
+        rotationY: 0,
+        rotationX: 0,
+        duration: 0.5,
+        ease: 'power2.out'
+      });
+    });
+  }
 
   function switchTab(index, isUserAction = false) {
     if (index < 0) index = tabList.length - 1;
     if (index >= tabList.length) index = 0;
+
+    let dir = index >= currentIndex ? 1 : -1;
+    if (currentIndex === tabList.length - 1 && index === 0) dir = 1;
+    if (currentIndex === 0 && index === tabList.length - 1) dir = -1;
+
     currentIndex = index;
 
     const activeTabKey = tabList[currentIndex].getAttribute('data-tab-id');
@@ -298,7 +350,7 @@ function initWhatWeDoTabs() {
       btn.classList.toggle('active', isActive);
       btn.setAttribute('aria-selected', isActive);
       if (isActive) {
-        btn.style.setProperty('--active-tab-color', data ? data.tabColor : '#3b52ff');
+        btn.style.setProperty('--active-tab-color', data ? data.tabColor : '#16a34a');
         if (isUserAction && tabsList) {
           // Scroll tab within tabsList horizontally only, without moving the window/page
           const offset = btn.offsetLeft - (tabsList.clientWidth / 2) + (btn.clientWidth / 2);
@@ -309,43 +361,124 @@ function initWhatWeDoTabs() {
 
     if (!data) return;
 
-    // Fade out elements smoothly
-    titleEl.style.opacity = '0';
-    descEl.style.opacity = '0';
-    clientsEl.style.opacity = '0';
-    if (img1) img1.style.opacity = '0';
-    if (img2) img2.style.opacity = '0';
-    if (img3) img3.style.opacity = '0';
-
-    setTimeout(() => {
+    // Direct render on initial page setup
+    if (!isUserAction || typeof gsap === 'undefined') {
       titleEl.textContent = data.title;
       descEl.textContent = data.desc;
-
-      // Update Card Theme & Media Layout
-      if (panelEl) {
-        panelEl.className = 'what-we-do-panel ' + data.themeClass;
-      }
-      const mediaCol = document.querySelector('.panel-media-col');
-      if (mediaCol) {
-        mediaCol.className = 'panel-media-col ' + data.layoutClass;
-      }
-
+      if (panelEl) panelEl.className = 'what-we-do-panel ' + data.themeClass;
+      if (mediaCol) mediaCol.className = 'panel-media-col ' + data.layoutClass;
       clientsEl.innerHTML = data.clients.map(c =>
         `<li class="panel-client-item"><span class="chevron-double">&raquo;&raquo;</span> ${c}</li>`
       ).join('');
+      if (img1) img1.src = data.images.img1;
+      if (img2) img2.src = data.images.img2;
+      if (img3) img3.src = data.images.img3;
+      return;
+    }
+
+    // Dynamic 3D Rotating Transition into Second / Alternating Alignment
+    isTransitioning = true;
+    if (transitionTimeout) clearTimeout(transitionTimeout);
+
+    // Stop ongoing animations safely
+    gsap.killTweensOf([mediaCol, ...cards, titleEl, descEl, clientsEl]);
+
+    // Phase 1: 3D Rotate Out with depth perspective
+    if (mediaCol) {
+      gsap.to(mediaCol, {
+        duration: 0.28,
+        rotationY: dir * 18,
+        scale: 0.92,
+        ease: 'power2.in'
+      });
+    }
+
+    if (cards.length) {
+      gsap.to(cards, {
+        duration: 0.28,
+        rotationY: dir * 90,
+        rotationZ: (i) => (i === 1 ? -dir * 8 : dir * 8),
+        scale: 0.78,
+        opacity: 0,
+        stagger: 0.035,
+        ease: 'power2.in'
+      });
+    }
+
+    gsap.to([titleEl, descEl, clientsEl], {
+      duration: 0.22,
+      opacity: 0,
+      y: -10,
+      ease: 'power2.in'
+    });
+
+    // Phase 2: Midway switch layout and update content at 90 deg rotation
+    transitionTimeout = setTimeout(() => {
+      titleEl.textContent = data.title;
+      descEl.textContent = data.desc;
+      clientsEl.innerHTML = data.clients.map(c =>
+        `<li class="panel-client-item"><span class="chevron-double">&raquo;&raquo;</span> ${c}</li>`
+      ).join('');
+
+      // Switch Theme & Layout Class (1st vs 2nd Alignment!)
+      if (panelEl) {
+        panelEl.className = 'what-we-do-panel ' + data.themeClass;
+      }
+      if (mediaCol) {
+        mediaCol.className = 'panel-media-col ' + data.layoutClass;
+      }
 
       if (img1) img1.src = data.images.img1;
       if (img2) img2.src = data.images.img2;
       if (img3) img3.src = data.images.img3;
 
-      // Fade in smoothly
-      titleEl.style.opacity = '1';
-      descEl.style.opacity = '1';
-      clientsEl.style.opacity = '1';
-      if (img1) img1.style.opacity = '1';
-      if (img2) img2.style.opacity = '1';
-      if (img3) img3.style.opacity = '1';
-    }, 170);
+      // Phase 3: 3D Rotate In from opposite angle into the new alignment
+      if (mediaCol) {
+        gsap.fromTo(mediaCol,
+          { rotationY: -dir * 18, scale: 0.92 },
+          {
+            rotationY: 0,
+            scale: 1,
+            duration: 0.45,
+            ease: 'power2.out',
+            onComplete: () => {
+              gsap.set(mediaCol, { clearProps: 'transform' });
+            }
+          }
+        );
+      }
+
+      if (cards.length) {
+        gsap.fromTo(cards,
+          {
+            rotationY: -dir * 90,
+            rotationZ: (i) => (i === 1 ? dir * 8 : -dir * 8),
+            scale: 0.78,
+            opacity: 0
+          },
+          {
+            duration: 0.52,
+            rotationY: 0,
+            rotationZ: 0,
+            scale: 1,
+            opacity: 1,
+            stagger: 0.05,
+            ease: 'back.out(1.25)',
+            onComplete: () => {
+              gsap.set(cards, { clearProps: 'transform' });
+              isTransitioning = false;
+            }
+          }
+        );
+      } else {
+        isTransitioning = false;
+      }
+
+      gsap.fromTo([titleEl, descEl, clientsEl],
+        { opacity: 0, y: 12 },
+        { opacity: 1, y: 0, duration: 0.4, stagger: 0.06, ease: 'power2.out' }
+      );
+    }, 280);
   }
 
   tabs.forEach((tab, index) => {
@@ -500,39 +633,7 @@ function initCtaScrollAnimation() {
   });
 }
 
-/* ==========================================================
-   9. SCROLL-BASED "STARK SOFTECH" TEXT COLOR REVEAL ANIMATION
-   ========================================================== */
-function initTextColorRevealAnimation() {
-  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
-  gsap.registerPlugin(ScrollTrigger);
-
-  const greenText = document.querySelector('.text-layer-green');
-  const revealSection = document.querySelector('.text-reveal-scroll-section');
-
-  if (!greenText || !revealSection) return;
-
-  // Set explicit initial state (hidden green text)
-  gsap.set(greenText, {
-    clipPath: "inset(0% 100% 0% 0%)",
-    webkitClipPath: "inset(0% 100% 0% 0%)"
-  });
-
-  // Scrub clip-path from left to right as section enters and passes viewport
-  gsap.to(greenText, {
-    clipPath: "inset(0% 0% 0% 0%)",
-    webkitClipPath: "inset(0% 0% 0% 0%)",
-    ease: "none",
-    scrollTrigger: {
-      trigger: revealSection,
-      start: "top 85%",
-      end: "bottom 25%",
-      scrub: 1,
-      invalidateOnRefresh: true
-    }
-  });
-}
 
 /* ==========================================================
    HERO SECTION SLIDESHOW / CAROUSEL
@@ -570,6 +671,28 @@ function initHeroSlider() {
     dotBtns.forEach((dot, i) => {
       dot.classList.toggle('active', i === currentIndex);
     });
+
+    // Trigger GSAP Mask Reveal & Stagger on Active Slide
+    const newActiveSlide = slideItems[currentIndex];
+    if (newActiveSlide && typeof gsap !== 'undefined') {
+      const headline = newActiveSlide.querySelector('.headline-text');
+      const subdesc = newActiveSlide.querySelector('.subdescription-text');
+      const ctaBtns = newActiveSlide.querySelectorAll('.cta-button-row a');
+
+      if (headline) {
+        gsap.fromTo(headline,
+          { clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)", y: 40, opacity: 0 },
+          { clipPath: "polygon(0 0%, 100% 0%, 100% 100%, 0 100%)", y: 0, opacity: 1, duration: 0.95, ease: "power4.out" }
+        );
+      }
+
+      if (subdesc || (ctaBtns && ctaBtns.length)) {
+        gsap.fromTo([subdesc, ...ctaBtns],
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power3.out", delay: 0.2 }
+        );
+      }
+    }
 
     resetTimer();
   }
@@ -679,42 +802,515 @@ function initCrmShowcaseSlider() {
   const prevBtn = document.getElementById('btn-crm-prev');
   const nextBtn = document.getElementById('btn-crm-next');
   const laptopImg = document.getElementById('crm-laptop-img');
+  const bannerCard = document.querySelector('.crm-banner-card');
+  const leftCol = document.querySelector('.crm-left-col');
+  const rightHeader = document.querySelector('.crm-card-header');
 
   if (!subtagLeftEl || !prevBtn || !nextBtn) return;
 
-  function updateSlide(index) {
-    if (index < 0) index = slidesData.length - 1;
-    if (index >= slidesData.length) index = 0;
-    activeIndex = index;
+  let isAnimating = false;
 
-    const data = slidesData[activeIndex];
+  function updateSlide(targetIndex, direction = 1) {
+    if (isAnimating) return;
+    if (targetIndex === activeIndex) return;
 
-    // Smooth transition fade out
-    const animEls = [subtagLeftEl, titleLeftEl, descLeftEl, subtagRightEl, titleRightEl, descRightEl, counterEl, laptopImg];
-    animEls.forEach(el => { if (el) el.style.opacity = '0.3'; });
+    if (targetIndex < 0) targetIndex = slidesData.length - 1;
+    if (targetIndex >= slidesData.length) targetIndex = 0;
+
+    isAnimating = true;
+    const currentDirection = direction !== 0 ? direction : (targetIndex > activeIndex ? 1 : -1);
+
+    // 1. Exit current slide with directional glide
+    const exitClass = currentDirection > 0 ? 'crm-slide-exit-left' : 'crm-slide-exit-right';
+    const laptopExitClass = currentDirection > 0 ? 'exit-left' : 'exit-right';
+
+    if (leftCol) leftCol.classList.add(exitClass);
+    if (rightHeader) rightHeader.classList.add(exitClass);
+    if (laptopImg) laptopImg.classList.add(laptopExitClass);
+    if (counterEl) counterEl.style.opacity = '0.3';
 
     setTimeout(() => {
+      // 2. Update content at midpoint
+      activeIndex = targetIndex;
+      const data = slidesData[activeIndex];
+
       if (subtagLeftEl) subtagLeftEl.textContent = data.subtagLeft;
       if (titleLeftEl) titleLeftEl.textContent = data.titleLeft;
       if (descLeftEl) descLeftEl.textContent = data.descLeft;
       if (subtagRightEl) subtagRightEl.textContent = data.subtagRight;
       if (titleRightEl) titleRightEl.innerHTML = data.titleRight;
       if (descRightEl) descRightEl.textContent = data.descRight;
-      if (counterEl) counterEl.innerHTML = data.counter;
+      if (counterEl) {
+        counterEl.innerHTML = data.counter;
+        counterEl.style.opacity = '1';
+      }
 
-      // Update dots
+      // Update dots indicator
       dots.forEach((dot, i) => {
         dot.classList.toggle('active', i === activeIndex);
       });
 
-      animEls.forEach(el => { if (el) el.style.opacity = '1'; });
-    }, 150);
+      // 3. Move elements to opposite incoming side instantly (without transition)
+      const enterClass = currentDirection > 0 ? 'crm-slide-enter-right' : 'crm-slide-enter-left';
+      const laptopEnterClass = currentDirection > 0 ? 'enter-right' : 'enter-left';
+
+      if (leftCol) {
+        leftCol.classList.remove(exitClass);
+        leftCol.classList.add(enterClass);
+        void leftCol.offsetWidth; // force browser layout recalculation
+        leftCol.classList.remove(enterClass);
+      }
+      if (rightHeader) {
+        rightHeader.classList.remove(exitClass);
+        rightHeader.classList.add(enterClass);
+        void rightHeader.offsetWidth; // force browser layout recalculation
+        rightHeader.classList.remove(enterClass);
+      }
+      if (laptopImg) {
+        laptopImg.classList.remove(laptopExitClass);
+        laptopImg.classList.add(laptopEnterClass);
+        void laptopImg.offsetWidth; // force browser layout recalculation
+        laptopImg.classList.remove(laptopEnterClass);
+      }
+
+      setTimeout(() => {
+        isAnimating = false;
+      }, 350);
+    }, 220);
   }
 
-  prevBtn.addEventListener('click', () => updateSlide(activeIndex - 1));
-  nextBtn.addEventListener('click', () => updateSlide(activeIndex + 1));
+  // Next / Prev button triggers
+  prevBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    updateSlide(activeIndex - 1, -1);
+  });
 
+  nextBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    updateSlide(activeIndex + 1, 1);
+  });
+
+  // Dots trigger
   dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => updateSlide(i));
+    dot.addEventListener('click', () => {
+      if (i !== activeIndex) {
+        updateSlide(i, i > activeIndex ? 1 : -1);
+      }
+    });
+  });
+
+  // Touch & Pointer Swipe Gestures
+  if (bannerCard) {
+    let startX = 0;
+    let startY = 0;
+    let isSwiping = false;
+
+    bannerCard.addEventListener('touchstart', (e) => {
+      const touch = e.touches[0];
+      startX = touch.clientX;
+      startY = touch.clientY;
+      isSwiping = true;
+    }, { passive: true });
+
+    bannerCard.addEventListener('touchend', (e) => {
+      if (!isSwiping) return;
+      isSwiping = false;
+      const touch = e.changedTouches[0];
+      const diffX = touch.clientX - startX;
+      const diffY = touch.clientY - startY;
+
+      // Ensure horizontal swipe is dominant and exceeds 35px threshold
+      if (Math.abs(diffX) > 35 && Math.abs(diffX) > Math.abs(diffY) * 1.2) {
+        if (diffX < 0) {
+          updateSlide(activeIndex + 1, 1); // Swipe left -> Next product
+        } else {
+          updateSlide(activeIndex - 1, -1); // Swipe right -> Previous product
+        }
+      }
+    }, { passive: true });
+
+    // Pointer / mouse drag swipe for desktop
+    let isMouseDown = false;
+    let mouseStartX = 0;
+
+    bannerCard.addEventListener('mousedown', (e) => {
+      if (e.target.closest('button') || e.target.closest('a')) return;
+      isMouseDown = true;
+      mouseStartX = e.clientX;
+    });
+
+    window.addEventListener('mouseup', (e) => {
+      if (!isMouseDown) return;
+      isMouseDown = false;
+      const diffX = e.clientX - mouseStartX;
+      if (Math.abs(diffX) > 50) {
+        if (diffX < 0) {
+          updateSlide(activeIndex + 1, 1);
+        } else {
+          updateSlide(activeIndex - 1, -1);
+        }
+      }
+    });
+  }
+}
+
+/* ==========================================================
+   MASTER GSAP SCROLL & SECTION ANIMATIONS
+   ========================================================== */
+function initPageAnimations() {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // 1. Hero Headline Mask Reveal & Subtitle + Buttons Stagger (Initial Load)
+  const activeSlide = document.querySelector('.hero-slide-item.active');
+  if (activeSlide) {
+    const headline = activeSlide.querySelector('.headline-text');
+    const subdesc = activeSlide.querySelector('.subdescription-text');
+    const ctaBtns = activeSlide.querySelectorAll('.cta-button-row a');
+
+    if (headline) {
+      gsap.fromTo(headline,
+        { clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)", y: 45, opacity: 0 },
+        { clipPath: "polygon(0 0%, 100% 0%, 100% 100%, 0 100%)", y: 0, opacity: 1, duration: 1.1, ease: "power4.out", delay: 0.15 }
+      );
+    }
+
+    if (subdesc || (ctaBtns && ctaBtns.length)) {
+      gsap.fromTo([subdesc, ...ctaBtns],
+        { y: 35, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.85, stagger: 0.12, ease: "power3.out", delay: 0.4 }
+      );
+    }
+  }
+
+  // Floating badges intro pop
+  const heroBadges = document.querySelectorAll('.hero-floating-card-ideas, .hero-annotation-top-right');
+  if (heroBadges.length) {
+    gsap.fromTo(heroBadges,
+      { scale: 0.8, opacity: 0, y: -20 },
+      { scale: 1, opacity: 1, y: 0, duration: 0.9, stagger: 0.15, ease: "back.out(1.5)", delay: 0.6 }
+    );
+  }
+
+  // Responsive ScrollTrigger animations using gsap.matchMedia
+  const mm = gsap.matchMedia();
+
+  // Desktop only (>= 769px) - Parallax and heavy scrubbing (keeps mobile scrolling natural)
+  mm.add("(min-width: 769px)", () => {
+    // 2. Hero Background Image & Wave Scroll Parallax
+    const heroDeskImg = document.querySelector('.desk-image-container');
+    const heroWave = document.querySelector('.hero-corner-wave-wrap');
+    const heroSection = document.querySelector('.hero-main-area');
+
+    if (heroSection) {
+      if (heroDeskImg) {
+        gsap.to(heroDeskImg, {
+          y: 75,
+          ease: "none",
+          scrollTrigger: {
+            trigger: heroSection,
+            start: "top top",
+            end: "bottom top",
+            scrub: 1.2
+          }
+        });
+      }
+
+      if (heroWave) {
+        gsap.to(heroWave, {
+          y: 45,
+          ease: "none",
+          scrollTrigger: {
+            trigger: heroSection,
+            start: "top top",
+            end: "bottom top",
+            scrub: 1
+          }
+        });
+      }
+    }
+
+    // 3. Product Showcase (CRM Green Card) - Scale-In & Laptop Parallax
+    const crmSection = document.querySelector('.crm-showcase-section');
+    const crmCard = document.querySelector('.crm-banner-card');
+    const crmLaptop = document.querySelector('.crm-laptop-img');
+
+    if (crmSection && crmCard) {
+      gsap.fromTo(crmCard,
+        { scale: 0.92, y: 45, opacity: 0.88 },
+        {
+          scale: 1,
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: crmSection,
+            start: "top 80%"
+          }
+        }
+      );
+
+      if (crmLaptop) {
+        gsap.to(crmLaptop, {
+          y: -30,
+          ease: "none",
+          scrollTrigger: {
+            trigger: crmSection,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1.4
+          }
+        });
+      }
+    }
+  });
+
+  // All screen sizes (Desktop + Mobile) - Natural fade-ups and staggers
+  mm.add("all", () => {
+    // 4. About Us Section - Fade Up + Clip Reveal
+    const aboutSection = document.querySelector('.about-section');
+    const aboutVisual = document.querySelector('.about-visual-wrap');
+    const aboutContent = document.querySelectorAll('.about-content-col > *');
+
+    if (aboutSection) {
+      if (aboutVisual) {
+        gsap.fromTo(aboutVisual,
+          { clipPath: "inset(12% 0% 0% 0%)", opacity: 0, y: 40 },
+          {
+            clipPath: "inset(0% 0% 0% 0%)",
+            opacity: 1,
+            y: 0,
+            duration: 1.1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: aboutSection,
+              start: "top 78%"
+            }
+          }
+        );
+      }
+
+      if (aboutContent.length) {
+        gsap.fromTo(aboutContent,
+          { y: 35, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.85,
+            stagger: 0.12,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: aboutSection,
+              start: "top 76%"
+            }
+          }
+        );
+      }
+    }
+
+    // 5. Product Cards - Stagger Reveal
+    const productsSection = document.querySelector('.products-section');
+    const productHeader = document.querySelectorAll('.products-header-col > *');
+    const productCards = document.querySelectorAll('.product-card-item');
+
+    if (productsSection) {
+      if (productHeader.length) {
+        gsap.fromTo(productHeader,
+          { y: 30, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.75,
+            stagger: 0.1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: productsSection,
+              start: "top 80%"
+            }
+          }
+        );
+      }
+
+      if (productCards.length) {
+        gsap.fromTo(productCards,
+          { y: 45, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.12,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: productsSection,
+              start: "top 72%"
+            }
+          }
+        );
+      }
+    }
+
+    // 6. Services (What We Do) - Fade Up + Stagger
+    const whatWeDoSection = document.querySelector('.what-we-do-section');
+    const whatWeDoHeader = document.querySelector('.what-we-do-header');
+    const whatWeDoCard = document.querySelector('.what-we-do-card');
+
+    if (whatWeDoSection) {
+      if (whatWeDoHeader) {
+        gsap.fromTo(whatWeDoHeader,
+          { y: 30, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: whatWeDoSection,
+              start: "top 82%"
+            }
+          }
+        );
+      }
+
+      if (whatWeDoCard) {
+        gsap.fromTo(whatWeDoCard,
+          { y: 50, opacity: 0, scale: 0.97 },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 0.9,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: whatWeDoCard,
+              start: "top 80%"
+            }
+          }
+        );
+      }
+    }
+
+    // 7. Client Logos - Stagger Reveal
+    const clientsSection = document.querySelector('.clients-section');
+    const clientsTitle = document.querySelector('.clients-title');
+    const clientLogos = document.querySelectorAll('.client-logo-card');
+
+    if (clientsSection) {
+      if (clientsTitle) {
+        gsap.fromTo(clientsTitle,
+          { y: 30, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.75,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: clientsSection,
+              start: "top 82%"
+            }
+          }
+        );
+      }
+
+      if (clientLogos.length) {
+        gsap.fromTo(clientLogos,
+          { y: 25, opacity: 0, scale: 0.88 },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 0.6,
+            stagger: 0.035,
+            ease: "back.out(1.3)",
+            scrollTrigger: {
+              trigger: '.clients-pyramid-grid',
+              start: "top 84%"
+            }
+          }
+        );
+      }
+    }
+
+    // 8. FAQ Section - Fade In
+    const faqSection = document.querySelector('.faq-section');
+    const faqVisual = document.querySelector('.faq-visual-wrap');
+    const faqContent = document.querySelector('.faq-content-col');
+
+    if (faqSection) {
+      if (faqVisual) {
+        gsap.fromTo(faqVisual,
+          { x: -40, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.9,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: faqSection,
+              start: "top 78%"
+            }
+          }
+        );
+      }
+
+      if (faqContent) {
+        gsap.fromTo(faqContent,
+          { x: 40, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.9,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: faqSection,
+              start: "top 78%"
+            }
+          }
+        );
+      }
+    }
+
+
+
+    // 10. Contact Section - Fade Up
+    const contactSection = document.querySelector('.contact-projects-section');
+    const contactLeft = document.querySelectorAll('.contact-left-col > *');
+    const contactRight = document.querySelector('.contact-card-container');
+
+    if (contactSection) {
+      if (contactLeft.length) {
+        gsap.fromTo(contactLeft,
+          { y: 35, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.85,
+            stagger: 0.12,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: contactSection,
+              start: "top 78%"
+            }
+          }
+        );
+      }
+
+      if (contactRight) {
+        gsap.fromTo(contactRight,
+          { y: 40, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.9,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: contactSection,
+              start: "top 76%"
+            }
+          }
+        );
+      }
+    }
   });
 }

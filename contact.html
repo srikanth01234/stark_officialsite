@@ -167,18 +167,18 @@
     }
 
     .center-nav-pill {
-      background: rgba(255, 255, 255, 0.92);
-      padding: 0.4rem 1.4rem;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 0.35rem 0.6rem;
       border-radius: 9999px;
-      box-shadow: 0 4px 18px rgba(27, 77, 41, 0.05), inset 0 1px 0 rgba(255, 255, 255, 1);
-      border: 1px solid rgba(220, 245, 226, 0.9);
+      box-shadow: 0 4px 20px rgba(27, 77, 41, 0.06), inset 0 1px 0 rgba(255, 255, 255, 1);
+      border: 1px solid rgba(220, 245, 226, 0.95);
       transition: all 0.25s ease;
     }
 
     .site-nav-menu {
       display: flex;
       align-items: center;
-      gap: 1.5rem;
+      gap: 0.4rem;
       list-style: none;
       margin: 0;
       padding: 0;
@@ -187,35 +187,32 @@
     .site-nav-link {
       font-size: 0.88rem;
       font-weight: 500;
-      color: #2d3748;
+      color: #334155;
       text-decoration: none;
-      transition: color 0.2s ease;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
-      padding: 0.2rem 0;
-      display: flex;
-      flex-direction: column;
+      padding: 0.42rem 1.05rem;
+      border-radius: 9999px;
+      display: inline-flex;
       align-items: center;
+      justify-content: center;
     }
 
     .site-nav-link:hover {
-      color: var(--primary-green);
+      color: #15803d;
+      background-color: rgba(34, 197, 94, 0.08);
     }
 
     .site-nav-link.active {
-      color: var(--primary-green);
-      font-weight: 600;
+      color: #14532d;
+      background-color: #dcfce7;
+      font-weight: 700;
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      box-shadow: 0 2px 8px rgba(22, 163, 74, 0.12);
     }
 
     .site-nav-link.active::after {
-      content: '';
-      display: block;
-      width: 5px;
-      height: 5px;
-      background-color: var(--primary-green);
-      border-radius: 50%;
-      position: absolute;
-      bottom: -6px;
-      box-shadow: 0 0 6px rgba(27, 77, 41, 0.4);
+      display: none !important;
     }
 
     .header-right-group {
@@ -247,13 +244,6 @@
     @media (max-width: 992px) {
 
       /* Header & Nav */
-      .center-nav-pill {
-        background: transparent;
-        box-shadow: none;
-        border: none;
-        padding: 0;
-      }
-
       .btn-talk-pill {
         display: none !important;
       }
@@ -274,33 +264,86 @@
       .mobile-menu-toggle span {
         width: 100%;
         height: 3px;
-        background-color: #22c55e;
+        background-color: var(--primary-green);
         border-radius: 3px;
         transition: all 0.3s ease;
       }
 
-      .nav-glass-container {
-        padding: 0.6rem 1.2rem;
+      .mobile-menu-toggle.active span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
       }
 
-      /* Mobile Menu Dropdown */
-      .site-nav-menu {
+      .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+
+      .mobile-menu-toggle.active span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+      }
+
+      .center-nav-pill {
         display: none;
-        flex-direction: column;
         position: absolute;
-        top: 70px;
-        left: 5%;
-        width: 90%;
+        top: calc(100% + 0.75rem);
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(92%, 420px);
         background: rgba(255, 255, 255, 0.98);
-        padding: 2rem;
-        border-radius: 16px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        gap: 2rem;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(220, 245, 226, 0.9);
+        border-radius: 24px;
+        padding: 1.25rem 1.5rem;
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
+        z-index: 1001;
       }
 
-      .site-nav-menu.mobile-active {
-        display: flex;
+      .center-nav-pill.mobile-open {
+        display: block !important;
+        animation: mobileNavFade 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .center-nav-pill.mobile-open .site-nav-menu,
+      .site-nav-menu {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 1.1rem !important;
+        width: 100%;
+        margin: 0;
+        padding: 0.25rem 0;
+      }
+
+      .site-nav-link {
+        font-size: 1.02rem;
+        font-weight: 600;
+        color: #1e293b;
+        padding: 0.45rem 1.2rem;
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        border-radius: 9999px;
+      }
+
+      .site-nav-link:hover {
+        color: #16a34a;
+        background-color: rgba(34, 197, 94, 0.08);
+      }
+
+      .site-nav-link.active {
+        color: #14532d;
+        background-color: #dcfce7;
+        font-weight: 700;
+        border: 1px solid rgba(34, 197, 94, 0.4);
+      }
+
+      .site-nav-link.active::after {
+        display: none !important;
+      }
+
+      .site-header {
+        top: 0.4rem;
       }
     }
 
@@ -1237,7 +1280,7 @@
         width: 100%;
       }
 
-      .footer-links-group > div {
+      .footer-links-group>div {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -1305,9 +1348,139 @@
         grid-template-columns: 1fr 1fr;
       }
 
-      .footer-links-group > div:nth-child(3) {
+      .footer-links-group>div:nth-child(3) {
         grid-column: span 2;
       }
+    }
+
+    @keyframes mobileNavFade {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+    }
+
+    /* ==========================================================
+       CONTACT PAGE ANIMATIONS & INTERACTIVE HOVER ENHANCEMENTS
+       ========================================================== */
+    .info-cap-wrap {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .info-cap-img {
+      transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), filter 0.65s ease;
+      will-change: transform;
+    }
+
+    .info-cap-wrap:hover .info-cap-img {
+      transform: scale(1.08);
+      filter: brightness(1.03);
+    }
+
+    .info-icon-badge {
+      transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.35s ease;
+      will-change: transform;
+    }
+
+    .info-item-row:hover .info-icon-badge {
+      transform: scale(1.15) rotate(6deg);
+      box-shadow: 0 8px 20px rgba(27, 77, 41, 0.22);
+    }
+
+    .contact-map-frame-wrap {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .map-floating-pin-card {
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+      will-change: transform;
+    }
+
+    .map-floating-pin-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.16);
+    }
+
+    .form-control-input,
+    .form-control-select,
+    .form-control-textarea {
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .btn-send-message {
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, background-color 0.3s ease;
+    }
+
+    .btn-send-message:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(27, 77, 41, 0.25);
+    }
+
+    .btn-send-message:disabled {
+      opacity: 0.75;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .form-status-alert {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      padding: 1.1rem 1.3rem;
+      border-radius: 14px;
+      margin-top: 1.25rem;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      animation: fadeIn 0.35s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .form-status-alert.success {
+      background-color: #f0fdf4;
+      border: 1.5px solid #86efac;
+      color: #166534;
+      box-shadow: 0 6px 18px rgba(34, 197, 94, 0.12);
+    }
+
+    .form-status-alert.success svg {
+      color: #16a34a;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .form-status-alert.error {
+      background-color: #fef2f2;
+      border: 1.5px solid #fecaca;
+      color: #991b1b;
+      box-shadow: 0 6px 18px rgba(239, 68, 68, 0.1);
+    }
+
+    .form-status-alert.error svg {
+      color: #dc2626;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .form-status-alert a {
+      color: inherit;
+      text-decoration: underline;
+      font-weight: 700;
     }
   </style>
 </head>
@@ -1351,8 +1524,7 @@
               <polyline points="12 5 19 12 12 19"></polyline>
             </svg>
           </a>
-          <button class="mobile-menu-toggle" aria-label="Toggle Menu"
-            onclick="document.querySelector('.site-nav-menu').classList.toggle('mobile-active')">
+          <button class="mobile-menu-toggle" aria-label="Toggle Navigation Menu">
             <span></span>
             <span></span>
             <span></span>
@@ -1511,7 +1683,12 @@
           </p>
 
           <!-- Contact Form Element -->
-          <form class="contact-form-element" action="#" method="POST" onsubmit="event.preventDefault();">
+          <form class="contact-form-element" action="https://formsubmit.co/info@starksoftech.com" method="POST">
+
+            <!-- FormSubmit Configuration Fields -->
+            <input type="hidden" name="_subject" value="New Inquiry - Stark Softech Website">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
 
             <div class="form-inputs-grid">
 
@@ -1524,7 +1701,7 @@
                     <circle cx="12" cy="7" r="4"></circle>
                   </svg>
                 </span>
-                <input type="text" class="form-control-input" placeholder="Enter Full Name" required>
+                <input type="text" name="name" class="form-control-input" placeholder="Enter Full Name" required>
               </div>
 
               <!-- Input 2: Email Address -->
@@ -1536,7 +1713,7 @@
                     <polyline points="22,6 12,13 2,6"></polyline>
                   </svg>
                 </span>
-                <input type="email" class="form-control-input" placeholder="Email Address" required>
+                <input type="email" name="email" class="form-control-input" placeholder="Email Address" required>
               </div>
 
               <!-- Input 3: Phone No -->
@@ -1549,7 +1726,7 @@
                     </path>
                   </svg>
                 </span>
-                <input type="tel" class="form-control-input" placeholder="Phone No">
+                <input type="tel" name="phone" class="form-control-input" placeholder="Phone No">
               </div>
 
               <!-- Input 4: Country -->
@@ -1561,7 +1738,7 @@
                     <line x1="4" y1="22" x2="4" y2="15"></line>
                   </svg>
                 </span>
-                <input type="text" class="form-control-input" placeholder="Country">
+                <input type="text" name="country" class="form-control-input" placeholder="Country">
               </div>
 
               <!-- Input 5: Service Selection Dropdown -->
@@ -1575,11 +1752,14 @@
                     <rect x="3" y="14" width="7" height="7"></rect>
                   </svg>
                 </span>
-                <select class="form-control-select">
-                  <option value="mobile">Mobile App Development</option>
-                  <option value="web">Web Development &amp; Software</option>
-                  <option value="crm">Stark CRM &amp; Enterprise Solutions</option>
-                  <option value="marketing">Digital Marketing &amp; SEO</option>
+                <select name="service" class="form-control-select">
+                  <option value="Mobile App Development">Mobile App Development</option>
+                  <option value="Web Development & Software">Web Development &amp; Software</option>
+                  <option value="Stark CRM & Enterprise Solutions">Stark CRM &amp; Enterprise Solutions</option>
+                  <option value="Digital Marketing & SEO">Digital Marketing &amp; SEO</option>
+                  <option value="Custom Business Applications">Custom Business Applications</option>
+                  <option value="Workflow Automation">Workflow Automation</option>
+                  <option value="Other Inquiry">Other Inquiry</option>
                 </select>
               </div>
 
@@ -1591,7 +1771,7 @@
                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                   </svg>
                 </span>
-                <textarea class="form-control-textarea" placeholder="Type Your Message" required></textarea>
+                <textarea name="message" class="form-control-textarea" placeholder="Type Your Message" rows="4" required></textarea>
               </div>
 
             </div>
@@ -1599,7 +1779,7 @@
             <!-- Submit Action & Security Info Row -->
             <div class="form-action-row">
               <button type="submit" class="btn-send-message">
-                Send a Message
+                <span>Send a Message</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                   stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -1615,6 +1795,11 @@
                 <span>Your information is safe with us.</span>
               </div>
             </div>
+
+            <!-- Form Status Alert Container -->
+            <div class="form-status-alert" style="display: none;"></div>
+
+          </form>
 
           </form>
 
@@ -1815,6 +2000,11 @@
     </div>
   </footer>
 
+  <!-- GSAP & ScrollTrigger Animation Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- Contact Us Custom Interactive Animations -->
+  <script src="contact.js"></script>
 </body>
 
 </html>
